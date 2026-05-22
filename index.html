@@ -31,7 +31,7 @@
       box-shadow: 0 0 30px rgba(0,0,0,0.5);
     }
     
-    /* Haupt-Avatar (Eckig-gerundet im App-Style) */
+    /* Großer Haupt-Avatar (Eckig-gerundet im App-Style) */
     .avatar-box {
       width: 130px; height: 130px; margin: 0 auto 20px auto; position: relative;
     }
@@ -42,7 +42,7 @@
       transition: all 0.3s ease;
     }
     
-    /* Rahmen-Glow gesteuert über Discord-Status */
+    /* Discord Status-Glow für den Hauptrahmen */
     .status-online { border-color: #43b581; box-shadow: 0 0 25px rgba(67, 181, 129, 0.9); }
     .status-idle { border-color: #faa61a; box-shadow: 0 0 25px rgba(250, 166, 26, 0.9); }
     .status-dnd { border-color: #f04747; box-shadow: 0 0 25px rgba(240, 71, 71, 0.9); }
@@ -61,7 +61,7 @@
       color: rgba(0,255,8,0.6); font-size: 16px; margin: 5px 0 20px 0;
     }
 
-    /* Das originale Guns.lol Discord Live-Widget (Mattes, flaches Design) */
+    /* Das originale flache Guns.lol Discord Widget (Bild 9) */
     .guns-discord-widget {
       background: rgba(255, 255, 255, 0.07);
       border-radius: 18px;
@@ -82,7 +82,7 @@
     }
     .widget-pfp {
       width: 100%; height: 100%;
-      border-radius: 50%; /* Absolut kreisrund im Widget */
+      border-radius: 50%;
       object-fit: cover;
     }
     /* Der kleine Statuspunkt unten rechts am runden Widget-Bild */
@@ -268,7 +268,7 @@
           widgetDot.className = "widget-status-dot";
           widgetActivity.innerText = "currently doing nothing";
           
-          // Setzt den Status am großen Bild und am Widget-Punkt parallel
+          // Rahmen-Glow und Status-Punkt live schalten
           if (status === "online") {
             avatar.classList.add("status-online");
             widgetDot.classList.add("dot-online");
@@ -283,13 +283,13 @@
             widgetDot.classList.add("dot-offline");
           }
           
-          // Holt dein echtes Discord-Bild für das Widget
+          // Holt das Discord-Profilbild für das Widget
           if (data.data.discord_user && data.data.discord_user.avatar) {
             const pfpHash = data.data.discord_user.avatar;
             widgetPfp.src = `https://cdn.discordapp.com/avatars/${discordId}/${pfpHash}.png`;
           }
           
-          // Liest deine Live-Aktivitäten (Spielen / Spotify) aus Discord aus
+          // Zeigt deine echten Aktivitäten (Spielen, Spotify oder Custom-Status) an
           if (data.data.activities && data.data.activities.length > 0) {
             const game = data.data.activities.find(a => a.type === 0);
             const spotify = data.data.listening_to_spotify ? data.data.spotify : null;
