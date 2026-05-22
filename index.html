@@ -228,4 +228,81 @@
           <div class="links-card-left"><i class="fa-solid fa-star"></i><span>OnlyFans</span></div>
           <i class="fa-solid fa-chevron-right arrow"></i>
         </a>
-        <a href="
+        <a href="https://t.me/reekeyuwu" target="_blank" class="links-card">
+          <div class="links-card-left"><i class="fab fa-telegram"></i><span>Telegram Channel</span></div>
+          <i class="fa-solid fa-chevron-right arrow"></i>
+        </a>
+      </div>
+
+      <div class="guns-view-counter">
+        <i class="fa-solid fa-eye"></i> <span>447</span>
+      </div>
+      
+    </div>
+  </div>
+
+  <script>
+    const discordId = "434389923869032458"; 
+
+    async function fetchDiscordStatus() {
+      try {
+        const response = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
+        const data = await response.json();
+        
+        if (data.success && data.data) {
+          const status = data.data.discord_status;
+          const avatar = document.getElementById('avatar');
+          const widgetDot = document.getElementById('widget-dot');
+          const widgetPfp = document.getElementById('widget-pfp');
+          const widgetActivity = document.getElementById('widget-activity');
+          
+          avatar.className = "avatar-img";
+          widgetDot.className = "widget-status-dot";
+          widgetActivity.innerText = "currently doing nothing";
+          
+          // Status zuweisen (mit grünem Fallback bei Offline)
+          if (status === "online") {
+            avatar.classList.add("status-online");
+            widgetDot.classList.add("dot-online");
+          } else if (status === "idle") {
+            avatar.classList.add("status-idle");
+            widgetDot.classList.add("dot-idle");
+          } else if (status === "dnd") {
+            avatar.classList.add("status-dnd");
+            widgetDot.classList.add("dot-dnd");
+          } else {
+            avatar.classList.add("status-offline");
+            widgetDot.classList.add("dot-offline");
+          }
+          
+          // Wenn vorhanden, echten Discord-Avatar einsetzen
+          if (data.data.discord_user && data.data.discord_user.avatar) {
+            const pfpHash = data.data.discord_user.avatar;
+            widgetPfp.src = `https://cdn.discordapp.com/avatars/${discordId}/${pfpHash}.png`;
+          }
+          
+          // Live-Aktivitäten auslesen
+          if (data.data.activities && data.data.activities.length > 0) {
+            const game = data.data.activities.find(a => a.type === 0);
+            const spotify = data.data.listening_to_spotify ? data.data.spotify : null;
+            const custom = data.data.activities.find(a => a.type === 4);
+            
+            if (game) {
+              widgetActivity.innerText = `playing ${game.name}`;
+            } else if (spotify) {
+              widgetActivity.innerText = `listening to ${spotify.song}`;
+            } else if (custom && custom.state) {
+              widgetActivity.innerText = custom.state;
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Lanyard-Fehler:", error);
+      }
+    }
+
+    fetchDiscordStatus();
+    setInterval(fetchDiscordStatus, 15000);
+  </script>
+</body>
+</html>
