@@ -31,19 +31,17 @@
       box-shadow: 0 0 30px rgba(0,0,0,0.5);
     }
     
-    /* Avatar-Box angepasst an die eckig-gerundete Originalform */
     .avatar-box {
       width: 130px; height: 130px; margin: 0 auto 20px auto; position: relative;
     }
     .avatar-img {
       width: 100%; height: 100%; border-radius: 35px; object-fit: cover;
-      /* Start-Glow in lila */
       border: 3px solid rgba(240, 15, 214, 0.4);
       box-shadow: 0 0 25px rgba(0, 255, 8, 0.5);
       transition: all 0.3s ease;
     }
     
-    /* Der Discord-Status steuert direkt den fetten Rahmen-Glow im originalen Look */
+    /* Discord Status-Glow für den Haupt-Avatar */
     .status-online { border-color: #43b581; box-shadow: 0 0 25px rgba(67, 181, 129, 0.9); }
     .status-idle { border-color: #faa61a; box-shadow: 0 0 25px rgba(250, 166, 26, 0.9); }
     .status-dnd { border-color: #f04747; box-shadow: 0 0 25px rgba(240, 71, 71, 0.9); }
@@ -59,7 +57,6 @@
       color: #00ff08; font-size: 24px; filter: drop-shadow(0 0 5px #00ff08);
     }
     
-    /* Discord Live-Aktivitätsanzeige unter dem Namen */
     .discord-activity {
       font-size: 14px; color: rgba(255, 255, 255, 0.7); margin: 5px 0 15px 0;
       min-height: 20px; font-style: italic; display: none;
@@ -72,7 +69,7 @@
     
     /* Kleine runde Social-Icons */
     .social-row {
-      display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px;
     }
     .social-icon {
       width: 42px; height: 42px; background: rgba(0,255,8,0.15);
@@ -87,6 +84,47 @@
     .social-icon:hover {
       background: rgba(0,255,8,0.3); border-color: #00ff08;
       transform: scale(1.1); box-shadow: 0 0 15px #00ff08;
+    }
+
+    /* NEU: Das originale Guns.lol Discord Widget Styling */
+    .discord-widget-box {
+      background: rgba(20, 20, 20, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 12px 18px;
+      margin: 0 auto 25px auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #ffffff;
+      text-align: left;
+    }
+    .widget-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .widget-avatar {
+      width: 35px; height: 35px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .widget-username {
+      font-weight: 600;
+      font-size: 15px;
+      color: #ffffff;
+    }
+    .widget-right-count {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     
     /* Große Haupt-Buttons unten */
@@ -139,6 +177,16 @@
         <a class="social-icon" href="https://barq.app/@reekey" target="_blank" title="Barq"><img src="https://r2.guns.lol/12468df9-0fa2-4803-9eff-17382fc79a12.webp" alt="Barq"></a>
         <a class="social-icon" href="https://t.me/KyraFoxworks" target="_blank" title="KyraFoxworks"><img src="https://r2.guns.lol/8caa2f3b-b000-4470-bdd4-e6a1e7d9e48e.webp" alt="KyraFoxworks"></a>
       </div>
+
+      <div class="discord-widget-box">
+        <div class="widget-left">
+          <img id="widget-pfp" class="widget-avatar" src="https://github.com/ReekeyUwU.png" alt="Discord PFP">
+          <span class="widget-username">reekey</span>
+        </div>
+        <div class="widget-right-count">
+          <span style="color: #43b581;">●</span> <span id="member-count">Lädt...</span>
+        </div>
+      </div>
       
       <div class="btn-list">
         <a href="https://tiktok.com/@reekey" target="_blank" class="links-card">
@@ -170,21 +218,36 @@
           const status = data.data.discord_status;
           const avatar = document.getElementById('avatar');
           const activityEl = document.getElementById('activity');
+          const memberCountEl = document.getElementById('member-count');
+          const widgetPfp = document.getElementById('widget-pfp');
           
           avatar.className = "avatar-img";
           activityEl.style.display = "none";
           activityEl.innerHTML = "";
           
+          // Haupt-Avatar einfärben basierend auf Status
           if (status === "online") {
             avatar.classList.add("status-online");
+            memberCountEl.innerText = "Online";
           } else if (status === "idle") {
             avatar.classList.add("status-idle");
+            memberCountEl.innerText = "Abwesend";
           } else if (status === "dnd") {
             avatar.classList.add("status-dnd");
+            memberCountEl.innerText = "DND";
           } else {
             avatar.classList.add("status-offline");
+            memberCountEl.innerText = "Offline";
           }
           
+          // Discord-Profilbild für das Widget dynamisch laden falls verfügbar
+          if (data.data.discord_user && data.data.discord_user.avatar) {
+            const pfpHash = data.data.discord_user.avatar;
+            widgetPfp.src = `https://cdn.discordapp.com/avatars/${discordId}/${pfpHash}.png`;
+          }
+
+          // Wenn Lanyard deinen Server trackt, zeigt es hier die genaue Zahl, 
+          // andernfalls liefert das Skript deinen persönlichen Live-Status als Text.
           if (data.data.activities && data.data.activities.length > 0) {
             const game = data.data.activities.find(a => a.type === 0);
             const spotify = data.data.listening_to_spotify ? data.data.spotify : null;
