@@ -31,18 +31,16 @@
       box-shadow: 0 0 30px rgba(0,0,0,0.5);
     }
     
-    /* Haupt-Avatar (Eckig-gerundet im originalen guns.lol Stil) */
     .avatar-box {
       width: 130px; height: 130px; margin: 0 auto 20px auto; position: relative;
     }
     .avatar-img {
       width: 100%; height: 100%; border-radius: 35px; object-fit: cover;
-      border: 3px solid #43b581; /* Knalliges Grün als Standard */
-      box-shadow: 0 0 25px rgba(67, 181, 129, 0.9);
+      border: 3px solid #43b581;
+      box-shadow: 0 0 25px rgba(0, 255, 8, 0.5);
       transition: all 0.3s ease;
     }
     
-    /* Live Discord Status-Glows */
     .status-online { border-color: #43b581; box-shadow: 0 0 25px rgba(67, 181, 129, 0.9); }
     .status-idle { border-color: #faa61a; box-shadow: 0 0 25px rgba(250, 166, 26, 0.9); }
     .status-dnd { border-color: #f04747; box-shadow: 0 0 25px rgba(240, 71, 71, 0.9); }
@@ -61,7 +59,6 @@
       color: rgba(0,255,8,0.6); font-size: 16px; margin: 5px 0 20px 0;
     }
 
-    /* Das originale Guns.lol Discord Widget */
     .guns-discord-widget {
       background: rgba(255, 255, 255, 0.07);
       border-radius: 18px;
@@ -89,7 +86,7 @@
       position: absolute; bottom: 0; right: 0;
       width: 13px; height: 13px;
       border-radius: 50%;
-      background-color: #43b581; /* Grün als Standard */
+      background-color: #43b581;
       border: 2px solid rgba(35, 25, 45, 1);
     }
     .widget-info {
@@ -105,22 +102,14 @@
       font-weight: 600;
       color: #00ff08;
     }
+    .widget-badges { display: flex; align-items: center; gap: 4px; }
     .badge-pro {
-      font-size: 9px; 
-      background: rgba(0,255,8,0.2); 
-      color: #00ff08;
-      padding: 1px 4px; 
-      border-radius: 4px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
+      font-size: 9px; background: rgba(0,255,8,0.2); color: #00ff08;
+      padding: 1px 4px; border-radius: 4px; font-weight: 700; letter-spacing: 0.5px;
     }
     .widget-activity-text {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.6);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 210px;
+      font-size: 13px; color: rgba(255, 255, 255, 0.6);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 210px;
     }
 
     .dot-online { background-color: #43b581; }
@@ -138,6 +127,10 @@
       display: flex; justify-content: center; align-items: center;
       color: #00ff08; text-decoration: none; font-size: 20px;
       transition: all .25s ease; box-shadow: 0 0 10px rgba(0,255,8,0.2);
+    }
+    /* SVG Logo-Farbe für Bluesky, damit es giftgrün leuchtet */
+    .social-icon svg {
+      width: 20px; height: 20px; fill: #00ff08; filter: drop-shadow(0 0 4px #00ff08);
     }
     .social-icon img {
       width: 22px; height: 22px; object-fit: contain; filter: drop-shadow(0 0 4px #00ff08);
@@ -211,7 +204,11 @@
         <a class="social-icon" href="https://instagram.com/reekeyuwu" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
         <a class="social-icon" href="https://tiktok.com/@reekey" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
         <a class="social-icon" href="https://x.com/reekey_" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
-        <a class="social-icon" href="https://bsky.app/profile/reekey.de" target="_blank" title="Bluesky"><i class="fab fa-bluesky"></i></a>
+        
+        <a class="social-icon" href="https://bsky.app/profile/reekey.de" target="_blank" title="Bluesky">
+          <svg viewBox="0 0 512 512"><path d="M111.8 62.2C170.2 105.9 233 181.9 256 213.7c23-31.8 85.8-107.8 144.2-151.5C445.6 28.1 512 33.4 512 101.8c0 48.6-32.2 189.6-49.8 241.1-23.7 69.6-91 88.3-157.6 74.7-65-13.4-92.4-53.7-104.6-77.4-12.2 23.7-39.6 64-104.6 77.4-66.6 13.6-133.9-5.1-157.6-74.7C21.8 291.4 0 150.4 0 101.8 0 33.4 66.4 28.1 111.8 62.2z"/></svg>
+        </a>
+        
         <a class="social-icon" href="https://t.me/reekeyuwu" target="_blank" title="Telegram Channel"><i class="fab fa-telegram"></i></a>
         <a class="social-icon" href="https://t.me/reekeyad" target="_blank" title="Telegram Ad"><i class="fab fa-telegram"></i></a>
         <a class="social-icon" href="https://onlyfans.com/reekeyuwu" target="_blank" title="OnlyFans"><i class="fa-solid fa-star"></i></a>
@@ -260,7 +257,6 @@
           widgetDot.className = "widget-status-dot";
           widgetActivity.innerText = "currently doing nothing";
           
-          // Status zuweisen (mit grünem Fallback bei Offline)
           if (status === "online") {
             avatar.classList.add("status-online");
             widgetDot.classList.add("dot-online");
@@ -275,13 +271,11 @@
             widgetDot.classList.add("dot-offline");
           }
           
-          // Wenn vorhanden, echten Discord-Avatar einsetzen
           if (data.data.discord_user && data.data.discord_user.avatar) {
             const pfpHash = data.data.discord_user.avatar;
             widgetPfp.src = `https://cdn.discordapp.com/avatars/${discordId}/${pfpHash}.png`;
           }
           
-          // Live-Aktivitäten auslesen
           if (data.data.activities && data.data.activities.length > 0) {
             const game = data.data.activities.find(a => a.type === 0);
             const spotify = data.data.listening_to_spotify ? data.data.spotify : null;
