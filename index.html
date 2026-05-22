@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>reekey</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     * { box-sizing: border-box; }
     body, html {
@@ -31,22 +31,22 @@
       box-shadow: 0 0 30px rgba(0,0,0,0.5);
     }
     
-    /* Großer Haupt-Avatar (Eckig-gerundet im App-Style) */
+    /* Haupt-Avatar (Eckig-gerundet im originalen guns.lol Stil) */
     .avatar-box {
       width: 130px; height: 130px; margin: 0 auto 20px auto; position: relative;
     }
     .avatar-img {
       width: 100%; height: 100%; border-radius: 35px; object-fit: cover;
-      border: 3px solid rgba(240, 15, 214, 0.4);
-      box-shadow: 0 0 25px rgba(0, 255, 8, 0.5);
+      border: 3px solid #43b581; /* Knalliges Grün als Standard */
+      box-shadow: 0 0 25px rgba(67, 181, 129, 0.9);
       transition: all 0.3s ease;
     }
     
-    /* Discord Status-Glow für den Hauptrahmen */
+    /* Live Discord Status-Glows */
     .status-online { border-color: #43b581; box-shadow: 0 0 25px rgba(67, 181, 129, 0.9); }
     .status-idle { border-color: #faa61a; box-shadow: 0 0 25px rgba(250, 166, 26, 0.9); }
     .status-dnd { border-color: #f04747; box-shadow: 0 0 25px rgba(240, 71, 71, 0.9); }
-    .status-offline { border-color: rgba(240, 15, 214, 0.4); box-shadow: 0 0 25px rgba(0, 255, 8, 0.5); }
+    .status-offline { border-color: #43b581; box-shadow: 0 0 25px rgba(67, 181, 129, 0.9); }
 
     h1 {
       font-size: 39.5px; font-weight: 600; margin: 0 0 5px 0;
@@ -61,7 +61,7 @@
       color: rgba(0,255,8,0.6); font-size: 16px; margin: 5px 0 20px 0;
     }
 
-    /* Das originale flache Guns.lol Discord Widget (Bild 9) */
+    /* Das originale Guns.lol Discord Widget */
     .guns-discord-widget {
       background: rgba(255, 255, 255, 0.07);
       border-radius: 18px;
@@ -85,12 +85,11 @@
       border-radius: 50%;
       object-fit: cover;
     }
-    /* Der kleine Statuspunkt unten rechts am runden Widget-Bild */
     .widget-status-dot {
       position: absolute; bottom: 0; right: 0;
       width: 13px; height: 13px;
       border-radius: 50%;
-      background-color: #747f8d;
+      background-color: #43b581; /* Grün als Standard */
       border: 2px solid rgba(35, 25, 45, 1);
     }
     .widget-info {
@@ -105,11 +104,6 @@
       font-size: 14px;
       font-weight: 600;
       color: #00ff08;
-    }
-    .widget-badges {
-      display: flex;
-      align-items: center;
-      gap: 4px;
     }
     .badge-pro {
       font-size: 9px; 
@@ -129,11 +123,10 @@
       max-width: 210px;
     }
 
-    /* Statusfarben für den Punkt im Widget */
     .dot-online { background-color: #43b581; }
     .dot-idle { background-color: #faa61a; }
     .dot-dnd { background-color: #f04747; }
-    .dot-offline { background-color: #747f8d; }
+    .dot-offline { background-color: #43b581; }
     
     /* Kleine runde Social-Icons */
     .social-row {
@@ -176,7 +169,6 @@
     }
     .links-card:hover .arrow { transform: translateX(5px); color: #00ff08; }
 
-    /* Der originale guns.lol View-Counter unten links */
     .guns-view-counter {
       position: absolute; bottom: 15px; left: 20px;
       font-size: 13px; color: #00ff08; font-weight: 600;
@@ -191,7 +183,7 @@
     <div class="profile-card">
       
       <div class="avatar-box">
-        <img id="avatar" class="avatar-img" src="https://github.com/ReekeyUwU.png" alt="reekey">
+        <img id="avatar" class="avatar-img" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp" alt="reekey">
       </div>
       
       <h1>reekey<i class="fa-solid fa-circle-check verified-icon"></i></h1>
@@ -199,7 +191,7 @@
 
       <div class="guns-discord-widget">
         <div class="widget-pfp-container">
-          <img id="widget-pfp" class="widget-pfp" src="https://github.com/ReekeyUwU.png" alt="Discord Avatar">
+          <img id="widget-pfp" class="widget-pfp" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp" alt="Discord Avatar">
           <div id="widget-dot" class="widget-status-dot"></div>
         </div>
         <div class="widget-info">
@@ -219,7 +211,7 @@
         <a class="social-icon" href="https://instagram.com/reekeyuwu" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
         <a class="social-icon" href="https://tiktok.com/@reekey" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
         <a class="social-icon" href="https://x.com/reekey_" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
-        <a class="social-icon" href="https://bsky.app/profile/reekey.de" target="_blank" title="Bluesky"><i class="fa-solid fa-cloud"></i></a>
+        <a class="social-icon" href="https://bsky.app/profile/reekey.de" target="_blank" title="Bluesky"><i class="fab fa-bluesky"></i></a>
         <a class="social-icon" href="https://t.me/reekeyuwu" target="_blank" title="Telegram Channel"><i class="fab fa-telegram"></i></a>
         <a class="social-icon" href="https://t.me/reekeyad" target="_blank" title="Telegram Ad"><i class="fab fa-telegram"></i></a>
         <a class="social-icon" href="https://onlyfans.com/reekeyuwu" target="_blank" title="OnlyFans"><i class="fa-solid fa-star"></i></a>
@@ -236,81 +228,4 @@
           <div class="links-card-left"><i class="fa-solid fa-star"></i><span>OnlyFans</span></div>
           <i class="fa-solid fa-chevron-right arrow"></i>
         </a>
-        <a href="https://t.me/reekeyuwu" target="_blank" class="links-card">
-          <div class="links-card-left"><i class="fab fa-telegram"></i><span>Telegram Channel</span></div>
-          <i class="fa-solid fa-chevron-right arrow"></i>
-        </a>
-      </div>
-
-      <div class="guns-view-counter">
-        <i class="fa-solid fa-eye"></i> <span>447</span>
-      </div>
-      
-    </div>
-  </div>
-
-  <script>
-    const discordId = "434389923869032458"; 
-
-    async function fetchDiscordStatus() {
-      try {
-        const response = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
-        const data = await response.json();
-        
-        if (data.success && data.data) {
-          const status = data.data.discord_status;
-          const avatar = document.getElementById('avatar');
-          const widgetDot = document.getElementById('widget-dot');
-          const widgetPfp = document.getElementById('widget-pfp');
-          const widgetActivity = document.getElementById('widget-activity');
-          
-          avatar.className = "avatar-img";
-          widgetDot.className = "widget-status-dot";
-          widgetActivity.innerText = "currently doing nothing";
-          
-          // Rahmen-Glow und Status-Punkt live schalten
-          if (status === "online") {
-            avatar.classList.add("status-online");
-            widgetDot.classList.add("dot-online");
-          } else if (status === "idle") {
-            avatar.classList.add("status-idle");
-            widgetDot.classList.add("dot-idle");
-          } else if (status === "dnd") {
-            avatar.classList.add("status-dnd");
-            widgetDot.classList.add("dot-dnd");
-          } else {
-            avatar.classList.add("status-offline");
-            widgetDot.classList.add("dot-offline");
-          }
-          
-          // Holt das Discord-Profilbild für das Widget
-          if (data.data.discord_user && data.data.discord_user.avatar) {
-            const pfpHash = data.data.discord_user.avatar;
-            widgetPfp.src = `https://cdn.discordapp.com/avatars/${discordId}/${pfpHash}.png`;
-          }
-          
-          // Zeigt deine echten Aktivitäten (Spielen, Spotify oder Custom-Status) an
-          if (data.data.activities && data.data.activities.length > 0) {
-            const game = data.data.activities.find(a => a.type === 0);
-            const spotify = data.data.listening_to_spotify ? data.data.spotify : null;
-            const custom = data.data.activities.find(a => a.type === 4);
-            
-            if (game) {
-              widgetActivity.innerText = `playing ${game.name}`;
-            } else if (spotify) {
-              widgetActivity.innerText = `listening to ${spotify.song}`;
-            } else if (custom && custom.state) {
-              widgetActivity.innerText = custom.state;
-            }
-          }
-        }
-      } catch (error) {
-        console.error("Lanyard-Fehler:", error);
-      }
-    }
-
-    fetchDiscordStatus();
-    setInterval(fetchDiscordStatus, 15000);
-  </script>
-</body>
-</html>
+        <a href="
