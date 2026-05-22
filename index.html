@@ -9,113 +9,106 @@
     * { box-sizing: border-box; }
     body, html {
       margin: 0; padding: 0; width: 100%; min-height: 100vh;
-      background-color: #050505; color: #ffffff;
+      background-color: #050505; color: #00ff08;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       overflow-x: hidden;
-      display: flex; justify-content: center; align-items: center;
     }
-    
     .bg-layer {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: radial-gradient(circle at center, #1a0826 0%, #050505 100%);
-      z-index: 1;
+      background-image: url("https://r2.guns.lol/84bdc93d-a924-42a8-829d-8ceafa6314fd.webp");
+      background-size: cover; background-position: center; z-index: 1;
     }
-    
     .main-wrapper {
-      position: relative; z-index: 2; width: 100%; max-width: 480px; padding: 20px;
+      position: relative; z-index: 2; min-height: 100vh; width: 100%;
+      display: flex; justify-content: center; align-items: center; padding: 20px;
     }
-    
     .profile-card {
-      width: 100%;
-      background: rgba(20, 16, 25, 0.7);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border-radius: 24px; border: 1px solid rgba(138, 43, 226, 0.2);
-      padding: 40px 30px; text-align: center;
-      box-shadow: 0 0 40px rgba(138, 43, 226, 0.15);
+      width: 100%; max-width: 640px;
+      background: rgba(240, 15, 214, 0.15);
+      backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px);
+      border-radius: 20px; border: 2px solid rgba(240, 15, 214, 0.1);
+      padding: 35px 25px; text-align: center;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
     }
     
-    /* Avatar-Box mit Positionsmarker für den Discord-Status-Punkt */
+    /* Avatar-Box mit Discord-Status-Unterstützung */
     .avatar-box {
-      width: 120px; height: 120px; margin: 0 auto 24px auto; position: relative;
+      width: 130px; height: 130px; margin: 0 auto 20px auto; position: relative;
     }
     .avatar-img {
-      width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
-      border: 3px solid #4a4a4a; /* Standard-Farbe (Offline) */
+      width: 100%; height: 100%; border-radius: 35px; object-fit: cover;
+      /* Grundrahmen-Glow, wird per JS dynamisch angepasst */
+      border: 3px solid rgba(138, 43, 226, 0.4); 
+      box-shadow: 0 0 25px rgba(138, 43, 226, 0.6);
       transition: all 0.3s ease;
     }
     
-    /* Der kleine Discord-Status-Punkt unten rechts am Avatar */
-    .status-dot {
-      position: absolute; bottom: 4px; right: 4px;
-      width: 24px; height: 24px; border-radius: 50%;
-      background-color: #747f8d; border: 4px solid #141019;
-      transition: all 0.3s ease;
-    }
-    
-    /* Dynamische Status-Farben (werden per JavaScript gesteuert) */
-    .status-online { border-color: #43b581; box-shadow: 0 0 20px #43b581; }
-    .status-idle { border-color: #faa61a; box-shadow: 0 0 20px #faa61a; }
-    .status-dnd { border-color: #f04747; box-shadow: 0 0 20px #f04747; }
-    .status-offline { border-color: #747f8d; }
-    
-    .dot-online { background-color: #43b581; }
-    .dot-idle { background-color: #faa61a; }
-    .dot-dnd { background-color: #f04747; }
-    .dot-offline { background-color: #747f8d; }
-    
+    /* Discord Status-Farben (Glow-Intensität passend zum ursprünglichen Design) */
+    .status-online { border-color: #43b581; box-shadow: 0 0 25px rgba(67, 181, 129, 0.8); }
+    .status-idle { border-color: #faa61a; box-shadow: 0 0 25px rgba(250, 166, 26, 0.8); }
+    .status-dnd { border-color: #f04747; box-shadow: 0 0 25px rgba(240, 71, 71, 0.8); }
+    .status-offline { border-color: rgba(138, 43, 226, 0.4); box-shadow: 0 0 25px rgba(138, 43, 226, 0.6); }
+
     h1 {
-      font-size: 32px; font-weight: 700; margin: 0 0 6px 0; color: #ffffff;
+      font-size: 39.5px; font-weight: 600; margin: 0 0 5px 0;
+      color: #00ff08; text-shadow: 0 0 16.5px #00ff08;
       display: inline-flex; align-items: center; gap: 8px;
+      background-image: url("https://assets.guns.lol/sparkle_green.gif");
     }
     .verified-icon {
-      color: #9b4dff; font-size: 22px; filter: drop-shadow(0 0 8px #9b4dff);
+      color: #00ff08; font-size: 24px; filter: drop-shadow(0 0 5px #00ff08);
     }
     
-    /* Live Discord-Aktivitätsanzeige unter dem Namen */
+    /* Discord Live-Aktivitätsanzeige unter dem Namen */
     .discord-activity {
-      font-size: 14px; color: #b9bbbe; margin: -10px 0 24px 0;
-      min-height: 20px; font-style: italic;
+      font-size: 14px; color: rgba(255, 255, 255, 0.6); margin: -10px 0 24px 0;
+      min-height: 20px; font-style: italic; display: none; /* Standardmäßig ausgeblendet */
     }
     
     .sub-bio {
-      color: rgba(255, 255, 255, 0.6); font-size: 15px; margin: 0 0 24px 0;
+      color: rgba(0,255,8,0.6); font-size: 16px; margin: 5px 0 25px 0;
     }
     
+    /* Runde Social-Icons (ursprüngliches Design) */
     .social-row {
-      display: flex; justify-content: center; margin-bottom: 30px;
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;
     }
     .social-icon {
-      width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%; display: flex; justify-content: center; align-items: center;
-      color: #ffffff; text-decoration: none; font-size: 18px; transition: all .2s ease;
+      width: 42px; height: 42px; background: rgba(0,255,8,0.15);
+      border: 2px solid rgba(0,255,8,0.12); border-radius: 50%;
+      display: flex; justify-content: center; align-items: center;
+      color: #00ff08; text-decoration: none; font-size: 20px;
+      transition: all .25s ease; box-shadow: 0 0 10px rgba(0,255,8,0.2);
+    }
+    .social-icon img {
+      width: 22px; height: 22px; object-fit: contain; filter: drop-shadow(0 0 4px #00ff08);
     }
     .social-icon:hover {
-      background: rgba(138, 43, 226, 0.4); transform: scale(1.1);
+      background: rgba(0,255,8,0.3); border-color: #00ff08;
+      transform: scale(1.1); box-shadow: 0 0 15px #00ff08;
     }
     
+    /* Breite Buttons unten (ursprüngliches Design) */
     .btn-list {
-      display: flex; flex-direction: column; gap: 14px; width: 100%;
+      display: flex; flex-direction: column; gap: 15px; width: 100%;
     }
     .links-card {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08); padding: 18px 24px; border-radius: 14px;
-      color: #ffffff; text-decoration: none; font-weight: 600; font-size: 16px;
+      background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%);
+      border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px;
+      color: #00ff08; text-decoration: none; font-weight: 600; font-size: 17px;
       display: flex; align-items: center; justify-content: space-between;
-      transition: all .2s ease;
+      transition: all .25s ease; box-shadow: 0 0 15px rgba(136, 28, 156, 0.3);
     }
     .links-card:hover {
-      background: rgba(138, 43, 226, 0.15); border-color: rgba(138, 43, 226, 0.4);
-      transform: translateY(-2px);
+      background: linear-gradient(90deg, rgba(136, 28, 156, 0.9) 0%, rgba(20, 20, 20, 0.9) 100%);
+      border-color: #00ff08; box-shadow: 0 0 25px rgba(0,255,8,0.4); transform: scale(1.02);
     }
-    .links-card-left { display: flex; align-items: center; gap: 16px; }
+    .links-card-left { display: flex; align-items: center; gap: 15px; }
     .links-card-left i { font-size: 20px; width: 24px; text-align: center; }
-    
-    .fa-tiktok { color: #ff0050; }
-    .fa-star { color: #00afff; }
-    .fa-telegram { color: #229ED9; }
-    
-    .arrow { font-size: 14px; color: rgba(255, 255, 255, 0.3); transition: transform .2s ease; }
-    .links-card:hover .arrow { transform: translateX(4px); color: #ffffff; }
+    .arrow {
+      font-size: 14px; color: rgba(0,255,8,0.5); transition: transform .25s ease;
+    }
+    .links-card:hover .arrow { transform: translateX(5px); color: #00ff08; }
   </style>
 </head>
 <body>
@@ -125,17 +118,25 @@
       
       <div class="avatar-box">
         <img id="avatar" class="avatar-img" src="https://github.com/ReekeyUwU.png" alt="reekey">
-        <div id="status" class="status-dot"></div>
       </div>
       
       <h1>reekey<i class="fa-solid fa-circle-check verified-icon"></i></h1>
       
-      <div id="activity" class="discord-activity">Offline</div>
+      <div id="activity" class="discord-activity"></div>
       
       <div class="sub-bio">Welcome to my universe</div>
       
       <div class="social-row">
-        <a class="social-icon" href="https://t.me/reekeyuwu" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+        <a class="social-icon" href="https://discord.com/invite/nRTbXGepUT" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+        <a class="social-icon" href="https://instagram.com/reekeyuwu" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a class="social-icon" href="https://tiktok.com/@reekey" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a class="social-icon" href="https://x.com/reekey_" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
+        <a class="social-icon" href="https://bsky.app/profile/reekey.de" target="_blank" title="Bluesky"><i class="fa-solid fa-cloud"></i></a>
+        <a class="social-icon" href="https://t.me/reekeyuwu" target="_blank" title="Telegram Channel"><i class="fab fa-telegram"></i></a>
+        <a class="social-icon" href="https://t.me/reekeyad" target="_blank" title="Telegram Ad"><i class="fab fa-telegram"></i></a>
+        <a class="social-icon" href="https://onlyfans.com/reekeyuwu" target="_blank" title="OnlyFans"><i class="fa-solid fa-star"></i></a>
+        <a class="social-icon" href="https://barq.app/@reekey" target="_blank" title="Barq"><img src="https://r2.guns.lol/12468df9-0fa2-4803-9eff-17382fc79a12.webp" alt="Barq"></a>
+        <a class="social-icon" href="https://t.me/KyraFoxworks" target="_blank" title="KyraFoxworks"><img src="https://r2.guns.lol/8caa2f3b-b000-4470-bdd4-e6a1e7d9e48e.webp" alt="KyraFoxworks"></a>
       </div>
       
       <div class="btn-list">
@@ -157,7 +158,8 @@
   </div>
 
   <script>
-    const discordId = "344199971935682571"; // Deine Discord-ID
+    // DEINE ECHTE DISCORD ID
+    const discordId = "434389923869032458"; 
 
     async function fetchDiscordStatus() {
       try {
@@ -167,55 +169,52 @@
         if (data.success && data.data) {
           const status = data.data.discord_status;
           const avatar = document.getElementById('avatar');
-          const dot = document.getElementById('status');
           const activityEl = document.getElementById('activity');
           
-          // Alle alten Klassen entfernen
+          // Alte Klassen entfernen
           avatar.className = "avatar-img";
-          dot.className = "status-dot";
+          activityEl.style.display = "none";
+          activityEl.innerHTML = "";
           
-          // Status-Farbe setzen
+          // Rahmenfarbe basierend auf Status setzen
           if (status === "online") {
             avatar.classList.add("status-online");
-            dot.classList.add("dot-online");
-            activityEl.innerText = "Online";
           } else if (status === "idle") {
             avatar.classList.add("status-idle");
-            dot.classList.add("dot-idle");
-            activityEl.innerText = "Abwesend";
           } else if (status === "dnd") {
             avatar.classList.add("status-dnd");
-            dot.classList.add("dot-dnd");
-            activityEl.innerText = "Bitte nicht stören";
           } else {
             avatar.classList.add("status-offline");
-            dot.classList.add("dot-offline");
-            activityEl.innerText = "Offline";
           }
           
-          // Aktivität auslesen (Zocken, Spotify, Custom Status)
+          // Aktivität abfragen (Zocken, Spotify, etc.)
           if (data.data.activities && data.data.activities.length > 0) {
-            // Bevorzugt "Spielt gerade" oder Custom Status anzeigen
-            const custom = data.data.activities.find(a => a.type === 4);
             const game = data.data.activities.find(a => a.type === 0);
             const spotify = data.data.listening_to_spotify ? data.data.spotify : null;
+            const custom = data.data.activities.find(a => a.type === 4);
             
+            let text = "";
             if (game) {
-              activityEl.innerText = `Spielt gerade ${game.name}`;
-            } else if (custom && custom.state) {
-              activityEl.innerText = custom.state;
+              text = `<i class="fa-solid fa-gamepad"></i> Spielt gerade <strong>${game.name}</strong>`;
             } else if (spotify) {
-              activityEl.innerText = `Hört gerade: ${spotify.song} - ${spotify.artist}`;
+              text = `<i class="fa-brands fa-spotify" style="color:#1DB954"></i> Hört gerade <strong>${spotify.song}</strong>`;
+            } else if (custom && custom.state) {
+              text = custom.state;
+            }
+            
+            if (text) {
+              activityEl.innerHTML = text;
+              activityEl.style.display = "block";
             }
           }
         }
       } catch (error) {
-        console.error("Fehler beim Laden des Discord-Status:", error);
+        console.error("Lanyard-Fehler:", error);
       }
     }
 
-    // Status sofort laden und alle 15 Sekunden im Hintergrund aktualisieren
     fetchDiscordStatus();
+    // Alle 15 Sekunden aktualisieren
     setInterval(fetchDiscordStatus, 15000);
   </script>
 </body>
