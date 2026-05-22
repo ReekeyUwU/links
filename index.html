@@ -31,23 +31,23 @@
       box-shadow: 0 0 30px rgba(0,0,0,0.5);
     }
     
-    /* Avatar-Box mit Discord-Status-Unterstützung */
+    /* Avatar-Box angepasst an die eckig-gerundete Originalform */
     .avatar-box {
       width: 130px; height: 130px; margin: 0 auto 20px auto; position: relative;
     }
     .avatar-img {
       width: 100%; height: 100%; border-radius: 35px; object-fit: cover;
-      /* Grundrahmen-Glow, wird per JS dynamisch angepasst */
-      border: 3px solid rgba(138, 43, 226, 0.4); 
-      box-shadow: 0 0 25px rgba(138, 43, 226, 0.6);
+      /* Start-Glow in lila */
+      border: 3px solid rgba(240, 15, 214, 0.4);
+      box-shadow: 0 0 25px rgba(0, 255, 8, 0.5);
       transition: all 0.3s ease;
     }
     
-    /* Discord Status-Farben (Glow-Intensität passend zum ursprünglichen Design) */
-    .status-online { border-color: #43b581; box-shadow: 0 0 25px rgba(67, 181, 129, 0.8); }
-    .status-idle { border-color: #faa61a; box-shadow: 0 0 25px rgba(250, 166, 26, 0.8); }
-    .status-dnd { border-color: #f04747; box-shadow: 0 0 25px rgba(240, 71, 71, 0.8); }
-    .status-offline { border-color: rgba(138, 43, 226, 0.4); box-shadow: 0 0 25px rgba(138, 43, 226, 0.6); }
+    /* Der Discord-Status steuert direkt den fetten Rahmen-Glow im originalen Look */
+    .status-online { border-color: #43b581; box-shadow: 0 0 25px rgba(67, 181, 129, 0.9); }
+    .status-idle { border-color: #faa61a; box-shadow: 0 0 25px rgba(250, 166, 26, 0.9); }
+    .status-dnd { border-color: #f04747; box-shadow: 0 0 25px rgba(240, 71, 71, 0.9); }
+    .status-offline { border-color: rgba(240, 15, 214, 0.4); box-shadow: 0 0 25px rgba(0, 255, 8, 0.5); }
 
     h1 {
       font-size: 39.5px; font-weight: 600; margin: 0 0 5px 0;
@@ -61,15 +61,16 @@
     
     /* Discord Live-Aktivitätsanzeige unter dem Namen */
     .discord-activity {
-      font-size: 14px; color: rgba(255, 255, 255, 0.6); margin: -10px 0 24px 0;
-      min-height: 20px; font-style: italic; display: none; /* Standardmäßig ausgeblendet */
+      font-size: 14px; color: rgba(255, 255, 255, 0.7); margin: 5px 0 15px 0;
+      min-height: 20px; font-style: italic; display: none;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
     }
     
     .sub-bio {
       color: rgba(0,255,8,0.6); font-size: 16px; margin: 5px 0 25px 0;
     }
     
-    /* Runde Social-Icons (ursprüngliches Design) */
+    /* Kleine runde Social-Icons */
     .social-row {
       display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;
     }
@@ -88,7 +89,7 @@
       transform: scale(1.1); box-shadow: 0 0 15px #00ff08;
     }
     
-    /* Breite Buttons unten (ursprüngliches Design) */
+    /* Große Haupt-Buttons unten */
     .btn-list {
       display: flex; flex-direction: column; gap: 15px; width: 100%;
     }
@@ -158,7 +159,6 @@
   </div>
 
   <script>
-    // DEINE ECHTE DISCORD ID
     const discordId = "434389923869032458"; 
 
     async function fetchDiscordStatus() {
@@ -171,12 +171,10 @@
           const avatar = document.getElementById('avatar');
           const activityEl = document.getElementById('activity');
           
-          // Alte Klassen entfernen
           avatar.className = "avatar-img";
           activityEl.style.display = "none";
           activityEl.innerHTML = "";
           
-          // Rahmenfarbe basierend auf Status setzen
           if (status === "online") {
             avatar.classList.add("status-online");
           } else if (status === "idle") {
@@ -187,7 +185,6 @@
             avatar.classList.add("status-offline");
           }
           
-          // Aktivität abfragen (Zocken, Spotify, etc.)
           if (data.data.activities && data.data.activities.length > 0) {
             const game = data.data.activities.find(a => a.type === 0);
             const spotify = data.data.listening_to_spotify ? data.data.spotify : null;
@@ -214,7 +211,6 @@
     }
 
     fetchDiscordStatus();
-    // Alle 15 Sekunden aktualisieren
     setInterval(fetchDiscordStatus, 15000);
   </script>
 </body>
