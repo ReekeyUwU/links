@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>reekey</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; }
+    body, html {
+      margin: 0; padding: 0; width: 100%; min-height: 100vh;
+      background-color: #050505; color: #00ff08;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow-x: hidden;
+    }
+    .bg-layer {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url("https://r2.guns.lol/84bdc93d-a924-42a8-829d-8ceafa6314fd.webp");
+      background-size: cover; background-position: center; z-index: 1;
+    }
+    .main-wrapper {
+      position: relative; z-index: 2; min-height: 100vh; width: 100%;
+      display: flex; justify-content: center; align-items: center; padding: 20px;
+    }
+    .profile-card {
+      width: 100%; max-width: 640px;
+      background: rgba(240, 15, 214, 0.15);
+      backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px);
+      border-radius: 20px; border: 2px solid rgba(240, 15, 214, 0.1);
+      padding: 35px 25px; text-align: center;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+    .avatar-box {
+      width: 130px; height: 130px; margin: 0 auto 20px auto; position: relative;
+    }
+    .avatar-img {
+      width: 100%; height: 100%; border-radius: 35px; object-fit: cover;
+      border: 2px solid rgba(240, 15, 214, 0.4);
+      box-shadow: 0 0 25px rgba(0,255,8,0.5);
+    }
+    h1 {
+      font-size: 39.5px; font-weight: 600; margin: 0 0 5px 0;
+      color: #00ff08; text-shadow: 0 0 16.5px #00ff08;
+      display: inline-flex; align-items: center; gap: 8px;
+      background-image: url("https://assets.guns.lol/sparkle_green.gif");
+    }
+    .verified-icon {
+      color: #00ff08; font-size: 24px; filter: drop-shadow(0 0 5px #00ff08);
+    }
+    .sub-bio {
+      color: rgba(0,255,8,0.6); font-size: 16px; margin: 5px 0 25px 0;
+    }
+    .social-row {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;
+    }
+    .social-icon {
+      width: 42px; height: 42px; background: rgba(0,255,8,0.15);
+      border: 2px solid rgba(0,255,8,0.12); border-radius: 50%;
+      display: flex; justify-content: center; align-items: center;
+      color: #00ff08; text-decoration: none; font-size: 20px;
+      transition: all .25s ease; box-shadow: 0 0 10px rgba(0,255,8,0.2);
+    }
+    .social-icon img {
+      width: 22px; height: 22px; object-fit: contain; filter: drop-shadow(0 0 4px #00ff08);
+    }
+    .social-icon:hover {
+      background: rgba(0,255,8,0.3); border-color: #00ff08;
+      transform: scale(1.1); box-shadow: 0 0 15px #00ff08;
+    }
+    .btn-list {
+      display: flex; flex-direction: column; gap: 15px; width: 100%;
+    }
+    .links-card {
+      background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%);
+      border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px;
+      color: #00ff08; text-decoration: none; font-weight: 600; font-size: 17px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: all .25s ease; box-shadow: 0 0 15px rgba(136, 28, 156, 0.3);
+    }
+    .links-card:hover {
+      background: linear-gradient(90deg, rgba(136, 28, 156, 0.9) 0%, rgba(20, 20, 20, 0.9) 100%);
+      border-color: #00ff08; box-shadow: 0 0 25px rgba(0,255,8,0.4); transform: scale(1.02);
+    }
+    .links-card-left { display: flex; align-items: center; gap: 15px; }
+    .links-card-left i { font-size: 20px; width: 24px; text-align: center; }
+    .arrow {
+      font-size: 14px; color: rgba(0,255,8,0.5); transition: transform .25s ease;
+    }
+    .links-card:hover .arrow { transform: translateX(5px); color: #00ff08; }
+  </style>
+</head>
+<body>
+  <div class="bg-layer"></div>
+  <div class="main-wrapper">
+    <div class="profile-card">
+      
+      <div class="avatar-box">
+        <img class="avatar-img" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp" alt="avatar">
+      </div>
+      
+      <h1>reekey<i class="fa-solid fa-circle-check verified-icon"></i></h1>
+      <div class="sub-bio">Welcome to my universe</div>
+      
+      <div class="social-row">
+        <a class="social-icon" href="https://discord.com/invite/nRTbXGepUT" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+        <a class="social-icon" href="https://instagram.com/reekeyuwu" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a class="social-icon" href="https://tiktok.com/@reekey" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a class="social-icon" href="https://x.com/reekey_" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
+        <a class="social-icon" href="https://bsky.app/profile/reekey.de" target="_blank" title="Bluesky"><i class="fa-solid fa-cloud"></i></a>
+        <a class="social-icon" href="https://t.me/reekeyuwu" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+        <a class="social-icon" href="https://t.me/reekeyad" target="_blank" title="Telegram Ad"><i class="fab fa-telegram"></i></a>
+        <a class="social-icon" href="https://onlyfans.com/reekeyuwu" target="_blank" title="OnlyFans"><i class="fa-solid fa-star"></i></a>
+        
+        <a class="social-icon" href="https://barq.app/@reekey" target="_blank" title="Barq"><img src="https://r2.guns.lol/12468df9-0fa2-4803-9eff-17382fc79a12.webp" alt="Barq"></a>
+        <a class="social-icon" href="https://t.me/KyraFoxworks" target="_blank" title="KyraFoxworks"><img src="https://r2.guns.lol/8caa2f3b-b000-4470-bdd4-e6a1e7d9e48e.webp" alt="KyraFoxworks"></a>
+      </div>
+      
+      <div class="btn-list">
+        <a href="https://tiktok.com/@reekey" target="_blank" class="links-card">
+          <div class="links-card-left"><i class="fab fa-tiktok"></i><span>TikTok</span></div>
+          <i class="fa-solid fa-chevron-right arrow"></i>
+        </a>
+        <a href="https://onlyfans.com/reekeyuwu" target="_blank" class="links-card">
+          <div class="links-card-left"><i class="fa-solid fa-star"></i><span>OnlyFans</span></div>
+          <i class="fa-solid fa-chevron-right arrow"></i>
+        </a>
+        <a href="https://t.me/reekeyuwu" target="_blank" class="links-card">
+          <div class="links-card-left"><i class="fab fa-telegram"></i><span>Telegram Channel</span></div>
+          <i class="fa-solid fa-chevron-right arrow"></i>
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</body>
+</html>
