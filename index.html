@@ -37,11 +37,15 @@
       border: 3px solid #43b581; box-shadow: 0 0 25px rgba(0, 255, 8, 0.5);
     }
     
+    .status-online { border-color: #43b581 !important; }
+    .status-idle { border-color: #faa61a !important; }
+    .status-dnd { border-color: #f04747 !important; }
+    .status-offline { border-color: #747f8d !important; }
+
     h1 {
       font-size: 32px; font-weight: 600; margin: 0 0 5px 0;
       color: #00ff08; display: inline-flex; align-items: center; gap: 8px;
     }
-    .verified-icon { color: #00ff08; font-size: 20px; }
     .sub-bio { color: rgba(0,255,8,0.6); margin: 5px 0 20px 0; }
 
     /* Discord Widget */
@@ -50,6 +54,8 @@
       margin: 0 auto 25px auto; width: 100%; max-width: 310px; display: flex;
       align-items: center; gap: 12px; text-align: left; border: 1px solid rgba(255, 255, 255, 0.05);
     }
+    .widget-pfp { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
+    .widget-status-dot { width: 12px; height: 12px; border-radius: 50%; background-color: #43b581; border: 2px solid #111; position: absolute; bottom: 0; right: 0; }
     
     /* Social Icons Row */
     .social-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
@@ -57,35 +63,22 @@
       width: 42px; height: 42px; background: rgba(0,255,8,0.15);
       border: 2px solid rgba(0,255,8,0.12); border-radius: 50%;
       display: flex; justify-content: center; align-items: center;
-      color: #00ff08; text-decoration: none; font-size: 20px;
-      cursor: pointer; transition: 0.3s;
+      color: #00ff08; text-decoration: none; font-size: 20px; cursor: pointer; transition: 0.3s;
     }
     .social-icon:hover { background: rgba(0,255,8,0.3); transform: scale(1.1); }
     
     /* Buttons */
-    .btn-list { display: flex; flex-direction: column; gap: 15px; width: 100%; }
     .links-card {
       background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%);
       border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px;
-      color: #00ff08; text-decoration: none; font-weight: 600; font-size: 17px;
-      display: flex; align-items: center; justify-content: space-between;
-      cursor: pointer; margin-bottom: 15px;
+      color: #00ff08; display: flex; justify-content: space-between; margin-bottom: 15px;
+      text-decoration: none; font-weight: 600; cursor: pointer; align-items: center;
     }
-    .badge-18 { font-size: 11px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 6px; margin-left: 8px; }
+    .badge-18 { font-size: 10px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 5px; margin-left: 8px; }
 
-    /* Age Gate Overlay */
-    .age-gate-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(5, 5, 5, 0.95); z-index: 9999;
-      display: none; justify-content: center; align-items: center;
-    }
-    .age-gate-box {
-      background: rgba(25, 15, 35, 0.95); border: 2px solid #00ff08;
-      border-radius: 20px; padding: 40px; text-align: center; max-width: 400px;
-    }
-    .btn-yes { padding: 12px 35px; border-radius: 30px; background: #00ff08; color: #050505; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; }
-    .btn-yes:hover { background: #fff; transform: scale(1.05); }
-    .btn-no { padding: 12px 35px; border-radius: 30px; background: transparent; color: white; border: 1px solid white; cursor: pointer; font-weight: bold; margin-left: 10px; }
+    /* Age Gate */
+    .age-gate-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; display: none; justify-content: center; align-items: center; }
+    .age-gate-box { background: #111; padding: 40px; border-radius: 20px; border: 1px solid #00ff08; text-align: center; }
   </style>
 </head>
 <body>
@@ -93,22 +86,27 @@
   <div id="age-gate" class="age-gate-overlay">
     <div class="age-gate-box">
       <h2 style="color:white;">Confirm Age</h2>
-      <p style="color:white; margin-bottom: 20px;">Are you 18 years or older?</p>
-      <button class="btn-yes" onclick="go()">I am 18+</button>
-      <button class="btn-no" onclick="hide()">Close</button>
+      <button onclick="go()" style="padding:10px 20px; cursor:pointer;">I am 18+</button>
+      <button onclick="hide()" style="padding:10px 20px; cursor:pointer; margin-left:10px;">Close</button>
     </div>
   </div>
 
   <div class="bg-layer"></div>
   <div class="main-wrapper">
     <div class="profile-card">
-      <div class="avatar-box"><img class="avatar-img" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp"></div>
-      <h1>reekey<i class="fa-solid fa-circle-check verified-icon"></i></h1>
+      <div class="avatar-box"><img id="avatar" class="avatar-img" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp"></div>
+      <h1>reekey<i class="fa-solid fa-circle-check" style="font-size:20px;"></i></h1>
       <div class="sub-bio">Welcome to my universe</div>
 
       <div class="guns-discord-widget">
-        <img style="width:40px; height:40px; border-radius:50%;" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
-        <div style="color:white; font-size:14px;">reekey_<br><span style="color:gray; font-size:12px;">online</span></div>
+        <div style="position:relative;">
+            <img id="widget-pfp" class="widget-pfp" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
+            <div id="widget-dot" class="widget-status-dot"></div>
+        </div>
+        <div style="margin-left:10px;">
+            <div style="font-weight:600; color:white;">reekey_</div>
+            <div id="widget-activity" style="color:gray; font-size:12px;">online</div>
+        </div>
       </div>
       
       <div class="social-row">
@@ -137,6 +135,22 @@
     function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
     function hide() { document.getElementById('age-gate').style.display='none'; }
     function go() { window.open(url, '_blank'); hide(); }
+
+    const discordId = "434389923869032458"; 
+    async function fetchDiscordStatus() {
+      try {
+        const res = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
+        const data = await res.json();
+        if (data.success) {
+          const s = data.data.discord_status;
+          document.getElementById('avatar').className = "avatar-img status-" + s;
+          document.getElementById('widget-dot').style.backgroundColor = (s==='online'?'#43b581':s==='idle'?'#faa61a':s==='dnd'?'#f04747':'#747f8d');
+          if (data.data.activities.length > 0) document.getElementById('widget-activity').innerText = data.data.activities[0].name;
+        }
+      } catch(e) {}
+    }
+    fetchDiscordStatus();
+    setInterval(fetchDiscordStatus, 15000);
   </script>
 </body>
 </html>
