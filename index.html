@@ -106,4 +106,143 @@
     .widget-badges { display: flex; align-items: center; gap: 4px; }
     .badge-pro {
       font-size: 9px; background: rgba(0,255,8,0.2); color: #00ff08;
-      padding:
+      padding: 1px 4px; border-radius: 4px; font-weight: 700; letter-spacing: 0.5px;
+    }
+    .widget-activity-text {
+      font-size: 13px; color: rgba(255, 255, 255, 0.6);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 210px;
+    }
+
+    .dot-online { background-color: #43b581; }
+    .dot-idle { background-color: #faa61a; }
+    .dot-dnd { background-color: #f04747; }
+    .dot-offline { background-color: #43b581; }
+    
+    /* Social Icons Row */
+    .social-row {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px;
+    }
+    .social-icon {
+      width: 42px; height: 42px; background: rgba(0,255,8,0.15);
+      border: 2px solid rgba(0,255,8,0.12); border-radius: 50%;
+      display: flex; justify-content: center; align-items: center;
+      color: #00ff08; text-decoration: none; font-size: 20px;
+      transition: all .25s ease; box-shadow: 0 0 10px rgba(0,255,8,0.2);
+      cursor: pointer;
+    }
+    .social-icon svg {
+      width: 20px; height: 20px; fill: #00ff08; filter: drop-shadow(0 0 4px #00ff08);
+    }
+    .social-icon img {
+      width: 22px; height: 22px; object-fit: contain; filter: drop-shadow(0 0 4px #00ff08);
+    }
+    .social-icon:hover {
+      background: rgba(0,255,8,0.3); border-color: #00ff08;
+      transform: scale(1.1); box-shadow: 0 0 15px #00ff08;
+    }
+    
+    /* Große Haupt-Buttons unten */
+    .btn-list {
+      display: flex; flex-direction: column; gap: 15px; width: 100%;
+    }
+    .links-card {
+      background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%);
+      border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px;
+      color: #00ff08; text-decoration: none; font-weight: 600; font-size: 17px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: all .25s ease; box-shadow: 0 0 15px rgba(136, 28, 156, 0.3);
+      cursor: pointer;
+    }
+    .links-card:hover {
+      background: linear-gradient(90deg, rgba(136, 28, 156, 0.9) 0%, rgba(20, 20, 20, 0.9) 100%);
+      border-color: #00ff08; box-shadow: 0 0 25px rgba(0,255,8,0.4); transform: scale(1.02);
+    }
+    .links-card-left { display: flex; align-items: center; gap: 15px; }
+    .links-card-left i { font-size: 20px; width: 24px; text-align: center; }
+    
+    .badge-18 {
+      font-size: 11px;
+      background: rgba(240, 15, 214, 0.15);
+      color: #ffffff;
+      border: 1px solid rgba(240, 15, 214, 0.4);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+
+    .arrow {
+      font-size: 14px; color: rgba(0,255,8,0.5); transition: transform .25s ease;
+    }
+    .links-card:hover .arrow { transform: translateX(5px); color: #00ff08; }
+
+    .guns-view-counter {
+      position: absolute; bottom: 15px; left: 20px;
+      font-size: 13px; color: #00ff08; font-weight: 600;
+      display: flex; align-items: center; gap: 6px;
+      opacity: 0.8; text-shadow: 0 0 5px rgba(0, 255, 8, 0.5);
+    }
+
+    /* Das Age Gate Overlay */
+    .age-gate-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(5, 5, 5, 0.85);
+      z-index: 9999;
+      display: none; justify-content: center; align-items: center;
+      padding: 20px;
+    }
+    .age-gate-box {
+      background: rgba(25, 15, 35, 0.95);
+      border: 2px solid rgba(240, 15, 214, 0.3);
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 0 40px rgba(240, 15, 214, 0.2);
+    }
+    .btn-yes { padding: 12px 35px; border-radius: 30px; background: #00ff08; color: #050505; border: none; cursor: pointer; }
+    .btn-no { padding: 12px 35px; border-radius: 30px; background: transparent; color: white; border: 1px solid white; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <div id="age-gate" class="age-gate-overlay">
+    <div class="age-gate-box">
+      <h2 style="color:white;">Confirm Age</h2>
+      <p style="color:white;">Are you 18+?</p>
+      <button class="btn-yes" onclick="go()">Yes</button>
+      <button class="btn-no" onclick="hide()">No</button>
+    </div>
+  </div>
+
+  <div class="bg-layer"></div>
+  <div class="main-wrapper">
+    <div class="profile-card">
+      <img id="avatar" class="avatar-img" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp" alt="reekey">
+      <h1>reekey<i class="fa-solid fa-circle-check" style="color:#00ff08; font-size:20px; margin-left:8px;"></i></h1>
+      <p style="color:rgba(0,255,8,0.6)">Welcome to my universe</p>
+      
+      <div class="guns-discord-widget">
+        <img id="widget-pfp" style="width:40px; height:40px; border-radius:50%;" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
+        <div style="color:white; font-size:14px;">reekey_<br><span id="widget-activity" style="color:gray; font-size:12px;">online</span></div>
+      </div>
+      
+      <div class="social-row">
+        <a class="social-icon" href="https://discord.com/invite/nRTbXGepUT"><i class="fab fa-discord"></i></a>
+        <a class="social-icon" href="https://tiktok.com/@reekey"><i class="fab fa-tiktok"></i></a>
+      </div>
+      
+      <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu')">OnlyFans 18+ <span class="badge-18">18+</span></div>
+      <div class="links-card" onclick="gate('https://t.me/reekeyad')">Telegram Ad 18+ <span class="badge-18">18+</span></div>
+      <div class="links-card" onclick="gate('https://t.me/s/reekeyuwu')">Telegram Channel 18+ <span class="badge-18">18+</span></div>
+    </div>
+  </div>
+
+  <script>
+    let url = "";
+    function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
+    function hide() { document.getElementById('age-gate').style.display='none'; }
+    function go() { window.open(url, '_blank'); hide(); }
+  </script>
+</body>
+</html>
