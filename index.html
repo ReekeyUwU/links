@@ -82,3 +82,45 @@
         <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu')">
             <span style="display:flex; align-items:center;"><img src="https://cdn.simpleicons.org/onlyfans" style="width:20px; margin-right:12px;">OnlyFans</span><span class="badge-18">18+</span>
         </div>
+        <a href="https://x.com/reekey_" class="links-card" style="text-decoration:none !important;">
+            <span style="display:flex; align-items:center;"><i class="fab fa-x-twitter" style="margin-right:12px;"></i>X (Twitter)</span>
+        </a>
+        <div class="links-card" onclick="gate('https://t.me/s/reekeyad')">
+            <span style="display:flex; align-items:center;"><i class="fab fa-telegram" style="margin-right:12px;"></i>Telegram Channel</span><span class="badge-18">18+</span>
+        </div>
+      </div>
+
+      <div class="my-view-counter">
+        <i class="fa-solid fa-eye"></i> Views: <span id="count">447</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Zähler-Logik via API
+    fetch('https://api.countapi.xyz/hit/reekey.de/visits')
+      .then(res => res.json())
+      .then(data => document.getElementById('count').innerText = data.value)
+      .catch(() => document.getElementById('count').innerText = "447");
+
+    let url = "";
+    function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
+    function hide() { document.getElementById('age-gate').style.display='none'; }
+    function go() { window.open(url, '_blank'); hide(); }
+
+    async function fetchDiscordStatus() {
+      try {
+        const res = await fetch(`https://api.lanyard.rest/v1/users/434389923869032458`);
+        const data = await res.json();
+        if (data.success) {
+          const s = data.data.discord_status;
+          document.getElementById('widget-dot').style.backgroundColor = (s==='online'?'#43b581':s==='idle'?'#faa61a':s==='dnd'?'#f04747':'#747f8d');
+          document.getElementById('widget-activity').innerText = s.charAt(0).toUpperCase() + s.slice(1);
+        }
+      } catch(e) {}
+    }
+    fetchDiscordStatus();
+    setInterval(fetchDiscordStatus, 15000);
+  </script>
+</body>
+</html>
