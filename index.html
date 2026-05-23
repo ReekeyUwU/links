@@ -111,20 +111,31 @@
         try {
             const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
             const json = await res.json();
+            
             if (json.success) {
-                const s = json.data.discord_status;
                 const dot = document.getElementById('widget-dot');
                 const text = document.getElementById('widget-activity');
+                const s = json.data.discord_status;
+                
+                // Status-Farbe setzen
                 const colors = { 'online': '#43b581', 'idle': '#faa61a', 'dnd': '#f04747', 'offline': '#747f8d' };
                 if(dot) dot.style.backgroundColor = colors[s] || '#747f8d';
-                if(text) text.innerText = s.charAt(0).toUpperCase() + s.slice(1);
-            } else {
-                document.getElementById('widget-activity').innerText = "Offline";
+                
+                // Aktivität abfragen (das erste Element im Array)
+                const activities = json.data.activities;
+                if (activities && activities.length > 0) {
+                    // Zeige den Namen des Spiels/der Aktivität
+                    text.innerText = activities[0].name;
+                } else {
+                    // Fallback auf den Status, wenn keine Aktivität läuft
+                    text.innerText = s.charAt(0).toUpperCase() + s.slice(1);
+                }
             }
         } catch(e) {
-            document.getElementById('widget-activity').innerText = "Offline";
+            console.error("Lanyard-Fehler:", e);
         }
     }
+    
     updateStatus();
     setInterval(updateStatus, 15000);
   </script>
