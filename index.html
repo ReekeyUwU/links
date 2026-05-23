@@ -13,8 +13,8 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" type="image/webp" href="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <style>
     * { box-sizing: border-box; }
     body, html { margin: 0; padding: 0; width: 100%; min-height: 100vh; background-color: #050505; color: #00ff08; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
@@ -44,6 +44,7 @@
     .btn-list { display: flex; flex-direction: column; gap: 15px; width: 100%; }
     .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; text-decoration: none !important; font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; cursor: pointer; align-items: center; margin-bottom: 15px; transition: all 0.3s ease; }
     .links-card:hover { border-color: #00ff08; transform: scale(1.02); }
+    .badge-18 { font-size: 11px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 6px; margin-left: 8px; }
     .age-gate-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 5, 0.95); z-index: 9999; display: none; justify-content: center; align-items: center; }
     .age-gate-box { background: #111; border: 2px solid #00ff08; border-radius: 20px; padding: 40px; text-align: center; }
   </style>
@@ -88,13 +89,13 @@
       </div>
       <div class="btn-list">
         <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu')">
-            <span style="display:flex; align-items:center;"><img src="https://cdn.simpleicons.org/onlyfans" style="width:20px; margin-right:12px;">OnlyFans</span>
+            <span style="display:flex; align-items:center;"><img src="https://cdn.simpleicons.org/onlyfans" style="width:20px; margin-right:12px;">OnlyFans</span><span class="badge-18">18+</span>
         </div>
         <a href="https://x.com/reekey_" class="links-card" style="text-decoration:none !important;">
             <span style="display:flex; align-items:center;"><i class="fab fa-x-twitter" style="margin-right:12px;"></i>X (Twitter)</span>
         </a>
         <div class="links-card" onclick="gate('https://t.me/s/reekeyad')">
-            <span style="display:flex; align-items:center;"><i class="fab fa-telegram" style="margin-right:12px;"></i>Telegram Channel</span>
+            <span style="display:flex; align-items:center;"><i class="fab fa-telegram" style="margin-right:12px;"></i>Telegram Channel</span><span class="badge-18">18+</span>
         </div>
       </div>
     </div>
@@ -107,38 +108,28 @@
     function go() { window.open(url, '_blank'); hide(); }
     
     async function updateStatus() {
-        const userId = '1104903295438434365';
         try {
-            const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
+            const res = await fetch('https://api.lanyard.rest/v1/users/1104903295438434365');
             const json = await res.json();
-            
             if (json.success) {
-                const dot = document.getElementById('widget-dot');
-                const text = document.getElementById('widget-activity');
                 const s = json.data.discord_status;
                 const sp = json.data.spotify;
+                const dot = document.getElementById('widget-dot');
+                const text = document.getElementById('widget-activity');
                 
-                // Status-Punkt Farbe
                 const colors = { 'online': '#43b581', 'idle': '#faa61a', 'dnd': '#f04747', 'offline': '#747f8d' };
                 if(dot) dot.style.backgroundColor = colors[s] || '#747f8d';
                 
-                // Aktivitäts-Logik
                 if (sp) {
-                    // Spotify aktiv
                     text.innerText = `Hört: ${sp.song} – ${sp.artist}`;
                 } else if (json.data.activities && json.data.activities.length > 0) {
-                    // Anderes Spiel/Aktivität
                     text.innerText = json.data.activities[0].name;
                 } else {
-                    // Nur Status
                     text.innerText = s.charAt(0).toUpperCase() + s.slice(1);
                 }
             }
-        } catch(e) {
-            console.error("Lanyard-Fehler:", e);
-        }
+        } catch(e) { console.error("Lanyard-Fehler:", e); }
     }
-    
     updateStatus();
     setInterval(updateStatus, 15000);
   </script>
