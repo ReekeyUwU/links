@@ -12,17 +12,20 @@
     .main-wrapper { position: relative; z-index: 2; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
     .profile-card { width: 100%; max-width: 640px; background: rgba(240, 15, 214, 0.15); backdrop-filter: blur(7px); border-radius: 20px; border: 2px solid rgba(240, 15, 214, 0.1); padding: 35px 25px; text-align: center; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
     
-    .avatar-img { width: 130px !important; height: 130px !important; border-radius: 35px; object-fit: cover; border: 3px solid #43b581; box-shadow: 0 0 25px rgba(0, 255, 8, 0.5); margin-bottom: 15px; }
-    h1 { font-size: 32px; margin: 0; color: #00ff08; display: inline-flex; align-items: center; gap: 10px; }
-    .sub-bio { color: rgba(0,255,8,0.6); margin: 5px 0 20px 0; }
+    /* Zentrierung fixiert */
+    .avatar-box { width: 130px; height: 130px; margin: 0 auto 15px auto; }
+    .avatar-img { width: 130px; height: 130px; border-radius: 35px; object-fit: cover; border: 3px solid #43b581; box-shadow: 0 0 25px rgba(0, 255, 8, 0.5); }
+    
+    h1 { font-size: 32px; margin: 0 0 5px 0; color: #00ff08; display: flex; justify-content: center; align-items: center; gap: 10px; }
+    .sub-bio { color: rgba(0,255,8,0.6); margin: 0 0 20px 0; }
 
     .guns-discord-widget { background: rgba(255, 255, 255, 0.07); border-radius: 18px; padding: 12px 18px; margin: 0 auto 25px auto; width: 100%; max-width: 310px; display: flex; align-items: center; gap: 12px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: left; cursor: pointer; transition: 0.2s; }
-    .guns-discord-widget:hover { background: rgba(255, 255, 255, 0.1); }
     .widget-status-dot { width: 14px; height: 14px; border-radius: 50%; border: 3px solid #111; position: absolute; bottom: -2px; right: -2px; }
 
     .social-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 25px; }
     .social-icon { width: 42px; height: 42px; background: rgba(0,255,8,0.15); border: 2px solid rgba(0,255,8,0.12); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #00ff08; text-decoration: none; cursor: pointer; font-size: 18px; }
     
+    .btn-list { display: flex; flex-direction: column; gap: 12px; }
     .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 15px 25px; border-radius: 12px; color: #00ff08; text-decoration: none; font-weight: 600; display: flex; justify-content: space-between; cursor: pointer; align-items: center; margin-bottom: 15px; }
     .badge-18 { font-size: 10px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 5px; margin-left: 8px; }
 
@@ -43,8 +46,8 @@
   <div class="bg-layer"></div>
   <div class="main-wrapper">
     <div class="profile-card">
-      <img class="avatar-img" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
-      <h1>reekey<i class="fa-solid fa-circle-check" style="font-size:20px;"></i></h1>
+      <div class="avatar-box"><img class="avatar-img" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp"></div>
+      <h1>reekey <i class="fa-solid fa-circle-check" style="font-size:20px;"></i></h1>
       <p class="sub-bio">Welcome to my universe</p>
 
       <a href="https://discord.com/users/434389923869032458" style="text-decoration:none;">
@@ -70,37 +73,4 @@
         <a class="social-icon" onclick="gate('https://t.me/reekeyad')"><i class="fab fa-telegram" style="color:orange;"></i></a>
         <a class="social-icon" href="https://onlyfans.com/reekeyuwu"><i class="fa-solid fa-star"></i></a>
         <a class="social-icon" href="https://barq.app/@reekey"><img src="https://r2.guns.lol/12468df9-0fa2-4803-9eff-17382fc79a12.webp" style="width:20px;"></a>
-        <a class="social-icon" href="https://t.me/KyraFoxworks"><img src="https://r2.guns.lol/8caa2f3b-b000-4470-bdd4-e6a1e7d9e48e.webp" style="width:20px;"></a>
-      </div>
-      
-      <div class="btn-list">
-        <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu')"><span>OnlyFans</span><span class="badge-18">18+</span></div>
-        <a href="https://x.com/reekey_" class="links-card">X (Twitter)</a>
-        <div class="links-card" onclick="gate('https://t.me/s/reekeyuwu')"><span>Telegram Channel</span><span class="badge-18">18+</span></div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    let url = "";
-    function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
-    function hide() { document.getElementById('age-gate').style.display='none'; }
-    function go() { window.open(url, '_blank'); hide(); }
-
-    const discordId = "434389923869032458"; 
-    async function updateStatus() {
-      try {
-        const res = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
-        const data = await res.json();
-        if (data.success) {
-          const s = data.data.discord_status;
-          document.getElementById('widget-dot').style.backgroundColor = (s==='online'?'#43b581':s==='idle'?'#faa61a':s==='dnd'?'#f04747':'#747f8d');
-          document.getElementById('widget-activity').innerText = s.charAt(0).toUpperCase() + s.slice(1);
-        }
-      } catch(e) {}
-    }
-    updateStatus();
-    setInterval(updateStatus, 15000);
-  </script>
-</body>
-</html>
+        <a class="social-icon" href="https://t.me/KyraFoxworks"><img src="https://
