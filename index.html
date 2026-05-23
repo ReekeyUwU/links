@@ -1,26 +1,24 @@
 async function updateStatus() {
-        try {
-            const response = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://api.lanyard.rest/v1/users/434389923869032458'));
-            const resData = await response.json();
-            console.log("API Antwort:", resData); // <-- Das zeigt uns in der Konsole, was ankommt
+    const userId = '434389923869032458';
+    try {
+        const response = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
+        const json = await response.json();
+        
+        console.log("Lanyard Response:", json); // Schau hier nach!
+
+        if (json.success) {
+            const s = json.data.discord_status;
+            const dot = document.getElementById('widget-dot');
+            const text = document.getElementById('widget-activity');
             
-            const data = JSON.parse(resData.contents);
+            const colors = { 'online': '#43b581', 'idle': '#faa61a', 'dnd': '#f04747', 'offline': '#747f8d' };
             
-            if (data.success) {
-                const s = data.data.discord_status;
-                const dot = document.getElementById('widget-dot');
-                const text = document.getElementById('widget-activity');
-                
-                const statusColors = { 
-                    'online': '#43b581', 'idle': '#faa61a', 'dnd': '#f04747', 'offline': '#747f8d' 
-                };
-                
-                if(dot) dot.style.backgroundColor = statusColors[s] || '#747f8d';
-                if(text) text.innerText = s.charAt(0).toUpperCase() + s.slice(1);
-            } else {
-                console.warn("API Erfolg war false:", data);
-            }
-        } catch(e) {
-            console.error("Kritischer Fehler beim Abrufen:", e);
+            if(dot) dot.style.backgroundColor = colors[s] || '#747f8d';
+            if(text) text.innerText = s.charAt(0).toUpperCase() + s.slice(1);
         }
+    } catch(e) {
+        console.error("Lanyard-Fehler:", e);
     }
+}
+updateStatus();
+setInterval(updateStatus, 15000);
