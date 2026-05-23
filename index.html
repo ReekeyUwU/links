@@ -211,7 +211,7 @@
       <h2 style="color:white;">Confirm Age</h2>
       <p style="color:white;">Are you 18+?</p>
       <button class="btn-yes" onclick="go()">Yes</button>
-      <button class="btn-no" onclick="hide()">No</button>
+      <button class="btn-no" onclick="hide()">Close</button>
     </div>
   </div>
 
@@ -219,22 +219,50 @@
   <div class="main-wrapper">
     <div class="profile-card">
       <img id="avatar" class="avatar-img" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp" alt="reekey">
-      <h1>reekey<i class="fa-solid fa-circle-check" style="color:#00ff08; font-size:20px; margin-left:8px;"></i></h1>
-      <p style="color:rgba(0,255,8,0.6)">Welcome to my universe</p>
-      
+      <h1>reekey<i class="fa-solid fa-circle-check verified-icon"></i></h1>
+      <div class="sub-bio">Welcome to my universe</div>
+
       <div class="guns-discord-widget">
-        <img id="widget-pfp" style="width:40px; height:40px; border-radius:50%;" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
-        <div style="color:white; font-size:14px;">reekey_<br><span id="widget-activity" style="color:gray; font-size:12px;">online</span></div>
+        <div class="widget-pfp-container">
+          <img id="widget-pfp" class="widget-pfp" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp" alt="Discord Avatar">
+          <div id="widget-dot" class="widget-status-dot"></div>
+        </div>
+        <div class="widget-info">
+          <div class="widget-user-line">
+            <span>reekey_</span>
+            <div class="widget-badges">
+              <span title="PSC K-Präsenz" style="color: #faa61a;">⚡</span>
+              <span class="badge-pro">PRO</span>
+            </div>
+          </div>
+          <div id="widget-activity" class="widget-activity-text">currently doing nothing</div>
+        </div>
       </div>
       
       <div class="social-row">
-        <a class="social-icon" href="https://discord.com/invite/nRTbXGepUT"><i class="fab fa-discord"></i></a>
-        <a class="social-icon" href="https://tiktok.com/@reekey"><i class="fab fa-tiktok"></i></a>
+        <a class="social-icon" href="https://discord.com/invite/nRTbXGepUT" target="_blank"><i class="fab fa-discord"></i></a>
+        <a class="social-icon" href="https://instagram.com/reekeyuwu" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a class="social-icon" href="https://tiktok.com/@reekey" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a class="social-icon" href="https://x.com/reekey_" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        <a class="social-icon" href="https://bsky.app/profile/reekey.de" target="_blank">
+          <svg viewBox="0 0 512 512"><path d="M111.8 62.2C170.2 105.9 233 181.9 256 213.7c23-31.8 85.8-107.8 144.2-151.5C445.6 28.1 512 33.4 512 101.8c0 48.6-32.2 189.6-49.8 241.1-23.7 69.6-91 88.3-157.6 74.7-65-13.4-92.4-53.7-104.6-77.4-12.2 23.7-39.6 64-104.6 77.4-66.6 13.6-133.9-5.1-157.6-74.7C21.8 291.4 0 150.4 0 101.8 0 33.4 66.4 28.1 111.8 62.2z"/></svg>
+        </a>
+        <a class="social-icon" href="https://t.me/reekeyuwu" target="_blank"><i class="fab fa-telegram"></i></a>
+        <a class="social-icon" onclick="gate('https://t.me/reekeyad')"><i class="fab fa-telegram" style="color: #faa61a;"></i></a>
+        <a class="social-icon" href="https://onlyfans.com/reekeyuwu" target="_blank"><i class="fa-solid fa-star"></i></a>
       </div>
       
-      <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu')">OnlyFans 18+ <span class="badge-18">18+</span></div>
-      <div class="links-card" onclick="gate('https://t.me/reekeyad')">Telegram Ad 18+ <span class="badge-18">18+</span></div>
-      <div class="links-card" onclick="gate('https://t.me/s/reekeyuwu')">Telegram Channel 18+ <span class="badge-18">18+</span></div>
+      <div class="btn-list">
+        <div onclick="gate('https://onlyfans.com/reekeyuwu')" class="links-card">
+          <span>OnlyFans</span> <span class="badge-18">18+</span>
+        </div>
+        <a href="https://x.com/reekey_" target="_blank" class="links-card">X (Twitter)</a>
+        <div onclick="gate('https://t.me/s/reekeyuwu')" class="links-card">Telegram Channel <span>18+</span></div>
+      </div>
+
+      <div class="guns-view-counter">
+        <i class="fa-solid fa-eye"></i> <span>447</span>
+      </div>
     </div>
   </div>
 
