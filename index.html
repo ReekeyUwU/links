@@ -6,86 +6,65 @@
   <title>reekey</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    * { box-sizing: border-box; }
-    body, html { margin: 0; padding: 0; width: 100%; min-height: 100vh; background-color: #050505; color: #00ff08; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
-    .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("https://r2.guns.lol/84bdc93d-a924-42a8-829d-8ceafa6314fd.webp"); background-size: cover; background-position: center; z-index: 1; }
-    .main-wrapper { position: relative; z-index: 2; min-height: 100vh; width: 100%; display: flex; justify-content: center; align-items: center; padding: 20px; }
-    .profile-card { width: 100%; max-width: 640px; background: rgba(240, 15, 214, 0.15); backdrop-filter: blur(7px); border-radius: 20px; border: 2px solid rgba(240, 15, 214, 0.1); padding: 35px 25px 50px 25px; text-align: center; position: relative; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+    :root { --neon: #00ff08; --bg: #050505; --card: rgba(20, 20, 20, 0.8); }
+    body { margin: 0; background-color: var(--bg); color: var(--neon); font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
     
-    .avatar-box { width: 130px; height: 130px; margin: 0 auto 20px auto; position: relative; }
-    .avatar-img { width: 130px; height: 130px; border-radius: 35px; object-fit: cover; border: 3px solid #43b581; box-shadow: 0 0 25px rgba(0, 255, 8, 0.5); }
+    .container { width: 100%; max-width: 500px; text-align: center; }
+    .avatar { width: 120px; height: 120px; border-radius: 20px; border: 2px solid var(--neon); margin-bottom: 15px; object-fit: cover; }
     
-    h1 { font-size: 39.5px; font-weight: 600; margin: 0 0 5px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; }
-    .sub-bio { color: rgba(0,255,8,0.6); font-size: 16px; margin: 5px 0 20px 0; }
-
-    /* Discord Widget */
-    .guns-discord-widget { background: rgba(255, 255, 255, 0.07); border-radius: 18px; padding: 10px 16px; margin: 0 auto 25px auto; width: 100%; max-width: 310px; display: flex; align-items: center; gap: 12px; border: 1px solid rgba(255, 255, 255, 0.05); cursor: pointer; }
+    .dc-widget { background: var(--card); border: 1px solid #333; padding: 15px; border-radius: 15px; margin: 20px 0; display: flex; align-items: center; gap: 15px; cursor: pointer; text-decoration: none; color: white; }
+    .status-dot { width: 12px; height: 12px; border-radius: 50%; background: grey; }
     
-    /* Social Icons */
-    .social-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
-    .social-icon { width: 42px; height: 42px; background: rgba(0,255,8,0.15); border: 2px solid rgba(0,255,8,0.12); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #00ff08; text-decoration: none; cursor: pointer; transition: 0.3s; }
+    .socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 20px; }
+    .btn { background: #1a1a1a; border: 1px solid #333; padding: 15px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; display: flex; justify-content: space-between; color: var(--neon); font-weight: bold; }
     
-    /* Buttons */
-    .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; font-weight: 600; display: flex; justify-content: space-between; cursor: pointer; margin-bottom: 15px; align-items: center; }
-    .badge-18 { font-size: 11px; background: rgba(240, 15, 214, 0.15); color: #fff; padding: 2px 6px; border-radius: 6px; margin-left: 8px; }
-
-    /* Age Gate (Schönes Design) */
-    .age-gate-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.9); z-index: 9999; display: none; justify-content: center; align-items: center; }
-    .age-gate-box { background: #111; border: 2px solid #00ff08; border-radius: 20px; padding: 40px; text-align: center; }
-    .btn-yes { padding: 12px 35px; border-radius: 30px; background: #00ff08; border: none; font-weight: bold; cursor: pointer; }
-    .btn-no { padding: 12px 35px; border-radius: 30px; background: transparent; color: white; border: 1px solid white; cursor: pointer; font-weight: bold; margin-left: 10px; }
+    /* Custom Modal */
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+    .modal-content { background: #111; padding: 30px; border-radius: 20px; border: 1px solid var(--neon); }
   </style>
 </head>
 <body>
 
-  <div id="age-gate" class="age-gate-overlay">
-    <div class="age-gate-box">
-      <h2 style="color:white;">Confirm Age</h2>
-      <button class="btn-yes" onclick="go()">Yes (18+)</button>
-      <button class="btn-no" onclick="hide()">Close</button>
-    </div>
+  <div class="container">
+    <img src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp" class="avatar">
+    <h1>reekey <i class="fa-solid fa-circle-check" style="font-size: 18px;"></i></h1>
+
+    <a href="https://discord.com/users/434389923869032458" class="dc-widget">
+      <img src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp" style="width:40px; border-radius:50%">
+      <div><div>reekey_</div><div id="status" style="font-size: 12px; color: grey;">Status wird geladen...</div></div>
+      <div id="dot" class="status-dot"></div>
+    </a>
+
+    <div class="socials">
+        <a href="https://discord.com/invite/nRTbXGepUT" class="social-icon" style="padding:10px;"><i class="fab fa-discord"></i></a>
+        <a onclick="openGate('https://t.me/reekeyad')" class="social-icon" style="padding:10px; cursor:pointer;"><i class="fab fa-telegram" style="color:orange;"></i></a>
+        </div>
+
+    <div class="btn" onclick="openGate('https://onlyfans.com/reekeyuwu')">OnlyFans <span>18+</span></div>
+    <div class="btn" onclick="openGate('https://t.me/s/reekeyuwu')">Telegram Channel <span>18+</span></div>
   </div>
 
-  <div class="bg-layer"></div>
-  <div class="main-wrapper">
-    <div class="profile-card">
-      <div class="avatar-box"><img id="avatar" class="avatar-img" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp"></div>
-      <h1>reekey<i class="fa-solid fa-circle-check" style="font-size:20px;"></i></h1>
-      <div class="sub-bio">Welcome to my universe</div>
-
-      <a href="https://discord.com/users/434389923869032458" style="text-decoration:none;">
-        <div class="guns-discord-widget">
-            <img style="width:40px; height:40px; border-radius:50%;" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
-            <div style="color:white;">reekey_<br><span style="color:gray; font-size:12px;">online</span></div>
-        </div>
-      </a>
-      
-      <div class="social-row">
-        <a class="social-icon" href="https://discord.com/invite/nRTbXGepUT"><i class="fab fa-discord"></i></a>
-        <a class="social-icon" href="https://instagram.com/reekeyuwu"><i class="fab fa-instagram"></i></a>
-        <a class="social-icon" href="https://tiktok.com/@reekey"><i class="fab fa-tiktok"></i></a>
-        <a class="social-icon" href="https://x.com/reekey_"><i class="fab fa-x-twitter"></i></a>
-        <a class="social-icon" href="https://bsky.app/profile/reekey.de"><i class="fa-solid fa-cloud"></i></a>
-        <a class="social-icon" href="https://t.me/reekeyuwu"><i class="fab fa-telegram"></i></a>
-        <a class="social-icon" onclick="gate('https://t.me/reekeyad')"><i class="fab fa-telegram" style="color:orange;"></i></a>
-        <a class="social-icon" href="https://onlyfans.com/reekeyuwu"><i class="fa-solid fa-star"></i></a>
-        <a class="social-icon" href="https://barq.app/@reekey"><img src="https://r2.guns.lol/12468df9-0fa2-4803-9eff-17382fc79a12.webp" style="width:20px;"></a>
-        <a class="social-icon" href="https://t.me/KyraFoxworks"><img src="https://r2.guns.lol/8caa2f3b-b000-4470-bdd4-e6a1e7d9e48e.webp" style="width:20px;"></a>
-      </div>
-      
-      <div class="btn-list">
-        <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu')"><span>OnlyFans</span><span class="badge-18">18+</span></div>
-        <a href="https://x.com/reekey_" class="links-card">X (Twitter)</a>
-        <div class="links-card" onclick="gate('https://t.me/s/reekeyuwu')"><span>Telegram Channel</span><span class="badge-18">18+</span></div>
-      </div>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h2>18+ Bestätigung</h2>
+      <button onclick="confirm()" class="btn">Ja, ich bin über 18</button>
+      <button onclick="closeModal()" class="btn" style="background:transparent; border:none;">Schließen</button>
     </div>
   </div>
 
   <script>
-    let url = "";
-    function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
-    function hide() { document.getElementById('age-gate').style.display='none'; }
-    function go() { window.open(url, '_blank'); hide(); }
+    let dest = "";
+    function openGate(url) { dest = url; document.getElementById('modal').style.display = 'flex'; }
+    function closeModal() { document.getElementById('modal').style.display = 'none'; }
+    function confirm() { window.open(dest, '_blank'); closeModal(); }
+
+    // Status Abfrage
+    fetch('https://api.lanyard.rest/v1/users/434389923869032458')
+      .then(r => r.json()).then(d => {
+        const s = d.data.discord_status;
+        document.getElementById('status').innerText = s.charAt(0).toUpperCase() + s.slice(1);
+        document.getElementById('dot').style.background = (s==='online'?'#00ff08':'grey');
+      });
   </script>
 </body>
 </html>
