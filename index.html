@@ -23,7 +23,7 @@
     .widget-status-dot { width: 14px; height: 14px; border-radius: 50%; background-color: #43b581; border: 3px solid #111; position: absolute; bottom: -2px; right: -2px; }
     
     .social-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
-    .social-icon { width: 42px; height: 42px; background: rgba(0,255,8,0.15); border: 2px solid rgba(0,255,8,0.12); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #00ff08; text-decoration: none; cursor: pointer; transition: 0.3s; }
+    .social-icon { width: 42px; height: 42px; background: rgba(0,255,8,0.15); border: 2px solid rgba(0,255,8,0.12); border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; cursor: pointer; transition: 0.3s; color: #00ff08; }
     .social-icon img { width: 22px; }
     .social-icon:hover { background: rgba(0,255,8,0.3); transform: scale(1.1); }
     
@@ -91,18 +91,12 @@
       </div>
 
       <div class="my-view-counter">
-        <i class="fa-solid fa-eye"></i> Views: <span id="count">447</span>
+        <i class="fa-solid fa-eye"></i> Views: <span>447</span>
       </div>
     </div>
   </div>
 
   <script>
-    // Zähler-Logik via API
-    fetch('https://api.countapi.xyz/hit/reekey.de/visits')
-      .then(res => res.json())
-      .then(data => document.getElementById('count').innerText = data.value)
-      .catch(() => document.getElementById('count').innerText = "447");
-
     let url = "";
     function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
     function hide() { document.getElementById('age-gate').style.display='none'; }
