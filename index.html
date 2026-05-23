@@ -73,4 +73,36 @@
         <a class="social-icon" onclick="gate('https://t.me/reekeyad')"><i class="fab fa-telegram" style="color:orange;"></i></a>
         <a class="social-icon" href="https://onlyfans.com/reekeyuwu"><i class="fa-solid fa-star"></i></a>
         <a class="social-icon" href="https://barq.app/@reekey"><img src="https://r2.guns.lol/12468df9-0fa2-4803-9eff-17382fc79a12.webp" style="width:20px;"></a>
-        <a class="social-icon" href="https://t.me/KyraFoxworks"><img src="https://
+        <a class="social-icon" href="https://t.me/KyraFoxworks"><img src="https://r2.guns.lol/8caa2f3b-b000-4470-bdd4-e6a1e7d9e48e.webp" style="width:20px;"></a>
+      </div>
+      
+      <div class="btn-list">
+        <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu')"><span>OnlyFans</span><span class="badge-18">18+</span></div>
+        <a href="https://x.com/reekey_" class="links-card">X (Twitter)</a>
+        <div class="links-card" onclick="gate('https://t.me/s/reekeyuwu')"><span>Telegram Channel</span><span class="badge-18">18+</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let url = "";
+    function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
+    function hide() { document.getElementById('age-gate').style.display='none'; }
+    function go() { window.open(url, '_blank'); hide(); }
+
+    async function updateStatus() {
+      try {
+        const res = await fetch(`https://api.lanyard.rest/v1/users/434389923869032458`);
+        const data = await res.json();
+        if (data.success) {
+          const s = data.data.discord_status;
+          document.getElementById('widget-dot').style.backgroundColor = (s==='online'?'#43b581':s==='idle'?'#faa61a':s==='dnd'?'#f04747':'#747f8d');
+          document.getElementById('widget-activity').innerText = s.charAt(0).toUpperCase() + s.slice(1);
+        }
+      } catch(e) {}
+    }
+    updateStatus();
+    setInterval(updateStatus, 15000);
+  </script>
+</body>
+</html>
