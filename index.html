@@ -19,8 +19,26 @@
     * { box-sizing: border-box; }
     body, html { margin: 0; padding: 0; width: 100%; min-height: 100vh; background-color: #050505; color: #00ff08; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
     .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("https://r2.guns.lol/84bdc93d-a924-42a8-829d-8ceafa6314fd.webp"); background-size: cover; background-position: center; z-index: 1; }
+    
     .main-wrapper { position: relative; z-index: 2; min-height: 100vh; width: 100%; display: flex; justify-content: center; align-items: center; padding: 20px; }
-    .profile-card { width: 100%; max-width: 640px; background: rgba(240, 15, 214, 0.15); backdrop-filter: blur(7px); border-radius: 20px; border: 2px solid rgba(240, 15, 214, 0.1); padding: 35px 25px 50px 25px; text-align: center; position: relative; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+    
+    /* HIER IST DER SLIDE-IN EFFEKT */
+    .profile-card { 
+        width: 100%; max-width: 640px; 
+        background: rgba(240, 15, 214, 0.15); backdrop-filter: blur(7px); 
+        border-radius: 20px; border: 2px solid rgba(240, 15, 214, 0.1); 
+        padding: 35px 25px 50px 25px; text-align: center; position: relative; 
+        box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        
+        /* Animation einbinden */
+        animation: slideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes slideUp {
+        from { transform: translateY(100px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    
     .avatar-box { width: 130px; height: 130px; margin: 0 auto 20px auto; position: relative; }
     .avatar-img { width: 130px; height: 130px; border-radius: 35px; object-fit: cover; border: 3px solid #43b581; box-shadow: 0 0 25px rgba(0, 255, 8, 0.5); }
     h1 { font-size: 39.5px; font-weight: 600; margin: 0 0 5px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; text-shadow: 0 0 10px #00ff08; }
@@ -55,30 +73,26 @@
       <div class="avatar-box"><img id="avatar" class="avatar-img" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp"></div>
       <h1>reekey<i class="fa-solid fa-circle-check" style="font-size:20px;"></i></h1>
       <div class="sub-bio">Welcome to my universe</div>
-
-      <a href="https://discord.com/users/434389923869032458" style="text-decoration:none;">
-        <div class="guns-discord-widget">
-            <div style="position:relative;">
-                <img id="widget-pfp" style="width:45px; height:45px; border-radius:50%; object-fit:cover; border:2px solid #00ff08;" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
-                <div id="widget-dot" class="widget-status-dot"></div>
-            </div>
-            <div style="color:white; text-align:left;">
-                <div style="font-weight:700;">reekey_</div>
-                <div id="widget-activity" style="color:rgba(0,255,8,0.7); font-size:12px; font-weight:600;">Status</div>
-            </div>
+      <div class="guns-discord-widget">
+        <div style="position:relative;">
+            <img id="widget-pfp" style="width:45px; height:45px; border-radius:50%; object-fit:cover; border:2px solid #00ff08;" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
+            <div id="widget-dot" class="widget-status-dot"></div>
         </div>
-      </a>
-      
+        <div style="color:white; text-align:left;">
+            <div style="font-weight:700;">reekey_</div>
+            <div id="widget-activity" style="color:rgba(0,255,8,0.7); font-size:12px; font-weight:600;">Status</div>
+        </div>
+      </div>
       <div class="social-row">
         <a class="social-icon" href="https://discord.com/invite/nRTbXGepUT"><i class="fab fa-discord"></i></a>
         <a class="social-icon" href="https://instagram.com/reekeyuwu"><i class="fab fa-instagram"></i></a>
         <a class="social-icon" href="https://tiktok.com/@reekey"><i class="fab fa-tiktok"></i></a>
         <a class="social-icon" href="https://bsky.app/profile/reekey.de"><img src="https://cdn.simpleicons.org/bluesky" alt="Bluesky"></a>
         <a class="social-icon" href="https://t.me/reekeyuwu"><i class="fab fa-telegram"></i></a>
+        <a class="social-icon" onclick="gate('https://t.me/reekeyad')"><i class="fab fa-telegram" style="color:orange;"></i></a>
         <a class="social-icon" href="https://barq.app/@reekey"><img src="https://r2.guns.lol/12468df9-0fa2-4803-9eff-17382fc79a12.webp" alt="Barq"></a>
         <a class="social-icon" href="https://t.me/KyraFoxworks"><img src="https://r2.guns.lol/8caa2f3b-b000-4470-bdd4-e6a1e7d9e48e.webp" alt="Kyra"></a>
       </div>
-      
       <div class="btn-list">
         <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu')">
             <span style="display:flex; align-items:center;"><img src="https://cdn.simpleicons.org/onlyfans" style="width:20px; margin-right:12px;">OnlyFans</span><span class="badge-18">18+</span>
@@ -92,13 +106,11 @@
       </div>
     </div>
   </div>
-
   <script>
     let url = "";
     function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
     function hide() { document.getElementById('age-gate').style.display='none'; }
     function go() { window.open(url, '_blank'); hide(); }
-
     async function updateStatus() {
         try {
             const res = await fetch('https://api.lanyard.rest/v1/users/434389923869032458');
@@ -110,7 +122,7 @@
                 if(dot) dot.style.backgroundColor = (s==='online'?'#43b581':s==='idle'?'#faa61a':s==='dnd'?'#f04747':'#747f8d');
                 if(text) text.innerText = s.charAt(0).toUpperCase() + s.slice(1);
             }
-        } catch(e) { document.getElementById('widget-activity').innerText = "Offline"; }
+        } catch(e) {}
     }
     updateStatus();
     setInterval(updateStatus, 10000);
