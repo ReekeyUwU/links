@@ -16,7 +16,8 @@
     h1 { font-size: 32px; margin: 0; color: #00ff08; display: inline-flex; align-items: center; gap: 10px; }
     .sub-bio { color: rgba(0,255,8,0.6); margin: 5px 0 20px 0; }
 
-    .guns-discord-widget { background: rgba(255, 255, 255, 0.07); border-radius: 18px; padding: 12px 18px; margin: 0 auto 25px auto; width: 100%; max-width: 310px; display: flex; align-items: center; gap: 12px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: left; }
+    .guns-discord-widget { background: rgba(255, 255, 255, 0.07); border-radius: 18px; padding: 12px 18px; margin: 0 auto 25px auto; width: 100%; max-width: 310px; display: flex; align-items: center; gap: 12px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: left; cursor: pointer; transition: 0.2s; }
+    .guns-discord-widget:hover { background: rgba(255, 255, 255, 0.1); }
     .widget-status-dot { width: 14px; height: 14px; border-radius: 50%; border: 3px solid #111; position: absolute; bottom: -2px; right: -2px; }
 
     .social-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 25px; }
@@ -46,19 +47,21 @@
       <h1>reekey<i class="fa-solid fa-circle-check" style="font-size:20px;"></i></h1>
       <p class="sub-bio">Welcome to my universe</p>
 
-      <div class="guns-discord-widget">
-        <div style="position:relative;">
-            <img id="widget-pfp" style="width:45px; height:45px; border-radius:50%;" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
-            <div id="widget-dot" class="widget-status-dot"></div>
+      <a href="https://discord.com/users/434389923869032458" style="text-decoration:none;">
+        <div class="guns-discord-widget">
+          <div style="position:relative;">
+              <img id="widget-pfp" style="width:45px; height:45px; border-radius:50%;" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
+              <div id="widget-dot" class="widget-status-dot"></div>
+          </div>
+          <div style="margin-left:10px;">
+              <div style="font-weight:600; color:white;">reekey_</div>
+              <div id="widget-activity" style="color:#00ff08; font-size:13px; font-weight:bold;">Online</div>
+          </div>
         </div>
-        <div style="margin-left:10px;">
-            <div style="font-weight:600; color:white;">reekey_</div>
-            <div id="widget-activity" style="color:#00ff08; font-size:13px; font-weight:bold;">Online</div>
-        </div>
-      </div>
+      </a>
       
       <div class="social-row">
-        <a class="social-icon" href="https://discord.com/users/434389923869032458"><i class="fab fa-discord"></i></a>
+        <a class="social-icon" href="https://discord.com/invite/nRTbXGepUT"><i class="fab fa-discord"></i></a>
         <a class="social-icon" href="https://instagram.com/reekeyuwu"><i class="fab fa-instagram"></i></a>
         <a class="social-icon" href="https://tiktok.com/@reekey"><i class="fab fa-tiktok"></i></a>
         <a class="social-icon" href="https://x.com/reekey_"><i class="fab fa-x-twitter"></i></a>
@@ -80,8 +83,8 @@
 
   <script>
     let url = "";
-    function gate(u) { url = u; document.getElementById('gate').style.display='flex'; }
-    function hide() { document.getElementById('gate').style.display='none'; }
+    function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
+    function hide() { document.getElementById('age-gate').style.display='none'; }
     function go() { window.open(url, '_blank'); hide(); }
 
     const discordId = "434389923869032458"; 
