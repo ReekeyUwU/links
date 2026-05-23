@@ -116,18 +116,21 @@
                 const dot = document.getElementById('widget-dot');
                 const text = document.getElementById('widget-activity');
                 const s = json.data.discord_status;
+                const sp = json.data.spotify;
                 
-                // Status-Farbe setzen
+                // Status-Punkt Farbe
                 const colors = { 'online': '#43b581', 'idle': '#faa61a', 'dnd': '#f04747', 'offline': '#747f8d' };
                 if(dot) dot.style.backgroundColor = colors[s] || '#747f8d';
                 
-                // Aktivität abfragen (das erste Element im Array)
-                const activities = json.data.activities;
-                if (activities && activities.length > 0) {
-                    // Zeige den Namen des Spiels/der Aktivität
-                    text.innerText = activities[0].name;
+                // Aktivitäts-Logik
+                if (sp) {
+                    // Spotify aktiv
+                    text.innerText = `Hört: ${sp.song} – ${sp.artist}`;
+                } else if (json.data.activities && json.data.activities.length > 0) {
+                    // Anderes Spiel/Aktivität
+                    text.innerText = json.data.activities[0].name;
                 } else {
-                    // Fallback auf den Status, wenn keine Aktivität läuft
+                    // Nur Status
                     text.innerText = s.charAt(0).toUpperCase() + s.slice(1);
                 }
             }
