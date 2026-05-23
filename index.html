@@ -6,49 +6,60 @@
   <title>reekey</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    body { margin: 0; background: #050505; color: #00ff08; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-    .card { background: rgba(240, 15, 214, 0.15); border-radius: 20px; padding: 30px; width: 90%; max-width: 500px; text-align: center; border: 2px solid rgba(240, 15, 214, 0.1); }
-    .avatar { width: 120px; height: 120px; border-radius: 30px; border: 3px solid #00ff08; margin-bottom: 15px; }
-    .widget { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 10px; margin: 15px auto; width: 80%; display: flex; align-items: center; gap: 10px; color: white; text-align: left; }
-    .btn { background: rgba(136, 28, 156, 0.5); border: 2px solid #00ff08; padding: 15px; margin-bottom: 10px; border-radius: 12px; color: #00ff08; text-decoration: none; display: flex; justify-content: space-between; align-items: center; font-weight: bold; cursor: pointer; }
-    .social-row { display: flex; justify-content: center; gap: 15px; margin: 20px 0; font-size: 20px; color: #00ff08; }
-    #gate { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); justify-content:center; align-items:center; flex-direction:column; z-index:999; }
+    /* BASIS-STYLES */
+    * { box-sizing: border-box; }
+    body, html {
+      margin: 0; padding: 0; width: 100%; min-height: 100vh;
+      background-color: #050505; color: #00ff08;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow-x: hidden;
+    }
+    .bg-layer {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url("https://r2.guns.lol/84bdc93d-a924-42a8-829d-8ceafa6314fd.webp");
+      background-size: cover; background-position: center; z-index: 1;
+    }
+    .main-wrapper {
+      position: relative; z-index: 2; min-height: 100vh; width: 100%;
+      display: flex; justify-content: center; align-items: center; padding: 20px;
+    }
+    .profile-card {
+      width: 100%; max-width: 640px;
+      background: rgba(240, 15, 214, 0.15);
+      backdrop-filter: blur(7px);
+      border-radius: 20px; border: 2px solid rgba(240, 15, 214, 0.1);
+      padding: 35px 25px 50px 25px; text-align: center; position: relative;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+    /* WIDGET & ICONS */
+    .avatar-img { width: 130px; height: 130px; border-radius: 35px; object-fit: cover; border: 3px solid #43b581; box-shadow: 0 0 25px rgba(0, 255, 8, 0.5); }
+    .guns-discord-widget { background: rgba(255, 255, 255, 0.07); border-radius: 18px; padding: 10px 16px; margin: 20px auto; width: 100%; max-width: 310px; display: flex; align-items: center; gap: 12px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: left; }
+    .social-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
+    .social-icon { width: 42px; height: 42px; background: rgba(0,255,8,0.15); border: 2px solid rgba(0,255,8,0.12); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #00ff08; text-decoration: none; font-size: 20px; }
+    .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; display: flex; justify-content: space-between; margin-bottom: 15px; text-decoration: none; font-weight: 600; }
   </style>
 </head>
 <body>
-
-<div class="card">
-  <img class="avatar" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
-  <h1>reekey <i class="fa-solid fa-circle-check"></i></h1>
-  <p>Welcome to my universe</p>
-  
-  <div class="widget">
-    <img style="width:40px; height:40px; border-radius:50%;" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
-    <div>reekey_ <br> <span style="font-size:12px; color:gray;">currently doing nothing</span></div>
+  <div class="bg-layer"></div>
+  <div class="main-wrapper">
+    <div class="profile-card">
+      <img id="avatar" class="avatar-img" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp" alt="reekey">
+      <h1>reekey<i class="fa-solid fa-circle-check" style="color:#00ff08; font-size:20px; margin-left:8px;"></i></h1>
+      <p style="color:rgba(0,255,8,0.6)">Welcome to my universe</p>
+      
+      <div class="guns-discord-widget">
+        <img id="widget-pfp" style="width:40px; height:40px; border-radius:50%;" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
+        <div style="color:white; font-size:14px;">reekey_<br><span id="widget-activity" style="color:rgba(255,255,255,0.6); font-size:12px;">loading...</span></div>
+      </div>
+      
+      <div class="social-row">
+        <a class="social-icon" href="https://discord.com/invite/nRTbXGepUT"><i class="fab fa-discord"></i></a>
+        <a class="social-icon" href="https://tiktok.com/@reekey"><i class="fab fa-tiktok"></i></a>
+      </div>
+      
+      <a href="#" onclick="alert('Age Check')" class="links-card">OnlyFans 18+</a>
+      <a href="#" onclick="alert('Age Check')" class="links-card">Telegram Ad 18+</a>
+    </div>
   </div>
-
-  <div class="social-row">
-    <i class="fab fa-discord"></i> <i class="fab fa-instagram"></i> <i class="fab fa-tiktok"></i> <i class="fab fa-x-twitter"></i> <i class="fab fa-telegram"></i>
-  </div>
-
-  <div class="btn" onclick="gate('https://onlyfans.com/reekeyuwu')"><span>OnlyFans 18+</span><span>></span></div>
-  <a class="btn" href="https://x.com/reekey_"><span>X (Twitter)</span><span>></span></a>
-  <div class="btn" onclick="gate('https://t.me/reekeyad')"><span>Telegram Ad 18+</span><span>></span></div>
-  <a class="btn" href="https://t.me/reekeyuwu"><span>Telegram Channel</span><span>></span></div>
-</div>
-
-<div id="gate">
-  <h2 style="color:white;">Confirm Age</h2>
-  <button onclick="go()" style="padding:10px 20px; cursor:pointer;">I am 18+</button>
-  <button onclick="hide()" style="padding:10px 20px; cursor:pointer; margin-top:10px;">Close</button>
-</div>
-
-<script>
-  let url = "";
-  function gate(u) { url = u; document.getElementById('gate').style.display='flex'; }
-  function hide() { document.getElementById('gate').style.display='none'; }
-  function go() { window.open(url, '_blank'); hide(); }
-</script>
-
 </body>
 </html>
