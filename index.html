@@ -18,7 +18,11 @@
     h1 { font-size: 39.5px; font-weight: 600; margin: 0 0 5px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; }
     .sub-bio { color: rgba(0,255,8,0.6); font-size: 16px; margin: 5px 0 20px 0; }
 
-    .guns-discord-widget { background: rgba(0, 0, 0, 0.4); border-radius: 20px; padding: 12px 20px; margin: 0 auto 25px auto; width: 100%; max-width: 310px; display: flex; align-items: center; gap: 15px; border: 1px solid rgba(0, 255, 8, 0.2); transition: 0.3s; cursor: pointer; }
+    .guns-discord-widget { 
+      background: rgba(0, 0, 0, 0.4); border-radius: 20px; padding: 12px 20px; margin: 0 auto 25px auto; 
+      width: 100%; max-width: 310px; display: flex; align-items: center; gap: 15px; 
+      border: 1px solid rgba(0, 255, 8, 0.2); transition: 0.3s; cursor: pointer; 
+    }
     .guns-discord-widget:hover { background: rgba(0, 255, 8, 0.1); border-color: rgba(0, 255, 8, 0.5); transform: translateY(-2px); }
     .widget-status-dot { width: 14px; height: 14px; border-radius: 50%; background-color: #43b581; border: 3px solid #111; position: absolute; bottom: -2px; right: -2px; }
     
@@ -27,11 +31,22 @@
     .social-icon:hover { background: rgba(0,255,8,0.3); transform: scale(1.1); }
     
     .btn-list { display: flex; flex-direction: column; gap: 15px; width: 100%; }
-    .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; text-decoration: none !important; font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; cursor: pointer; align-items: center; margin-bottom: 15px; }
+    
+    /* Hier ist der Hover-Effekt repariert */
+    .links-card { 
+      background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); 
+      border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; 
+      text-decoration: none !important; font-weight: 600; font-size: 17px; display: flex; 
+      justify-content: space-between; cursor: pointer; align-items: center; margin-bottom: 15px; 
+      transition: all 0.3s ease;
+    }
+    .links-card:hover { 
+      background: linear-gradient(90deg, rgba(160, 40, 180, 0.9) 0%, rgba(20, 20, 20, 0.9) 100%); 
+      border-color: #00ff08; transform: scale(1.02); 
+    }
+    
     .badge-18 { font-size: 11px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 6px; margin-left: 8px; }
-
     .my-view-counter { position: absolute; bottom: 15px; left: 20px; font-size: 13px; color: #00ff08; font-weight: 600; opacity: 0.8; }
-
     .age-gate-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 5, 0.95); z-index: 9999; display: none; justify-content: center; align-items: center; }
     .age-gate-box { background: #111; border: 2px solid #00ff08; border-radius: 20px; padding: 40px; text-align: center; }
   </style>
@@ -71,17 +86,17 @@
         <a class="social-icon" href="https://instagram.com/reekeyuwu"><i class="fab fa-instagram"></i></a>
         <a class="social-icon" href="https://tiktok.com/@reekey"><i class="fab fa-tiktok"></i></a>
         <a class="social-icon" href="https://x.com/reekey_"><i class="fab fa-x-twitter"></i></a>
-        <a class="social-icon" href="https://bsky.app/profile/reekey.de"><i class="fa-solid fa-cloud"></i></a>
+        <a class="social-icon" href="https://bsky.app/profile/reekey.de"><i class="fa-solid fa-bsky"></i></a>
         <a class="social-icon" href="https://t.me/reekeyuwu"><i class="fab fa-telegram"></i></a>
         <a class="social-icon" onclick="gate('https://t.me/reekeyad')"><i class="fab fa-telegram" style="color:orange;"></i></a>
-        <a class="social-icon" href="https://onlyfans.com/reekeyuwu"><i class="fa-solid fa-star"></i></a>
+        <a class="social-icon" href="https://onlyfans.com/reekeyuwu"><i class="fa-solid fa-onlyfans"></i></a>
         <a class="social-icon" href="https://barq.app/@reekey"><img src="https://r2.guns.lol/12468df9-0fa2-4803-9eff-17382fc79a12.webp" style="width:20px;"></a>
         <a class="social-icon" href="https://t.me/KyraFoxworks"><img src="https://r2.guns.lol/8caa2f3b-b000-4470-bdd4-e6a1e7d9e48e.webp" style="width:20px;"></a>
       </div>
       
       <div class="btn-list">
         <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu')">
-            <span style="display:flex; align-items:center;"><i class="fa-solid fa-star" style="margin-right:12px;"></i>OnlyFans</span><span class="badge-18">18+</span>
+            <span style="display:flex; align-items:center;"><i class="fa-solid fa-onlyfans" style="margin-right:12px;"></i>OnlyFans</span><span class="badge-18">18+</span>
         </div>
         <a href="https://x.com/reekey_" class="links-card" style="justify-content: flex-start;">
             <span style="display:flex; align-items:center;"><i class="fab fa-x-twitter" style="margin-right:12px;"></i>X (Twitter)</span>
@@ -98,7 +113,6 @@
   </div>
 
   <script>
-    // Echter Zähler (Textbasiert, um Bild-Fehler zu vermeiden)
     fetch('https://hits.seeyouforme.com/api/count/incr/badge.svg?url=https%3A%2F%2Freekey.de&count_bg=%2300FF08&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false')
       .then(response => response.text())
       .then(text => {
