@@ -4,7 +4,6 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>reekey</title>
-  
   <link rel="icon" type="image/webp" href="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L31NYB54P0"></script>
@@ -21,26 +20,20 @@
     body, html { margin: 0; padding: 0; width: 100%; min-height: 100vh; background-color: #050505; color: #00ff08; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
     .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("https://r2.guns.lol/84bdc93d-a924-42a8-829d-8ceafa6314fd.webp"); background-size: cover; background-position: center; z-index: 1; }
     .main-wrapper { position: relative; z-index: 2; min-height: 100vh; width: 100%; display: flex; justify-content: center; align-items: center; padding: 20px; }
-    .profile-card { width: 100%; max-width: 640px; background: rgba(240, 15, 214, 0.15); backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px); border-radius: 20px; border: 2px solid rgba(240, 15, 214, 0.1); padding: 35px 25px 50px 25px; text-align: center; position: relative; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
-    
+    .profile-card { width: 100%; max-width: 640px; background: rgba(240, 15, 214, 0.15); backdrop-filter: blur(7px); border-radius: 20px; border: 2px solid rgba(240, 15, 214, 0.1); padding: 35px 25px 50px 25px; text-align: center; position: relative; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
     .avatar-box { width: 130px; height: 130px; margin: 0 auto 20px auto; position: relative; }
     .avatar-img { width: 130px; height: 130px; border-radius: 35px; object-fit: cover; border: 3px solid #43b581; box-shadow: 0 0 25px rgba(0, 255, 8, 0.5); }
-    
     h1 { font-size: 39.5px; font-weight: 600; margin: 0 0 5px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; text-shadow: 0 0 10px #00ff08; }
     .sub-bio { color: rgba(0,255,8,0.6); font-size: 16px; margin: 5px 0 20px 0; }
-
     .guns-discord-widget { background: rgba(0, 0, 0, 0.4); border-radius: 20px; padding: 12px 20px; margin: 0 auto 25px auto; width: 100%; max-width: 310px; display: flex; align-items: center; gap: 15px; border: 1px solid rgba(0, 255, 8, 0.2); transition: 0.3s; cursor: pointer; }
-    .widget-status-dot { width: 14px; height: 14px; border-radius: 50%; background-color: #43b581; border: 3px solid #111; position: absolute; bottom: -2px; right: -2px; }
-    
+    .widget-status-dot { width: 14px; height: 14px; border-radius: 50%; background-color: #747f8d; border: 3px solid #111; position: absolute; bottom: -2px; right: -2px; }
     .social-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
     .social-icon { width: 42px; height: 42px; background: rgba(0,255,8,0.15); border: 2px solid rgba(0,255,8,0.12); border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; cursor: pointer; transition: 0.3s; color: #00ff08; overflow: hidden; }
     .social-icon img { width: 22px; height: 22px; object-fit: contain; }
     .social-icon:hover { background: rgba(0,255,8,0.3); transform: scale(1.1); }
-    
     .btn-list { display: flex; flex-direction: column; gap: 15px; width: 100%; }
     .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; text-decoration: none !important; font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; cursor: pointer; align-items: center; margin-bottom: 15px; transition: all 0.3s ease; }
     .links-card:hover { border-color: #00ff08; transform: scale(1.02); }
-    
     .badge-18 { font-size: 11px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 6px; margin-left: 8px; }
     .age-gate-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 5, 0.95); z-index: 9999; display: none; justify-content: center; align-items: center; }
     .age-gate-box { background: #111; border: 2px solid #00ff08; border-radius: 20px; padding: 40px; text-align: center; }
@@ -71,7 +64,7 @@
             </div>
             <div style="color:white; text-align:left;">
                 <div style="font-weight:700;">reekey_</div>
-                <div id="widget-activity" style="color:rgba(0,255,8,0.7); font-size:12px; font-weight:600;">Loading...</div>
+                <div id="widget-activity" style="color:rgba(0,255,8,0.7); font-size:12px; font-weight:600;">Status</div>
             </div>
         </div>
       </a>
@@ -106,22 +99,21 @@
     function hide() { document.getElementById('age-gate').style.display='none'; }
     function go() { window.open(url, '_blank'); hide(); }
 
-    async function fetchDiscordStatus() {
-      const dot = document.getElementById('widget-dot');
-      const act = document.getElementById('widget-activity');
-      try {
-        const res = await fetch('https://api.lanyard.rest/v1/users/434389923869032458');
-        const data = await res.json();
-        if (data.success) {
-          const s = data.data.discord_status;
-          const colors = { 'online': '#43b581', 'idle': '#faa61a', 'dnd': '#f04747', 'offline': '#747f8d' };
-          if(dot) dot.style.backgroundColor = colors[s] || '#747f8d';
-          if(act) act.innerText = s.charAt(0).toUpperCase() + s.slice(1);
-        }
-      } catch(e) {}
+    async function updateStatus() {
+        try {
+            const res = await fetch('https://api.lanyard.rest/v1/users/434389923869032458');
+            const data = await res.json();
+            if (data.success) {
+                const s = data.data.discord_status;
+                const dot = document.getElementById('widget-dot');
+                const text = document.getElementById('widget-activity');
+                if(dot) dot.style.backgroundColor = (s==='online'?'#43b581':s==='idle'?'#faa61a':s==='dnd'?'#f04747':'#747f8d');
+                if(text) text.innerText = s.charAt(0).toUpperCase() + s.slice(1);
+            }
+        } catch(e) { document.getElementById('widget-activity').innerText = "Offline"; }
     }
-    fetchDiscordStatus();
-    setInterval(fetchDiscordStatus, 30000);
+    updateStatus();
+    setInterval(updateStatus, 10000);
   </script>
 </body>
 </html>
