@@ -18,28 +18,20 @@
     h1 { font-size: 39.5px; font-weight: 600; margin: 0 0 5px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; }
     .sub-bio { color: rgba(0,255,8,0.6); font-size: 16px; margin: 5px 0 20px 0; }
 
-    /* Discord Widget im Style der Buttons */
-    .discord-btn { 
-      background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%);
-      border: 2px solid rgba(0,255,8,0.15); padding: 15px 25px; border-radius: 12px;
-      margin: 0 auto 25px auto; width: 100%; max-width: 310px;
-      display: flex; align-items: center; justify-content: space-between;
-      text-decoration: none; cursor: pointer; transition: 0.3s;
-    }
-    .widget-status-dot { width: 12px; height: 12px; border-radius: 50%; background-color: #43b581; border: 2px solid #111; position: absolute; bottom: 0; right: 0; }
+    .discord-widget { background: rgba(0, 0, 0, 0.4); border-radius: 20px; padding: 12px 20px; margin: 0 auto 25px auto; width: 100%; max-width: 310px; display: flex; align-items: center; gap: 15px; border: 1px solid rgba(0, 255, 8, 0.2); transition: 0.3s; cursor: pointer; text-decoration: none; color: #00ff08; }
+    .discord-widget:hover { background: rgba(0, 255, 8, 0.1); border-color: rgba(0, 255, 8, 0.5); transform: translateY(-2px); }
+    .widget-status-dot { width: 14px; height: 14px; border-radius: 50%; background-color: #43b581; border: 3px solid #111; position: absolute; bottom: -2px; right: -2px; }
     
-    /* Social Icons */
     .social-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
     .social-icon { width: 42px; height: 42px; background: rgba(0,255,8,0.15); border: 2px solid rgba(0,255,8,0.12); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #00ff08; text-decoration: none; cursor: pointer; transition: 0.3s; }
+    .social-icon:hover { background: rgba(0,255,8,0.3); transform: scale(1.1); }
     
-    /* Buttons */
     .btn-list { display: flex; flex-direction: column; gap: 15px; width: 100%; }
     .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; text-decoration: none !important; font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; cursor: pointer; align-items: center; margin-bottom: 15px; }
     .badge-18 { font-size: 11px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 6px; margin-left: 8px; }
 
     .my-view-counter { position: absolute; bottom: 15px; left: 20px; font-size: 13px; color: #00ff08; font-weight: 600; opacity: 0.8; }
 
-    /* Age Gate */
     .age-gate-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 5, 0.95); z-index: 9999; display: none; justify-content: center; align-items: center; }
     .age-gate-box { background: #111; border: 2px solid #00ff08; border-radius: 20px; padding: 40px; text-align: center; }
   </style>
@@ -61,17 +53,15 @@
       <h1>reekey<i class="fa-solid fa-circle-check" style="font-size:20px;"></i></h1>
       <div class="sub-bio">Welcome to my universe</div>
 
-      <a href="https://discord.com/users/434389923869032458" class="discord-btn" style="text-decoration:none;">
-        <div class="discord-btn">
+      <a href="https://discord.com/users/434389923869032458" class="discord-widget">
             <div style="position:relative;">
-                <img style="width:40px; height:40px; border-radius:10px; object-fit:cover;" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
+                <img style="width:45px; height:45px; border-radius:50%; object-fit:cover; border:2px solid #00ff08;" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
                 <div id="widget-dot" class="widget-status-dot"></div>
             </div>
-            <div style="color:#00ff08; text-align:left; font-weight:600;">
-                reekey_<br><span id="widget-activity" style="color:rgba(0,255,8,0.6); font-size:12px;">online</span>
+            <div style="color:white; text-align:left;">
+                <div style="font-weight:700;">reekey_</div>
+                <div id="widget-activity" style="color:rgba(0,255,8,0.7); font-size:12px; font-weight:600;">online</div>
             </div>
-            <i class="fa-solid fa-chevron-right" style="color:rgba(0,255,8,0.5);"></i>
-        </div>
       </a>
       
       <div class="social-row">
@@ -94,17 +84,12 @@
       </div>
 
       <div class="my-view-counter">
-        <i class="fa-solid fa-eye"></i> Views: <span id="count">447</span>
+        <i class="fa-solid fa-eye"></i> Views: <img src="https://hits.seeyouforme.com/api/count/incr/badge.svg?url=https%3A%2F%2Freekey.de&count_bg=%2300FF08&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false" alt="Views"/>
       </div>
     </div>
   </div>
 
   <script>
-    let views = localStorage.getItem('site_views') || 447;
-    views++;
-    localStorage.setItem('site_views', views);
-    document.getElementById('count').innerText = views;
-
     let url = "";
     function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
     function hide() { document.getElementById('age-gate').style.display='none'; }
