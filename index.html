@@ -97,19 +97,38 @@
     function hide() { document.getElementById('age-gate').style.display='none'; }
     function go() { window.open(url, '_blank'); hide(); }
     
-    // Status sofort beim Laden holen
-    fetch('https://api.lanyard.rest/v1/users/434389923869032458')
-      .then(r => r.json())
-      .then(d => {
-        if(d.success) {
-            const s = d.data.discord_status;
-            const dot = document.getElementById('widget-dot');
-            const act = document.getElementById('widget-activity');
-            if(dot) dot.style.backgroundColor = (s==='online'?'#43b581':s==='idle'?'#faa61a':s==='dnd'?'#f04747':'#747f8d');
-            if(act) act.innerText = s.charAt(0).toUpperCase() + s.slice(1);
+    // Status abrufen via CORS-Proxy, um GitHub-Blockaden zu umgehen
+    async function updateStatus() {
+        try {
+            // Wir nutzen 'https://corsproxy.io/?' als Brücke
+            const response = await fetch('https://corsproxy.io/?https://api.lanyard.rest/v1/users/434389923869032458');
+            const data = await response.json();
+            
+            if (data.success) {
+                const s = data.data.discord_status;
+                const dot = document.getElementById('widget-dot');
+                const text = document.getElementById('widget-activity');
+                
+                const statusColors = { 
+                    'online': '#43b581', 
+                    'idle': '#faa61a', 
+                    'dnd': '#f04747', 
+                    'offline': '#747f8d' 
+                };
+                
+                if(dot) dot.style.backgroundColor = statusColors[s] || '#747f8d';
+                if(text) text.innerText = s.charAt(0).toUpperCase() + s.slice(1);
+            }
+        } catch(e) {
+            console.error("Fehler:", e);
+            document.getElementById('widget-activity').innerText = "Offline";
         }
-      })
-      .catch(() => document.getElementById('widget-activity').innerText = "Offline");
+    }
+    
+    // Sofort beim Laden ausführen
+    updateStatus();
+    // Alle 30 Sekunden aktualisieren
+    setInterval(updateStatus, 30000);
   </script>
 </body>
 </html>
