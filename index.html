@@ -4,6 +4,15 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>reekey</title>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L31NYB54P0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-L31NYB54P0');
+  </script>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     * { box-sizing: border-box; }
@@ -91,12 +100,18 @@
       </div>
 
       <div class="my-view-counter">
-        <i class="fa-solid fa-eye"></i> Views: <span>447</span>
+        <i class="fa-solid fa-eye"></i> Views: <span id="count">447</span>
       </div>
     </div>
   </div>
 
   <script>
+    // Lokaler Zähler (nur für die Anzeige)
+    let count = localStorage.getItem('page_view') || 447;
+    count = parseInt(count) + 1;
+    localStorage.setItem('page_view', count);
+    document.getElementById('count').innerText = count;
+
     let url = "";
     function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
     function hide() { document.getElementById('age-gate').style.display='none'; }
