@@ -14,14 +14,6 @@
 
   <link rel="icon" type="image/webp" href="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
   
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L31NYB54P0"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-L31NYB54P0');
-  </script>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     * { box-sizing: border-box; }
@@ -52,7 +44,6 @@
     .btn-list { display: flex; flex-direction: column; gap: 15px; width: 100%; }
     .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; text-decoration: none !important; font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; cursor: pointer; align-items: center; margin-bottom: 15px; transition: all 0.3s ease; }
     .links-card:hover { border-color: #00ff08; transform: scale(1.02); }
-    .badge-18 { font-size: 11px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 6px; margin-left: 8px; }
     .age-gate-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 5, 0.95); z-index: 9999; display: none; justify-content: center; align-items: center; }
     .age-gate-box { background: #111; border: 2px solid #00ff08; border-radius: 20px; padding: 40px; text-align: center; }
   </style>
@@ -74,7 +65,7 @@
       <h1>reekey<i class="fa-solid fa-circle-check" style="font-size:20px;"></i></h1>
       <div class="sub-bio">Welcome to my universe</div>
       
-      <div class="guns-discord-widget" onclick="window.open('https://discord.com/users/434389923869032458', '_blank')">
+      <div class="guns-discord-widget" onclick="window.open('https://discord.com/users/1104903295438434365', '_blank')">
         <div style="position:relative;">
             <img style="width:45px; height:45px; border-radius:50%; object-fit:cover; border:2px solid #00ff08;" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
             <div id="widget-dot" class="widget-status-dot"></div>
@@ -116,8 +107,9 @@
     function go() { window.open(url, '_blank'); hide(); }
     
     async function updateStatus() {
+        const userId = '1104903295438434365';
         try {
-            const res = await fetch('https://api.lanyard.rest/v1/users/434389923869032458');
+            const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
             const json = await res.json();
             if (json.success) {
                 const s = json.data.discord_status;
@@ -126,13 +118,15 @@
                 const colors = { 'online': '#43b581', 'idle': '#faa61a', 'dnd': '#f04747', 'offline': '#747f8d' };
                 if(dot) dot.style.backgroundColor = colors[s] || '#747f8d';
                 if(text) text.innerText = s.charAt(0).toUpperCase() + s.slice(1);
+            } else {
+                document.getElementById('widget-activity').innerText = "Offline";
             }
         } catch(e) {
-            console.error("Lanyard-Fehler:", e);
+            document.getElementById('widget-activity').innerText = "Offline";
         }
     }
     updateStatus();
-    setInterval(updateStatus, 30000);
+    setInterval(updateStatus, 15000);
   </script>
 </body>
 </html>
