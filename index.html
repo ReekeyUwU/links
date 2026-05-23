@@ -12,28 +12,29 @@
     .main-wrapper { position: relative; z-index: 2; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
     .profile-card { width: 100%; max-width: 640px; background: rgba(240, 15, 214, 0.15); backdrop-filter: blur(7px); border-radius: 20px; border: 2px solid rgba(240, 15, 214, 0.1); padding: 35px 25px; text-align: center; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
     
-    .avatar-img { width: 130px !important; height: 130px !important; border-radius: 35px; object-fit: cover; border: 3px solid #43b581; margin-bottom: 15px; }
-    h1 { font-size: 30px; margin: 0; color: #00ff08; }
+    .avatar-img { width: 130px !important; height: 130px !important; border-radius: 35px; object-fit: cover; border: 3px solid #43b581; box-shadow: 0 0 25px rgba(0, 255, 8, 0.5); margin-bottom: 15px; }
+    h1 { font-size: 32px; margin: 0; color: #00ff08; display: inline-flex; align-items: center; gap: 10px; }
+    .verified-icon { color: #00ff08; font-size: 20px; text-shadow: 0 0 8px #00ff08; }
     .sub-bio { color: rgba(0,255,8,0.6); margin: 5px 0 20px 0; }
 
     .social-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 25px; }
-    .social-icon { width: 42px; height: 42px; background: rgba(0,255,8,0.15); border: 2px solid rgba(0,255,8,0.12); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #00ff08; text-decoration: none; cursor: pointer; }
+    .social-icon { width: 42px; height: 42px; background: rgba(0,255,8,0.15); border: 2px solid rgba(0,255,8,0.12); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #00ff08; text-decoration: none; cursor: pointer; font-size: 18px; }
     
     .btn-list { display: flex; flex-direction: column; gap: 12px; }
-    .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 15px 25px; border-radius: 12px; color: #00ff08; text-decoration: none; font-weight: 600; display: flex; justify-content: space-between; cursor: pointer; }
-    .badge-18 { font-size: 10px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 5px; }
+    .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 15px 25px; border-radius: 12px; color: #00ff08; text-decoration: none; font-weight: 600; display: flex; justify-content: space-between; cursor: pointer; align-items: center; }
+    .badge-18 { font-size: 10px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 5px; margin-left: 8px; }
 
-    #gate { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:999; justify-content:center; align-items:center; }
+    #gate { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999; justify-content:center; align-items:center; }
     .gate-box { background: #111; padding: 30px; border-radius: 20px; border: 1px solid #00ff08; text-align: center; }
   </style>
 </head>
 <body>
 
-  <div id="gate" class="age-gate-overlay">
+  <div id="gate">
     <div class="gate-box">
       <h2 style="color:white;">Confirm Age</h2>
       <button class="btn-yes" onclick="go()" style="padding:10px 20px; cursor:pointer;">I am 18+</button>
-      <button class="btn-no" onclick="hide()" style="padding:10px 20px; cursor:pointer;">Close</button>
+      <button onclick="hide()" style="padding:10px 20px; cursor:pointer; margin-left:10px;">Close</button>
     </div>
   </div>
 
@@ -41,7 +42,7 @@
   <div class="main-wrapper">
     <div class="profile-card">
       <img class="avatar-img" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
-      <h1>reekey <i class="fa-solid fa-circle-check" style="font-size:20px;"></i></h1>
+      <h1>reekey<i class="fa-solid fa-circle-check verified-icon"></i></h1>
       <p class="sub-bio">Welcome to my universe</p>
 
       <div class="social-row">
@@ -52,6 +53,7 @@
         <a class="social-icon" href="https://bsky.app/profile/reekey.de"><i class="fa-solid fa-cloud"></i></a>
         <a class="social-icon" href="https://t.me/reekeyuwu"><i class="fab fa-telegram"></i></a>
         <a class="social-icon" onclick="gate('https://t.me/reekeyad')"><i class="fab fa-telegram" style="color:orange;"></i></a>
+        <a class="social-icon" href="https://onlyfans.com/reekeyuwu"><i class="fa-solid fa-star"></i></a>
         <a class="social-icon" href="https://barq.app/@reekey"><img src="https://r2.guns.lol/12468df9-0fa2-4803-9eff-17382fc79a12.webp" style="width:20px;"></a>
         <a class="social-icon" href="https://t.me/KyraFoxworks"><img src="https://r2.guns.lol/8caa2f3b-b000-4470-bdd4-e6a1e7d9e48e.webp" style="width:20px;"></a>
       </div>
