@@ -103,25 +103,19 @@
 
   <script>
     function hide() { document.getElementById('age-gate').style.display='none'; }
-    
     async function fetchDiscordStatus() {
-      const widgetDot = document.getElementById('widget-dot');
-      const widgetActivity = document.getElementById('widget-activity');
-      if (!widgetDot || !widgetActivity) return;
-      
       try {
-        const res = await fetch('https://api.lanyard.rest/v1/users/434389923869032458');
+        const res = await fetch(`https://api.lanyard.rest/v1/users/434389923869032458`);
         const data = await res.json();
         if (data.success) {
           const s = data.data.discord_status;
-          const colors = { 'online': '#43b581', 'idle': '#faa61a', 'dnd': '#f04747', 'offline': '#747f8d' };
-          widgetDot.style.backgroundColor = colors[s] || '#747f8d';
-          widgetActivity.innerText = s.charAt(0).toUpperCase() + s.slice(1);
+          document.getElementById('widget-dot').style.backgroundColor = (s==='online'?'#43b581':s==='idle'?'#faa61a':s==='dnd'?'#f04747':'#747f8d');
+          document.getElementById('widget-activity').innerText = s.charAt(0).toUpperCase() + s.slice(1);
         }
       } catch(e) {}
     }
     fetchDiscordStatus();
-    setInterval(fetchDiscordStatus, 30000);
+    setInterval(fetchDiscordStatus, 15000);
   </script>
 </body>
 </html>
