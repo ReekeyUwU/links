@@ -31,4 +31,95 @@
     .social-icon:hover { background: rgba(0,255,8,0.3); transform: scale(1.1); }
     
     .btn-list { display: flex; flex-direction: column; gap: 15px; width: 100%; }
-    .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; text-decoration: none !important; font-weight: 600;
+    .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; text-decoration: none !important; font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; cursor: pointer; align-items: center; margin-bottom: 15px; }
+    .badge-18 { font-size: 11px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 6px; margin-left: 8px; }
+
+    .my-view-counter { position: absolute; bottom: 15px; left: 20px; font-size: 13px; color: #00ff08; font-weight: 600; opacity: 0.8; }
+
+    .age-gate-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 5, 0.95); z-index: 9999; display: none; justify-content: center; align-items: center; }
+    .age-gate-box { background: #111; border: 2px solid #00ff08; border-radius: 20px; padding: 40px; text-align: center; }
+  </style>
+</head>
+<body>
+
+  <div id="age-gate" class="age-gate-overlay">
+    <div class="age-gate-box">
+      <h2 style="color:white; margin-bottom: 20px;">Confirm Age</h2>
+      <button onclick="go()" style="padding:12px 35px; border-radius:30px; background:#00ff08; border:none; font-weight:bold; cursor:pointer;">Yes (18+)</button>
+      <button onclick="hide()" style="padding:12px 35px; border-radius:30px; background:transparent; color:white; border:1px solid white; cursor:pointer; margin-left:10px;">Close</button>
+    </div>
+  </div>
+
+  <div class="bg-layer"></div>
+  <div class="main-wrapper">
+    <div class="profile-card">
+      <div class="avatar-box"><img id="avatar" class="avatar-img" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp"></div>
+      <h1>reekey<i class="fa-solid fa-circle-check" style="font-size:20px;"></i></h1>
+      <div class="sub-bio">Welcome to my universe</div>
+
+      <a href="https://discord.com/users/434389923869032458" style="text-decoration:none;">
+        <div class="guns-discord-widget">
+            <div style="position:relative;">
+                <img id="widget-pfp" style="width:45px; height:45px; border-radius:50%; object-fit:cover; border:2px solid #00ff08;" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
+                <div id="widget-dot" class="widget-status-dot"></div>
+            </div>
+            <div style="color:white; text-align:left;">
+                <div style="font-weight:700;">reekey_</div>
+                <div id="widget-activity" style="color:rgba(0,255,8,0.7); font-size:12px; font-weight:600;">online</div>
+            </div>
+        </div>
+      </a>
+      
+      <div class="social-row">
+        <a class="social-icon" href="https://discord.com/invite/nRTbXGepUT"><i class="fab fa-discord"></i></a>
+        <a class="social-icon" href="https://instagram.com/reekeyuwu"><i class="fab fa-instagram"></i></a>
+        <a class="social-icon" href="https://tiktok.com/@reekey"><i class="fab fa-tiktok"></i></a>
+        <a class="social-icon" href="https://x.com/reekey_"><i class="fab fa-x-twitter"></i></a>
+        <a class="social-icon" href="https://bsky.app/profile/reekey.de"><i class="fa-solid fa-cloud"></i></a>
+        <a class="social-icon" href="https://t.me/reekeyuwu"><i class="fab fa-telegram"></i></a>
+        <a class="social-icon" onclick="gate('https://t.me/reekeyad')"><i class="fab fa-telegram" style="color:orange;"></i></a>
+        <a class="social-icon" href="https://onlyfans.com/reekeyuwu"><i class="fa-solid fa-star"></i></a>
+        <a class="social-icon" href="https://barq.app/@reekey"><img src="https://r2.guns.lol/12468df9-0fa2-4803-9eff-17382fc79a12.webp" style="width:20px;"></a>
+        <a class="social-icon" href="https://t.me/KyraFoxworks"><img src="https://r2.guns.lol/8caa2f3b-b000-4470-bdd4-e6a1e7d9e48e.webp" style="width:20px;"></a>
+      </div>
+      
+      <div class="btn-list">
+        <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu')">
+            <span><i class="fa-solid fa-star" style="margin-right:10px;"></i>OnlyFans</span><span class="badge-18">18+</span>
+        </div>
+        <a href="https://x.com/reekey_" class="links-card">
+            <span><i class="fab fa-x-twitter" style="margin-right:10px;"></i>X (Twitter)</span>
+        </a>
+        <div class="links-card" onclick="gate('https://t.me/s/reekeyuwu')">
+            <span><i class="fab fa-telegram" style="margin-right:10px;"></i>Telegram Channel</span><span class="badge-18">18+</span>
+        </div>
+      </div>
+
+      <div class="my-view-counter">
+        <i class="fa-solid fa-eye"></i> Views: <img src="https://hits.seeyouforme.com/api/count/incr/badge.svg?url=https%3A%2F%2Freekey.de&count_bg=%2300FF08&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false" alt="Views"/>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let url = "";
+    function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
+    function hide() { document.getElementById('age-gate').style.display='none'; }
+    function go() { window.open(url, '_blank'); hide(); }
+
+    async function fetchDiscordStatus() {
+      try {
+        const res = await fetch(`https://api.lanyard.rest/v1/users/434389923869032458`);
+        const data = await res.json();
+        if (data.success) {
+          const s = data.data.discord_status;
+          document.getElementById('widget-dot').style.backgroundColor = (s==='online'?'#43b581':s==='idle'?'#faa61a':s==='dnd'?'#f04747':'#747f8d');
+          document.getElementById('widget-activity').innerText = s.charAt(0).toUpperCase() + s.slice(1);
+        }
+      } catch(e) {}
+    }
+    fetchDiscordStatus();
+    setInterval(fetchDiscordStatus, 15000);
+  </script>
+</body>
+</html>
