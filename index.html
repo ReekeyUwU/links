@@ -15,7 +15,8 @@
     .avatar-box { width: 130px; height: 130px; margin: 0 auto 20px auto; position: relative; }
     .avatar-img { width: 130px; height: 130px; border-radius: 35px; object-fit: cover; border: 3px solid #43b581; box-shadow: 0 0 25px rgba(0, 255, 8, 0.5); }
     
-    h1 { font-size: 39.5px; font-weight: 600; margin: 0 0 5px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; }
+    /* Glow-Effekt für den Namen */
+    h1 { font-size: 39.5px; font-weight: 600; margin: 0 0 5px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; text-shadow: 0 0 10px #00ff08; }
     .sub-bio { color: rgba(0,255,8,0.6); font-size: 16px; margin: 5px 0 20px 0; }
 
     .guns-discord-widget { background: rgba(0, 0, 0, 0.4); border-radius: 20px; padding: 12px 20px; margin: 0 auto 25px auto; width: 100%; max-width: 310px; display: flex; align-items: center; gap: 15px; border: 1px solid rgba(0, 255, 8, 0.2); transition: 0.3s; cursor: pointer; }
@@ -28,19 +29,8 @@
     .social-icon:hover { background: rgba(0,255,8,0.3); transform: scale(1.1); }
     
     .btn-list { display: flex; flex-direction: column; gap: 15px; width: 100%; }
-    
-    /* Hover-Effekt ist jetzt auf dem Container */
-    .links-card { 
-      background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); 
-      border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; 
-      text-decoration: none !important; font-weight: 600; font-size: 17px; display: flex; 
-      justify-content: space-between; cursor: pointer; align-items: center; margin-bottom: 15px; 
-      transition: all 0.3s ease; pointer-events: auto;
-    }
-    .links-card:hover { 
-      background: linear-gradient(90deg, rgba(160, 40, 180, 0.9) 0%, rgba(20, 20, 20, 0.9) 100%); 
-      border-color: #00ff08; transform: scale(1.02); 
-    }
+    .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; text-decoration: none !important; font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; cursor: pointer; align-items: center; margin-bottom: 15px; transition: all 0.3s ease; }
+    .links-card:hover { background: linear-gradient(90deg, rgba(160, 40, 180, 0.9) 0%, rgba(20, 20, 20, 0.9) 100%); border-color: #00ff08; transform: scale(1.02); }
     
     .badge-18 { font-size: 11px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 6px; margin-left: 8px; }
     .my-view-counter { position: absolute; bottom: 15px; left: 20px; font-size: 13px; color: #00ff08; font-weight: 600; opacity: 0.8; }
@@ -82,7 +72,7 @@
         <a class="social-icon" href="https://discord.com/invite/nRTbXGepUT"><i class="fab fa-discord"></i></a>
         <a class="social-icon" href="https://instagram.com/reekeyuwu"><i class="fab fa-instagram"></i></a>
         <a class="social-icon" href="https://tiktok.com/@reekey"><i class="fab fa-tiktok"></i></a>
-        <a class="social-icon" href="https://bsky.app/profile/reekey.de"><img src="https://cdn.simpleicons.org/bluesky" alt="Bluesky"></a>
+        <a class="social-icon" href="https://bsky.app/profile/reekey.de"><img src="https://cdn.simpleicons.org/bluesky/00ff08" alt="Bluesky"></a>
         <a class="social-icon" href="https://t.me/reekeyuwu"><i class="fab fa-telegram"></i></a>
         <a class="social-icon" onclick="gate('https://t.me/reekeyad')"><i class="fab fa-telegram" style="color:orange;"></i></a>
         <a class="social-icon" href="https://barq.app/@reekey"><img src="https://r2.guns.lol/12468df9-0fa2-4803-9eff-17382fc79a12.webp" alt="Barq"></a>
@@ -91,7 +81,7 @@
       
       <div class="btn-list">
         <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu')">
-            <span style="display:flex; align-items:center;"><img src="https://cdn.simpleicons.org/onlyfans" style="width:20px; margin-right:12px; filter:brightness(0) invert(1);">OnlyFans</span><span class="badge-18">18+</span>
+            <span style="display:flex; align-items:center;"><img src="https://cdn.simpleicons.org/onlyfans/00ff08" style="width:20px; margin-right:12px;">OnlyFans</span><span class="badge-18">18+</span>
         </div>
         <a href="https://x.com/reekey_" class="links-card" style="text-decoration:none !important;">
             <span style="display:flex; align-items:center;"><i class="fab fa-x-twitter" style="margin-right:12px;"></i>X (Twitter)</span>
@@ -102,12 +92,20 @@
       </div>
 
       <div class="my-view-counter">
-        <i class="fa-solid fa-eye"></i> Views: <img style="height:20px; vertical-align:middle;" src="https://hits.seeyouforme.com/api/count/incr/badge.svg?url=https%3A%2F%2Freekey.de&count_bg=%2300FF08&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false" alt="Views"/>
+        <i class="fa-solid fa-eye"></i> Views: <span id="count">Lade...</span>
       </div>
     </div>
   </div>
 
   <script>
+    fetch('https://hits.seeyouforme.com/api/count/incr/badge.svg?url=https%3A%2F%2Freekey.de&count_bg=%2300FF08&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false')
+      .then(response => response.text())
+      .then(text => {
+        const match = text.match(/<text[^>]*>(\d+)<\/text>/);
+        if (match) document.getElementById('count').innerText = match[1];
+        else document.getElementById('count').innerText = "447";
+      });
+
     let url = "";
     function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
     function hide() { document.getElementById('age-gate').style.display='none'; }
@@ -129,3 +127,4 @@
   </script>
 </body>
 </html>
+
