@@ -2,71 +2,73 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WINTER'S EMBRACE 2027 | STELLWERK HAMBURG</title>
+    <title>WINTER'S EMBRACE 2027</title>
     <style>
-        :root { --red: #ff0000; --green: #00ff08; --bg: #050505; }
-        body { margin: 0; background: var(--bg); color: #fff; font-family: 'Courier New', monospace; text-transform: uppercase; }
+        :root { --dark: #050505; --red: #ff0000; --green: #00ff08; }
+        body { margin: 0; background: var(--dark); color: #fff; font-family: 'Courier New', monospace; text-transform: uppercase; }
+
+        /* Navigation */
+        nav { display: flex; justify-content: center; gap: 20px; padding: 30px; border-bottom: 1px solid #333; }
+        nav a { color: #fff; text-decoration: none; font-weight: 900; font-size: 0.8rem; letter-spacing: 2px; }
+
+        /* Hero */
+        .hero { text-align: center; padding: 100px 20px; border-bottom: 2px solid var(--red); }
+        .hero img { max-width: 600px; width: 100%; margin-bottom: 20px; }
+
+        /* Content-Bereiche (Karten-Stil wie im Screenshot) */
+        .main-content { max-width: 1000px; margin: 40px auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px; }
+        .card { background: #0a0a0a; border: 1px solid #222; padding: 30px; }
+        .card h2 { color: var(--green); margin-top: 0; }
         
-        .video-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: brightness(15%); }
-        
-        nav { background: #000; border-bottom: 2px solid var(--red); padding: 20px; text-align: center; position: sticky; top: 0; z-index: 100; }
-        nav a { color: #fff; text-decoration: none; margin: 0 15px; font-weight: 900; }
-        
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; text-align: center; }
-        h1 { font-size: 4rem; color: #fff; text-shadow: 0 0 20px var(--red); margin: 0; }
-        
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 30px 0; }
-        .stat-item { border: 1px solid var(--red); padding: 15px; font-weight: bold; }
-        
-        .section-title { color: var(--green); border-left: 5px solid var(--red); padding-left: 15px; text-align: left; margin: 40px 0; }
-        .lineup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: #000; border: 1px solid var(--green); padding: 20px; text-align: left; }
-        
-        .btn-wild { display: block; width: 300px; margin: 40px auto; padding: 20px; background: var(--red); color: #fff; text-decoration: none; font-weight: 900; }
-        footer { padding: 50px; border-top: 1px solid #333; font-size: 0.8rem; color: #777; }
+        /* Footer */
+        footer { text-align: center; padding: 50px; color: #444; }
+        .partners { display: flex; justify-content: center; gap: 50px; margin-top: 20px; }
+        .partners img { height: 50px; filter: grayscale(1); }
     </style>
 </head>
 <body>
 
-    <iframe class="video-bg" src="https://www.youtube.com/embed/Of7w9SiKjic?autoplay=1&mute=1&loop=1&playlist=Of7w9SiKjic&controls=0" frameborder="0"></iframe>
-
     <nav>
-        <a href="#lineup">LINE-UP</a>
-        <a href="#info">HAUSORDNUNG</a>
-        <a href="#tickets">TICKETS</a>
+        <a href="#main">MAIN 2027</a>
+        <a href="#bilder">BILDER</a>
+        <a href="#programm">PROGRAMM</a>
+        <a href="#haus">HAUSORDNUNG</a>
+        <a href="#ueber">ÜBER UNS</a>
+        <a href="#links">LINKS</a>
+        <a href="#merch">MERCH</a>
     </nav>
 
-    <div class="container">
-        <header>
-            <h1>WINTER'S EMBRACE</h1>
-            <p>15.01 + 16.01.2027 | STELLWERK HAMBURG</p>
-            <div class="stats-grid">
-                <div class="stat-item">6 DJS</div>
-                <div class="stat-item">3 BANDS</div>
-                <div class="stat-item">2 DAYS</div>
-                <div class="stat-item">1 PARTY</div>
-            </div>
-            <a href="#" class="btn-wild">TICKET SHOP</a>
-        </header>
-
-        <h2 class="section-title" id="lineup">LINE-UP 2027</h2>
-        <div class="lineup-grid">
-            <div class="card"><h3>NUIK</h3><p>Viking Electro</p></div>
-            <div class="card"><h3>DASPRID</h3><p>Rock and Metal</p></div>
-            <div class="card"><h3>TBA</h3><p>Artist 3</p></div>
-            <div class="card"><h3>TBA</h3><p>Artist 4</p></div>
-        </div>
-
-        <h2 class="section-title" id="info">HAUSORDNUNG</h2>
-        <div class="card">
-            <p>Respektvoll. Sicher. Wild. Alle Teilnehmer verpflichten sich zur Einhaltung der Regeln des Stellwerks.</p>
-        </div>
-
-        <footer>
-            <p>IN COOPERATION WITH: EUROFURANCE E.V. | SUPPORTED BY: HANSEFURS E.V.</p>
-        </footer>
+    <div class="hero">
+        <img src="assets/plakat.avif" alt="Winter's Embrace Plakat">
+        <p>15. – 16. Januar 2027 | Stellwerk Hamburg</p>
     </div>
+
+    <div class="main-content">
+        <div class="card">
+            <h2>PROGRAMM</h2>
+            <p>Vom Metal-Gig bis zur Furry-Party. Unser Zeitplan für 2027 steht.</p>
+        </div>
+        <div class="card">
+            <h2>HAUSORDNUNG</h2>
+            <p>Respektvoll. Sicher. Wild. Die Regeln für das Stellwerk.</p>
+        </div>
+        <div class="card">
+            <h2>ÜBER UNS</h2>
+            <p>Wir sind eine Community-Orga, die Metal und Furry vereint.</p>
+        </div>
+        <div class="card">
+            <h2>MERCH</h2>
+            <p>Dein offizielles Winter's Embrace Festival-Gear.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>IN COOPERATION WITH EUROFURANCE E.V. | SUPPORTED BY HANSEFURS E.V.</p>
+        <div class="partners">
+            <img src="assets/eurofurence-logo.png" alt="Eurofurence">
+            <img src="assets/hansefurs-logo.png" alt="HanseFurs">
+        </div>
+    </footer>
 
 </body>
 </html>
