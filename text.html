@@ -2,46 +2,47 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>WINTER'S EMBRACE 2027</title>
+  <title>WINTER'S EMBRACE 2027 | STELLWERK HAMBURG</title>
   <style>
-    body { 
-        background: #050505; 
-        color: #00ff08; 
-        font-family: 'Courier New', monospace; /* Terminal-Look */
-        margin: 0;
-        text-transform: uppercase;
+    body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: 'Courier New', Courier, monospace; color: #00ff08; }
+    
+    /* Hintergrund Video */
+    .video-bg { 
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+        object-fit: cover; z-index: -1; filter: brightness(30%) contrast(120%) grayscale(20%); 
     }
-    .glitch-bg { 
-        background: url('https://i.imgur.com/your-aurora-background.jpg'); /* Nordlicht-Effekt */
-        background-size: cover;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border-bottom: 5px solid #ff0000; /* Metall-Rot Akzent */
+    
+    .content { 
+        display: flex; flex-direction: column; justify-content: center; align-items: center; 
+        height: 100vh; text-align: center; text-transform: uppercase; 
     }
-    h1 { font-size: 5rem; text-shadow: 0 0 20px #ff0000; }
-    .event-data { font-size: 2rem; background: #000; padding: 20px; border: 2px solid #00ff08; }
+    
+    h1 { font-size: 5vw; margin: 0; text-shadow: 0 0 15px #ff0000; letter-spacing: 10px; }
+    .info-box { background: rgba(0,0,0,0.7); padding: 20px; border: 2px solid #00ff08; margin-top: 20px; }
+    
     .btn-wild { 
-        padding: 20px 50px; 
-        background: #ff0000; 
-        color: white; 
-        border: none; 
-        font-weight: 900; 
-        cursor: crosshair; 
-        margin-top: 30px;
+        padding: 20px 40px; background: #ff0000; color: white; border: none; 
+        font-weight: 900; font-size: 1.2rem; cursor: crosshair; margin-top: 30px; 
+        text-transform: uppercase; transition: 0.3s;
     }
+    .btn-wild:hover { background: #00ff08; color: black; }
   </style>
 </head>
 <body>
 
-<div class="glitch-bg">
-    <h1>WINTER'S EMBRACE</h1>
-    <div class="event-data">15.01 + 16.01.2027 | STELLWERK HAMBURG</div>
-    <div style="margin-top: 20px;">6 DJs | 3 LIVE BANDS | 2 EVENINGS | 1 WILD PARTY</div>
-    <button class="btn-wild" onclick="window.location.href='https://youtu.be/Of7w9SiKjic'">WATCH AFTERMOVIE</button>
-</div>
+  <iframe class="video-bg" 
+          src="https://www.youtube.com/embed/Of7w9SiKjic?autoplay=1&mute=1&loop=1&playlist=Of7w9SiKjic&controls=0&showinfo=0&modestbranding=1" 
+          frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+  </iframe>
+
+  <div class="content">
+    <h1>Winter's Embrace</h1>
+    <div class="info-box">
+      <div>15.01 + 16.01.2027</div>
+      <div style="margin-top:10px;">6 DJs | 3 LIVE BANDS | 2 EVENINGS | 1 WILD PARTY</div>
+    </div>
+    <button class="btn-wild" onclick="window.location.href='https://www.winters-embrace.com'">Tickets & Info</button>
+  </div>
 
 </body>
 </html>
