@@ -35,33 +35,35 @@
     .avatar-img { width: 130px; height: 130px; border-radius: 35px; object-fit: cover; border: 3px solid #43b581; box-shadow: 0 0 25px rgba(0, 255, 8, 0.5); }
     h1 { font-size: 39.5px; font-weight: 600; margin: 0 0 5px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; text-shadow: 0 0 10px #00ff08; }
     
-    /* Bio angepasst auf das grüne Farbschema */
-    .sub-bio { 
-        color: #00ff08; 
-        font-size: 16px; 
-        margin: 5px 0 20px 0; 
-        font-weight: 500; 
-        text-shadow: 0 0 5px rgba(0, 255, 8, 0.4);
-    }
+    .sub-bio { color: #00ff08; font-size: 16px; margin: 5px 0 20px 0; font-weight: 500; text-shadow: 0 0 5px rgba(0, 255, 8, 0.4); }
     
     .guns-discord-widget { background: rgba(0, 0, 0, 0.4); border-radius: 20px; padding: 12px 20px; margin: 0 auto 25px auto; width: 100%; max-width: 310px; display: flex; align-items: center; gap: 15px; border: 1px solid rgba(0, 255, 8, 0.2); cursor: pointer; }
     .widget-status-dot { width: 14px; height: 14px; border-radius: 50%; background-color: #747f8d; border: 3px solid #111; position: absolute; bottom: -2px; right: -2px; }
+    
     .social-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
     .social-icon { width: 42px; height: 42px; background: rgba(0,255,8,0.15); border: 2px solid rgba(0,255,8,0.12); border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; cursor: pointer; transition: 0.3s; color: #00ff08; overflow: hidden; }
     .social-icon img { width: 22px; height: 22px; object-fit: contain; }
     .social-icon:hover { background: rgba(0,255,8,0.3); transform: scale(1.1); }
+    
     .btn-list { display: flex; flex-direction: column; gap: 15px; width: 100%; }
     .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; text-decoration: none !important; font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; cursor: pointer; align-items: center; margin-bottom: 15px; transition: all 0.3s ease; }
     .links-card:hover { border-color: #00ff08; transform: scale(1.02); }
+    
     .badge-18 { font-size: 11px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 6px; margin-left: 8px; }
     .age-gate-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 5, 0.95); z-index: 9999; display: none; justify-content: center; align-items: center; }
     .age-gate-box { background: #111; border: 2px solid #00ff08; border-radius: 20px; padding: 40px; text-align: center; }
     
-    .footer { margin-top: 25px; color: rgba(0, 255, 8, 0.5); font-size: 14px; }
-    .footer a { color: #00ff08; text-decoration: none; transition: 0.3s; }
+    .footer { margin-top: 25px; color: rgba(0, 255, 8, 0.5); font-size: 14px; display: flex; align-items: center; gap: 6px; }
+    .footer a { color: #00ff08; text-decoration: none; }
+    .footer-heart { width: 18px; height: 18px; }
   </style>
 </head>
 <body>
+
+  <script src="https://unpkg.com/shimeji-js"></script>
+  <script>
+    window.onload = function() { new Shimeji({ directory: 'https://unpkg.com/shimeji-js/assets/', sprite: 'cat' }); };
+  </script>
 
   <div id="age-gate" class="age-gate-overlay">
     <div class="age-gate-box">
@@ -76,7 +78,7 @@
     <div class="profile-card">
       <div class="avatar-box"><img id="avatar" class="avatar-img" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp"></div>
       <h1>reekey<i class="fa-solid fa-circle-check" style="font-size:20px;"></i></h1>
-      <div class="sub-bio">Willkommen! Ich bin Reekey, 27, Furry aus Deutschland & Digital Creator. Schön, dass du den Weg hierher gefunden hast. 🐾</div>
+      <div class="sub-bio">Hey, schön dass du hergefunden hast. Ich bin Nox, ein 29-jähriger Furry aus Deutschland. 🐾</div>
       
       <div class="guns-discord-widget" onclick="window.open('https://discord.com/users/1104903295438434365', '_blank')">
         <div style="position:relative;">
@@ -101,6 +103,14 @@
       </div>
       
       <div class="btn-list">
+        <div class="links-card" style="cursor: default; background: rgba(0, 255, 8, 0.05); border: 1px solid rgba(0, 255, 8, 0.2);">
+            <span style="display:flex; align-items:center;">
+                <i class="fa-solid fa-paw" style="margin-right:12px; color: #43b581;"></i>
+                Status: In der Werkstatt 🛠️
+            </span>
+            <span style="font-size: 11px; background: rgba(0, 255, 8, 0.2); padding: 2px 6px; border-radius: 6px;">Projekt: Kira</span>
+        </div>
+        
         <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu')">
             <span style="display:flex; align-items:center;"><img src="https://cdn.simpleicons.org/onlyfans" style="width:20px; margin-right:12px;">OnlyFans</span><span class="badge-18">18+</span>
         </div>
@@ -110,14 +120,11 @@
         <div class="links-card" onclick="gate('https://t.me/s/reekeyad')">
             <span style="display:flex; align-items:center;"><i class="fab fa-telegram" style="margin-right:12px;"></i>Telegram Channel</span><span class="badge-18">18+</span>
         </div>
-        <div class="links-card" onclick="gate('https://murrtube.net/reekey')">
-            <span style="display:flex; align-items:center;"><img src="https://link.nox.contact/assets/favicon/icons/993726981.png" style="width:20px; margin-right:12px;">Murrtube</span><span class="badge-18">18+</span>
-        </div>
       </div>
     </div>
     
     <div class="footer">
-      made with ❤️ from <a href="https://Reekey.de">Reekey.de</a>
+      made with <img src="https://r2.guns.lol/1912807f-cf6b-4e1b-99d7-ecf92736111f.webp" class="footer-heart"> from <a href="https://Reekey.de">Reekey.de</a>
     </div>
   </div>
 
