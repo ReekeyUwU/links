@@ -15,8 +15,6 @@
   <link rel="icon" type="image/webp" href="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <script src="https://unpkg.com/shimeji-js"></script>
-
   <style>
     * { box-sizing: border-box; }
     body, html { margin: 0; padding: 0; width: 100%; min-height: 100vh; background-color: #050505; color: #00ff08; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
@@ -37,29 +35,31 @@
     .avatar-img { width: 130px; height: 130px; border-radius: 35px; object-fit: cover; border: 3px solid #43b581; box-shadow: 0 0 25px rgba(0, 255, 8, 0.5); }
     h1 { font-size: 39.5px; font-weight: 600; margin: 0 0 5px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; text-shadow: 0 0 10px #00ff08; }
     
-    .sub-bio { color: #00ff08; font-size: 16px; margin: 5px 0 20px 0; font-weight: 500; text-shadow: 0 0 5px rgba(0, 255, 8, 0.4); line-height: 1.4; }
+    /* Bio angepasst */
+    .sub-bio { 
+        color: #00ff08; 
+        font-size: 16px; 
+        margin: 5px 0 20px 0; 
+        font-weight: 500; 
+        text-shadow: 0 0 5px rgba(0, 255, 8, 0.4);
+        line-height: 1.4;
+    }
     
     .guns-discord-widget { background: rgba(0, 0, 0, 0.4); border-radius: 20px; padding: 12px 20px; margin: 0 auto 25px auto; width: 100%; max-width: 310px; display: flex; align-items: center; gap: 15px; border: 1px solid rgba(0, 255, 8, 0.2); cursor: pointer; }
     .widget-status-dot { width: 14px; height: 14px; border-radius: 50%; background-color: #747f8d; border: 3px solid #111; position: absolute; bottom: -2px; right: -2px; }
-    
     .social-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
     .social-icon { width: 42px; height: 42px; background: rgba(0,255,8,0.15); border: 2px solid rgba(0,255,8,0.12); border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; cursor: pointer; transition: 0.3s; color: #00ff08; overflow: hidden; }
     .social-icon img { width: 22px; height: 22px; object-fit: contain; }
     .social-icon:hover { background: rgba(0,255,8,0.3); transform: scale(1.1); }
-    
     .btn-list { display: flex; flex-direction: column; gap: 15px; width: 100%; }
     .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; text-decoration: none !important; font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; cursor: pointer; align-items: center; margin-bottom: 15px; transition: all 0.3s ease; }
     .links-card:hover { border-color: #00ff08; transform: scale(1.02); }
-    
     .badge-18 { font-size: 11px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 6px; margin-left: 8px; }
-    
-    /* Age Gate Overlay - Jetzt standardmäßig angezeigt */
-    .age-gate-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 5, 0.95); z-index: 9999; display: flex; justify-content: center; align-items: center; }
+    .age-gate-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 5, 0.95); z-index: 9999; display: none; justify-content: center; align-items: center; }
     .age-gate-box { background: #111; border: 2px solid #00ff08; border-radius: 20px; padding: 40px; text-align: center; }
     
-    .footer { margin-top: 25px; color: rgba(0, 255, 8, 0.5); font-size: 14px; display: flex; align-items: center; gap: 6px; }
-    .footer a { color: #00ff08; text-decoration: none; }
-    .footer-heart { width: 18px; height: 18px; }
+    .footer { margin-top: 25px; color: rgba(0, 255, 8, 0.5); font-size: 14px; }
+    .footer a { color: #00ff08; text-decoration: none; transition: 0.3s; }
   </style>
 </head>
 <body>
@@ -68,6 +68,7 @@
     <div class="age-gate-box">
       <h2 style="color:white; margin-bottom: 20px;">Confirm Age</h2>
       <button onclick="go()" style="padding:12px 35px; border-radius:30px; background:#00ff08; border:none; font-weight:bold; cursor:pointer;">Yes (18+)</button>
+      <button onclick="hide()" style="padding:12px 35px; border-radius:30px; background:transparent; color:white; border:1px solid white; cursor:pointer; margin-left:10px;">Close</button>
     </div>
   </div>
 
@@ -101,19 +102,18 @@
       </div>
       
       <div class="btn-list">
-        <div class="links-card" style="cursor: default; background: rgba(0, 255, 8, 0.05); border: 1px solid rgba(0, 255, 8, 0.2);">
-            <span style="display:flex; align-items:center;">
-                <i class="fa-solid fa-paw" style="margin-right:12px; color: #43b581;"></i>
-                Status: In der Werkstatt 🛠️
-            </span>
-            <span style="font-size: 11px; background: rgba(0, 255, 8, 0.2); padding: 2px 6px; border-radius: 6px;">Projekt: Kira</span>
-        </div>
         <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu')">
             <span style="display:flex; align-items:center;"><img src="https://cdn.simpleicons.org/onlyfans" style="width:20px; margin-right:12px;">OnlyFans</span><span class="badge-18">18+</span>
         </div>
         <a href="https://x.com/reekey_" class="links-card" style="text-decoration:none !important;">
             <span style="display:flex; align-items:center;"><i class="fab fa-x-twitter" style="margin-right:12px;"></i>X (Twitter)</span>
         </a>
+        <div class="links-card" onclick="gate('https://t.me/s/reekeyad')">
+            <span style="display:flex; align-items:center;"><i class="fab fa-telegram" style="margin-right:12px;"></i>Telegram Channel</span><span class="badge-18">18+</span>
+        </div>
+        <div class="links-card" onclick="gate('https://murrtube.net/reekey')">
+            <span style="display:flex; align-items:center;"><img src="https://reekey.de/993726981.png" style="width:20px; margin-right:12px;">Murrtube</span><span class="badge-18">18+</span>
+        </div>
       </div>
     </div>
     
@@ -123,11 +123,10 @@
   </div>
 
   <script>
-    // Katze startet erst NACH dem Klick
-    function go() { 
-        document.getElementById('age-gate').style.display='none'; 
-        new Shimeji({ directory: 'https://unpkg.com/shimeji-js/assets/', sprite: 'cat' });
-    }
+    let url = "";
+    function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
+    function hide() { document.getElementById('age-gate').style.display='none'; }
+    function go() { window.open(url, '_blank'); hide(); }
     
     async function updateStatus() {
         try {
@@ -137,16 +136,24 @@
                 const d = json.data;
                 const dot = document.getElementById('widget-dot');
                 const text = document.getElementById('widget-activity');
+                
                 const colors = { 'online': '#43b581', 'idle': '#faa61a', 'dnd': '#f04747', 'offline': '#747f8d' };
                 if(dot) dot.style.backgroundColor = colors[d.discord_status] || '#747f8d';
-                if (d.spotify) { text.innerText = `🎵 ${d.spotify.song} – ${d.spotify.artist}`; } 
-                else {
+                
+                if (d.spotify) {
+                    text.innerText = `🎵 ${d.spotify.song} – ${d.spotify.artist}`;
+                } else {
                     const game = d.activities.find(a => a.type === 0);
-                    text.innerText = game ? `🎮 ${game.name}` : d.discord_status.charAt(0).toUpperCase() + d.discord_status.slice(1);
+                    if (game) {
+                        text.innerText = `🎮 ${game.name}`;
+                    } else {
+                        text.innerText = d.discord_status.charAt(0).toUpperCase() + d.discord_status.slice(1);
+                    }
                 }
             }
         } catch(e) { console.error("Lanyard-Fehler:", e); }
     }
+    
     updateStatus();
     setInterval(updateStatus, 10000);
   </script>
