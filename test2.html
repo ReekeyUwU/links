@@ -1,34 +1,64 @@
-<h2 class="section-title" id="programm">PROGRAMM 2027</h2>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>PROGRAMM | WINTER'S EMBRACE 2027</title>
+    <style>
+        :root { --bg: #050505; --text: #ffffff; --accent: #ff0000; }
+        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; }
 
-<div class="card">
-    <h3>ZEITABLAUF (FRIDAY / SATURDAY)</h3>
-    <table style="width: 100%; border-collapse: collapse; color: #fff;">
-        <tr style="border-bottom: 1px solid #333;">
-            <td style="padding: 10px; color: var(--green);">17:30 Uhr</td>
-            <td style="padding: 10px;">Einlass für Supporter-Ticket-Besitzer</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #333;">
-            <td style="padding: 10px; color: var(--green);">18:00 Uhr</td>
-            <td style="padding: 10px;">Einlass für alle Besucher</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #333;">
-            <td style="padding: 10px; color: var(--green);">18:45 Uhr</td>
-            <td style="padding: 10px;">Eventbegrüßung</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #333;">
-            <td style="padding: 10px; color: var(--green);">19:00 Uhr</td>
-            <td style="padding: 10px;">Clubraum & Bühnen-Programm startet</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #333;">
-            <td style="padding: 10px; color: var(--green);">04:00 Uhr</td>
-            <td style="padding: 10px;">Ende der Veranstaltung</td>
-        </tr>
-    </table>
-</div>
+        /* Struktur */
+        .container { max-width: 800px; margin: 0 auto; padding: 80px 20px; }
+        h1 { font-size: 2.5rem; border-left: 4px solid var(--accent); padding-left: 20px; margin-bottom: 50px; }
 
-<div class="card">
-    <h3>HIGHLIGHTS</h3>
-    <p>• <strong>Suit-Lounge:</strong> Exklusiver Rückzugsort für Suiter (mit spezieller Begleit-Regelung).</p>
-    <p>• <strong>Bühnen-Action:</strong> 6 DJs und 3 Live-Bands im Wechsel.</p>
-    <p>• <strong>Community-Moments:</strong> Treffpunkt für Furry- und Metal-Fans im Stellwerk Hamburg.</p>
-</div>
+        /* Das Programm-Grid */
+        .program-day { margin-bottom: 60px; }
+        .day-header { font-size: 1.2rem; color: #888; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .event-row { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid #1a1a1a; transition: 0.3s; }
+        .event-row:hover { background: #0a0a0a; border-color: #333; }
+        .time { color: var(--accent); font-weight: bold; }
+        .info h3 { margin: 0; font-size: 1.1rem; }
+        .info p { margin: 5px 0 0; color: #666; font-size: 0.9rem; }
+
+        nav { display: flex; justify-content: center; gap: 20px; padding: 30px; border-bottom: 1px solid #1a1a1a; }
+        nav a { color: #888; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">MAIN 2027</a>
+        <a href="#programm">PROGRAMM</a>
+    </nav>
+
+    <div class="container">
+        <h1>PROGRAMM</h1>
+
+        <div class="program-day">
+            <div class="day-header">Freitag, 15.01.2027</div>
+            <div class="event-row">
+                <div class="time">17:30</div>
+                <div class="info"><h3>Einlass Supporter</h3><p>Exklusiver Einlass für Supporter-Ticket-Besitzer.</p></div>
+            </div>
+            <div class="event-row">
+                <div class="time">18:00</div>
+                <div class="info"><h3>Einlass Allgemein</h3><p>Türen öffnen für alle Gäste.</p></div>
+            </div>
+            <div class="event-row">
+                <div class="time">19:00</div>
+                <div class="info"><h3>Opening Ceremony</h3><p>Der Start in die Nacht.</p></div>
+            </div>
+        </div>
+
+        <div class="program-day">
+            <div class="day-header">Samstag, 16.01.2027</div>
+            <div class="event-row">
+                <div class="time">19:00</div>
+                <div class="info"><h3>Main Stage Act I</h3><p>Live-Musik & Metal-Show.</p></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
