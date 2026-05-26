@@ -1,5 +1,432 @@
+# WINTER'S EMBRACE 2027 — RED RITUAL EDITION
+
+# MODERN GLASS EDITION
+
+```html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WINTER'S EMBRACE — MODERN EDITION</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:#070707;
+color:white;
+overflow-x:hidden;
+}
+
+body::before{
+content:"";
+position:fixed;
+width:900px;
+height:900px;
+background:radial-gradient(circle, rgba(255,0,68,0.28), transparent 60%);
+top:-400px;
+right:-200px;
+filter:blur(80px);
+pointer-events:none;
+}
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:28px 60px;
+backdrop-filter:blur(18px);
+background:rgba(0,0,0,0.25);
+z-index:1000;
+}
+
+.logo{
+font-size:0.9rem;
+font-weight:800;
+letter-spacing:0.4em;
+}
+
+nav ul{
+display:flex;
+gap:30px;
+list-style:none;
+}
+
+nav a{
+color:#888;
+text-decoration:none;
+font-size:0.72rem;
+text-transform:uppercase;
+letter-spacing:0.22em;
+transition:0.3s;
+}
+
+nav a:hover{
+color:white;
+}
+
+.hero{
+min-height:100vh;
+display:grid;
+grid-template-columns:1.2fr 1fr;
+align-items:center;
+padding:120px 8%;
+gap:60px;
+}
+
+.hero-text h1{
+font-size:clamp(4rem,9vw,8rem);
+line-height:0.9;
+font-weight:900;
+letter-spacing:-4px;
+margin-bottom:25px;
+}
+
+.hero-text p{
+max-width:600px;
+line-height:1.8;
+color:#9a9a9a;
+font-size:1rem;
+margin-bottom:40px;
+}
+
+.hero-buttons{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:18px 34px;
+border-radius:16px;
+background:#ff003c;
+color:white;
+text-decoration:none;
+font-size:0.75rem;
+font-weight:700;
+letter-spacing:0.15em;
+text-transform:uppercase;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:translateY(-4px);
+box-shadow:0 20px 40px rgba(255,0,60,0.25);
+}
+
+.btn-outline{
+background:transparent;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.hero-image{
+position:relative;
+}
+
+.hero-image img{
+width:100%;
+height:760px;
+object-fit:cover;
+border-radius:30px;
+}
+
+.glass-card{
+position:absolute;
+bottom:30px;
+left:-40px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.08);
+padding:30px;
+border-radius:24px;
+max-width:300px;
+}
+
+.glass-card h3{
+font-size:2rem;
+margin-bottom:10px;
+}
+
+.glass-card span{
+color:#aaa;
+font-size:0.8rem;
+letter-spacing:0.2em;
+text-transform:uppercase;
+}
+
+.section{
+padding:120px 8%;
+}
+
+.section-title{
+margin-bottom:60px;
+}
+
+.section-title h2{
+font-size:clamp(2.5rem,5vw,5rem);
+margin-bottom:20px;
+font-weight:900;
+}
+
+.section-title p{
+max-width:700px;
+color:#8b8b8b;
+line-height:1.8;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.06);
+border-radius:26px;
+overflow:hidden;
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:rgba(255,0,60,0.4);
+}
+
+.card img{
+width:100%;
+height:340px;
+object-fit:cover;
+}
+
+.card-content{
+padding:30px;
+}
+
+.card h3{
+font-size:1.4rem;
+margin-bottom:14px;
+}
+
+.card p{
+line-height:1.8;
+color:#969696;
+}
+
+.lineup{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.artist{
+background:linear-gradient(180deg, rgba(255,0,60,0.08), rgba(255,255,255,0.03));
+padding:40px;
+border-radius:24px;
+border:1px solid rgba(255,255,255,0.06);
+}
+
+.artist h3{
+font-size:1.5rem;
+margin-bottom:10px;
+}
+
+.artist span{
+color:#888;
+text-transform:uppercase;
+font-size:0.75rem;
+letter-spacing:0.18em;
+}
+
+footer{
+padding:100px 8%;
+text-align:center;
+}
+
+footer h2{
+font-size:4rem;
+margin-bottom:20px;
+}
+
+footer p{
+color:#777;
+line-height:2;
+}
+
+@media(max-width:1000px){
+.hero{
+grid-template-columns:1fr;
+}
+
+.lineup{
+grid-template-columns:1fr 1fr;
+}
+
+.hero-image img{
+height:500px;
+}
+}
+
+@media(max-width:700px){
+nav{
+padding:20px;
+flex-direction:column;
+gap:15px;
+}
+
+nav ul{
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.lineup{
+grid-template-columns:1fr;
+}
+
+.hero-image img{
+height:400px;
+}
+
+.glass-card{
+left:20px;
+right:20px;
+max-width:none;
+}
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+<div class="logo">WINTER'S EMBRACE</div>
+<ul>
+<li><a href="#">Festival</a></li>
+<li><a href="#">Programm</a></li>
+<li><a href="#">Artists</a></li>
+<li><a href="#">Gallery</a></li>
+</ul>
+</nav>
+
+<section class="hero">
+
+<div class="hero-text">
+<h1>RED<br>NIGHT<br>2027</h1>
+
+<p>
+WINTER'S EMBRACE verbindet elektronische Musik,
+Community, Artworks und immersive rote Neonästhetik
+zu einem modernen Winterfestival in Hamburg.
+</p>
+
+<div class="hero-buttons">
+<a href="#" class="btn">Get Tickets</a>
+<a href="#" class="btn btn-outline">Explore</a>
+</div>
+</div>
+
+<div class="hero-image">
+<img src="Dancefloor.avif" alt="Festival">
+
+<div class="glass-card">
+<h3>15—16 JAN</h3>
+<span>Hamburg • Germany</span>
+</div>
+</div>
+
+</section>
+
+<section class="section">
+<div class="section-title">
+<h2>The Experience</h2>
+<p>
+Ein einzigartiges Erlebnis für Metal- und Furry-Fans.
+Zwischen Industrial Sound, Nightlife, Visual Art und dunkler Atmosphäre.
+</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<img src="0fc03b_f802c58e98d34c8f9852aafd68156406~mv2.avif">
+<div class="card-content">
+<h3>Programm</h3>
+<p>
+Industrial Nights, Hard Dance,
+Dark Electro und immersive audiovisuelle Shows.
+</p>
+</div>
+</div>
+
+<div class="card">
+<img src="danceraverin_edited.avif">
+<div class="card-content">
+<h3>Community</h3>
+<p>
+Respect first.
+Eine Nacht voller Freiheit, Kunst und Energie.
+</p>
+</div>
+</div>
+
+<div class="card">
+<img src="DASPRID 2.avif">
+<div class="card-content">
+<h3>Red Atmosphere</h3>
+<p>
+Neon, Nebel, Laser und kalte Winter-Nächte
+in cinematic red aesthetics.
+</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="section">
+<div class="section-title">
+<h2>Featured Artists</h2>
+<p>
+Internationale DJs, Industrial Artists und immersive Live Shows.
+</p>
+</div>
+
+<div class="lineup">
+<div class="artist"><h3>DJ NOX</h3><span>Industrial / Berlin</span></div>
+<div class="artist"><h3>LUNAR VEIL</h3><span>Cinematic Ritual</span></div>
+<div class="artist"><h3>BLACK STATIC</h3><span>Hard Dance</span></div>
+<div class="artist"><h3>EMBER WOLF</h3><span>Closing Set</span></div>
+</div>
+</section>
+
+<footer>
+<h2>JOIN THE PACK</h2>
+<p>
+IN COOPERATION WITH EUROFURANCE E.V.<br>
+SUPPORTED BY HANSEFURS E.V.
+</p>
+</footer>
+
+</body>
+</html>
+
+```
 
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
 <meta charset="UTF-8">
@@ -377,6 +804,7 @@ height:300px;
 }
 
 </style>
+
 </head>
 <body>
 
