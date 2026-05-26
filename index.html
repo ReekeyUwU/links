@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>reekey | Link-Portal</title>
   
+  <!-- Open Graph Meta Tags für Link-Vorschau -->
   <meta property="og:title" content="Reekey's Link-Portal | Alle Profile & Links">
   <meta property="og:site_name" content="reekey.de">
-  <meta property="og:description" content="Willkommen auf meiner offiziellen Link-Seite! Hier findest du alle meine Profile, Socials und Updates an einem Ort. 🐾">
+  <meta property="og:description" content="Willkommen auf meinem offiziellen Link-Portal! Hier findest du alle meine Profile, Socials und Updates an einem Ort. 🐾">
   <meta property="og:image" content="https://reekey.de/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
   <meta property="og:image:width" content="500">
   <meta property="og:image:height" content="500">
@@ -16,7 +17,7 @@
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Reekey's Link-Portal">
-  <meta name="twitter:description" content="Alle Profile & Links von Reekey an einem Ort.">
+  <meta name="twitter:description" content="Alle meine Profile, Socials und Updates an einem Ort.">
   <meta name="twitter:image" content="https://reekey.de/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
 
   <link rel="icon" type="image/webp" href="https://reekey.de/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
@@ -117,7 +118,7 @@
     </div>
     
     <div class="footer">
-      made with ❤️ from <a href="https://Reekey.de">Reekey.de</a>
+      Besucher: <span id="view-count">...</span> | made with ❤️ from <a href="https://Reekey.de">Reekey.de</a>
     </div>
   </div>
 
@@ -126,6 +127,12 @@
     function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
     function hide() { document.getElementById('age-gate').style.display='none'; }
     function go() { window.open(url, '_blank'); hide(); }
+    
+    // View Counter Skript
+    fetch('https://still-haze-115a.morning-surf-02e1.workers.dev/')
+      .then(response => response.text())
+      .then(data => { document.getElementById('view-count').innerText = data; })
+      .catch(err => { console.error('Counter error', err); document.getElementById('view-count').innerText = "—"; });
     
     async function updateStatus() {
         try {
