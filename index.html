@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>reekey | Link-Portal</title>
   
-  <!-- Open Graph Meta Tags für Link-Vorschau -->
   <meta property="og:title" content="Reekey's Link-Portal | Alle Profile & Links">
   <meta property="og:site_name" content="reekey.de">
   <meta property="og:description" content="Willkommen auf meinem offiziellen Link-Portal! Hier findest du alle meine Profile, Socials und Updates an einem Ort. 🐾">
@@ -58,8 +57,9 @@
     .age-gate-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 5, 0.95); z-index: 9999; display: none; justify-content: center; align-items: center; }
     .age-gate-box { background: #111; border: 2px solid #00ff08; border-radius: 20px; padding: 40px; text-align: center; }
     
-    .footer { margin-top: 25px; color: rgba(0, 255, 8, 0.5); font-size: 14px; }
+    .footer { margin-top: 30px; color: rgba(0, 255, 8, 0.7); font-size: 14px; padding: 10px; border-top: 1px solid rgba(0, 255, 8, 0.2); text-align: center; }
     .footer a { color: #00ff08; text-decoration: none; transition: 0.3s; }
+    .view-counter-box { background: rgba(0, 255, 8, 0.1); padding: 5px 12px; border-radius: 8px; color: #00ff08; font-weight: bold; text-shadow: 0 0 8px rgba(0, 255, 8, 0.6); margin-right: 10px; }
   </style>
 </head>
 <body>
@@ -118,7 +118,8 @@
     </div>
     
     <div class="footer">
-      Besucher: <span id="view-count">...</span> | made with ❤️ from <a href="https://Reekey.de">Reekey.de</a>
+      <span class="view-counter-box">Besucher: <span id="view-count">...</span></span> 
+      | made with ❤️ from <a href="https://Reekey.de">Reekey.de</a>
     </div>
   </div>
 
@@ -128,8 +129,7 @@
     function hide() { document.getElementById('age-gate').style.display='none'; }
     function go() { window.open(url, '_blank'); hide(); }
     
-    // View Counter Skript
-    fetch('https://empty-rice-011f.morning-surf-02e1.workers.dev//')
+    fetch('https://empty-rice-011f.morning-surf-02e1.workers.dev/')
       .then(response => response.text())
       .then(data => { document.getElementById('view-count').innerText = data; })
       .catch(err => { console.error('Counter error', err); document.getElementById('view-count').innerText = "—"; });
