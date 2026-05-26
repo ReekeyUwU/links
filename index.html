@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>reekey</title>
+  <title>reekey | Link-Portal</title>
   
-  <!-- Open Graph Meta Tags - Optimiert für Link-Vorschau -->
   <meta property="og:title" content="Reekey's Link-Portal | Alle Profile & Links">
   <meta property="og:site_name" content="reekey.de">
   <meta property="og:description" content="Willkommen auf meiner offiziellen Link-Seite! Hier findest du alle meine Profile, Socials und Updates an einem Ort. 🐾">
@@ -24,7 +23,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <style>
-    /* Dein bestehendes CSS bleibt unverändert */
     * { box-sizing: border-box; }
     body, html { margin: 0; padding: 0; width: 100%; min-height: 100vh; background-color: #050505; color: #00ff08; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
     .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("https://r2.guns.lol/84bdc93d-a924-42a8-829d-8ceafa6314fd.webp"); background-size: cover; background-position: center; z-index: 1; }
@@ -65,7 +63,98 @@
 </head>
 <body>
 
-  <!-- (Restlicher Body-Inhalt bleibt gleich...) -->
-  <!-- WICHTIG: Nach dem Update unbedingt den Telegram Webpage Bot nutzen, um das Bild zu aktualisieren! -->
+  <div id="age-gate" class="age-gate-overlay">
+    <div class="age-gate-box">
+      <h2 style="color:white; margin-bottom: 20px;">Confirm Age</h2>
+      <button onclick="go()" style="padding:12px 35px; border-radius:30px; background:#00ff08; border:none; font-weight:bold; cursor:pointer;">Yes (18+)</button>
+      <button onclick="hide()" style="padding:12px 35px; border-radius:30px; background:transparent; color:white; border:1px solid white; cursor:pointer; margin-left:10px;">Close</button>
+    </div>
+  </div>
+
+  <div class="bg-layer"></div>
+  <div class="main-wrapper">
+    <div class="profile-card">
+      <div class="avatar-box"><img id="avatar" class="avatar-img" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp"></div>
+      <h1>reekey<i class="fa-solid fa-circle-check" style="font-size:20px;"></i></h1>
+      <div class="sub-bio">Hey, schön dass du hergefunden hast. Ich bin Reekey, ein 27-jähriger Furry aus Deutschland. 🐾</div>
+      
+      <div class="guns-discord-widget" onclick="window.open('https://discord.com/users/1104903295438434365', '_blank')">
+        <div style="position:relative;">
+            <img style="width:45px; height:45px; border-radius:50%; object-fit:cover; border:2px solid #00ff08;" src="https://r2.guns.lol/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
+            <div id="widget-dot" class="widget-status-dot"></div>
+        </div>
+        <div style="color:white; text-align:left; margin-left:15px;">
+            <div style="font-weight:700;">reekey_</div>
+            <div id="widget-activity" style="color:rgba(0,255,8,0.7); font-size:12px; font-weight:600;">Loading...</div>
+        </div>
+      </div>
+      
+      <div class="social-row">
+        <a class="social-icon" href="https://discord.com/invite/nRTbXGepUT"><i class="fab fa-discord"></i></a>
+        <a class="social-icon" href="https://instagram.com/reekeyuwu"><i class="fab fa-instagram"></i></a>
+        <a class="social-icon" href="https://tiktok.com/@reekey"><i class="fab fa-tiktok"></i></a>
+        <a class="social-icon" href="https://bsky.app/profile/reekey.de"><img src="https://cdn.simpleicons.org/bluesky" alt="Bluesky"></a>
+        <a class="social-icon" href="https://t.me/reekeyuwu"><i class="fab fa-telegram"></i></a>
+        <a class="social-icon" onclick="gate('https://t.me/reekeyad')"><i class="fab fa-telegram" style="color:orange;"></i></a>
+        <a class="social-icon" href="https://barq.app/@reekey"><img src="https://r2.guns.lol/12468df9-0fa2-4803-9eff-17382fc79a12.webp" alt="Barq"></a>
+        <a class="social-icon" href="https://t.me/KyraFoxworks"><img src="https://r2.guns.lol/8caa2f3b-b000-4470-bdd4-e6a1e7d9e48e.webp" alt="Kyra"></a>
+      </div>
+      
+      <div class="btn-list">
+        <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu')">
+            <span style="display:flex; align-items:center;"><img src="https://cdn.simpleicons.org/onlyfans" style="width:20px; margin-right:12px;">OnlyFans</span><span class="badge-18">18+</span>
+        </div>
+        <a href="https://x.com/reekey_" class="links-card" style="text-decoration:none !important;">
+            <span style="display:flex; align-items:center;"><i class="fab fa-x-twitter" style="margin-right:12px;"></i>X (Twitter)</span>
+        </a>
+        <div class="links-card" onclick="gate('https://t.me/s/reekeyad')">
+            <span style="display:flex; align-items:center;"><i class="fab fa-telegram" style="margin-right:12px;"></i>Telegram Channel</span><span class="badge-18">18+</span>
+        </div>
+        <div class="links-card" onclick="gate('https://murrtube.net/reekey')">
+            <span style="display:flex; align-items:center;"><img src="https://reekey.de/993726981.png" style="width:20px; margin-right:12px;">Murrtube</span><span class="badge-18">18+</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      made with ❤️ from <a href="https://Reekey.de">Reekey.de</a>
+    </div>
+  </div>
+
+  <script>
+    let url = "";
+    function gate(u) { url = u; document.getElementById('age-gate').style.display='flex'; }
+    function hide() { document.getElementById('age-gate').style.display='none'; }
+    function go() { window.open(url, '_blank'); hide(); }
+    
+    async function updateStatus() {
+        try {
+            const res = await fetch('https://api.lanyard.rest/v1/users/1104903295438434365');
+            const json = await res.json();
+            if (json.success) {
+                const d = json.data;
+                const dot = document.getElementById('widget-dot');
+                const text = document.getElementById('widget-activity');
+                
+                const colors = { 'online': '#43b581', 'idle': '#faa61a', 'dnd': '#f04747', 'offline': '#747f8d' };
+                if(dot) dot.style.backgroundColor = colors[d.discord_status] || '#747f8d';
+                
+                if (d.spotify) {
+                    text.innerText = `🎵 ${d.spotify.song} – ${d.spotify.artist}`;
+                } else {
+                    const game = d.activities.find(a => a.type === 0);
+                    if (game) {
+                        text.innerText = `🎮 ${game.name}`;
+                    } else {
+                        text.innerText = d.discord_status.charAt(0).toUpperCase() + d.discord_status.slice(1);
+                    }
+                }
+            }
+        } catch(e) { console.error("Lanyard-Fehler:", e); }
+    }
+    
+    updateStatus();
+    setInterval(updateStatus, 10000);
+  </script>
 </body>
 </html>
