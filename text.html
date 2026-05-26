@@ -22,7 +22,9 @@
     :root {
       --bg: #050505;
       --glass: rgba(255,255,255,0.04);
-      --accent: #ff2445;
+      --accent: #ff002f;
+      --accent2: #ff3d5e;
+      --deepred: #54000f;
       --text: #ffffff;
       --soft: #888;
       --border: rgba(255,255,255,0.08);
@@ -33,7 +35,10 @@
     }
 
     body {
-      background: var(--bg);
+      background:
+        radial-gradient(circle at top left, rgba(255,0,47,0.15), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255,40,60,0.12), transparent 35%),
+        var(--bg);
       color: var(--text);
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
@@ -101,7 +106,9 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.92));
+      background:
+        linear-gradient(to bottom, rgba(20,0,0,0.25), rgba(0,0,0,0.92)),
+        radial-gradient(circle at center, rgba(255,0,47,0.18), transparent 55%);
     }
 
     .hero-content {
@@ -111,6 +118,9 @@
     }
 
     .hero h1 {
+      text-shadow:
+        0 0 20px rgba(255,0,47,0.35),
+        0 0 50px rgba(255,0,47,0.15);
       font-family: 'Cinzel', serif;
       font-size: clamp(4rem, 10vw, 8rem);
       line-height: 0.95;
@@ -146,8 +156,10 @@
     }
 
     .btn:hover {
-      background: var(--accent);
-      box-shadow: 0 0 25px rgba(255, 0, 50, 0.4);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow:
+        0 0 20px rgba(255,0,47,0.5),
+        0 0 60px rgba(255,0,47,0.25);
     }
 
     .btn-secondary {
@@ -173,11 +185,26 @@
     }
 
     .count-box {
+      position: relative;
+      overflow: hidden;
       background: var(--glass);
       border: 1px solid var(--border);
       padding: 40px 20px;
       text-align: center;
       backdrop-filter: blur(10px);
+      box-shadow: inset 0 0 40px rgba(255,0,47,0.06);
+    }
+
+    .count-box::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: rgba(255,0,47,0.12);
+      border-radius: 50%;
+      top: -90px;
+      right: -90px;
+      filter: blur(10px);
     }
 
     .count-box h2 {
@@ -429,8 +456,8 @@
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
-      <h1>WINTER'S<br>EMBRACE</h1>
-      <p>15 — 16 JANUARY 2027 // HAMBURG</p>
+      <h1>RED<br>EMBRACE</h1>
+      <p>15 — 16 JANUARY 2027 // HAMBURG // DARK WINTER RITUAL</p>
 
       <div class="hero-buttons">
         <a href="#tickets" class="btn">Get Tickets</a>
@@ -466,7 +493,7 @@
   <section id="about">
 
     <div class="section-title">
-      <h2>The Gathering Returns</h2>
+      <h2>Enter The Red Night</h2>
       <p>
         WINTER'S EMBRACE verbindet elektronische Musik, Community, Artworks und immersive Nachtästhetik in Hamburg. Inspiriert vom originalen Winters-Embrace-Auftritt wurde das Design moderner, cineastischer und deutlich performanter umgesetzt.
       </p>
@@ -515,7 +542,7 @@
   <section class="lineup" id="lineup">
 
     <div class="section-title">
-      <h2>Line-Up 2027</h2>
+      <h2>Bloodline 2027</h2>
       <p>
         Internationale Artists, audiovisuelle Shows und düstere Clubnächte.
       </p>
@@ -576,7 +603,7 @@
   <section id="gallery">
 
     <div class="section-title">
-      <h2>Moments In The Dark</h2>
+      <h2>Crimson Memories</h2>
       <p>
         Eindrücke vergangener Nächte.
       </p>
@@ -600,7 +627,7 @@
   <section id="tickets">
 
     <div class="section-title">
-      <h2>Tickets</h2>
+      <h2>Access The Ritual</h2>
       <p>
         Early Wolf Tickets sind limitiert.
       </p>
@@ -657,7 +684,7 @@
   <!-- FOOTER -->
   <footer>
 
-    <h2>Join The Pack</h2>
+    <h2>Become Part Of The Red Pack</h2>
 
     <p>
       IN COOPERATION WITH EUROFURANCE E.V.<br>
