@@ -1,5 +1,494 @@
 # WINTER'S EMBRACE 2027 — RED RITUAL EDITION
 
+# METAL & FURRY RITUAL EDITION
+
+```html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WINTER'S EMBRACE — METAL RITUAL</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at top left, rgba(255,0,43,0.22), transparent 25%),
+radial-gradient(circle at bottom right, rgba(255,0,43,0.14), transparent 35%);
+pointer-events:none;
+z-index:-1;
+}
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:28px 60px;
+background:rgba(0,0,0,0.45);
+backdrop-filter:blur(16px);
+border-bottom:1px solid rgba(255,255,255,0.05);
+z-index:999;
+}
+
+.logo{
+font-family:'Cinzel',serif;
+font-size:1rem;
+letter-spacing:0.4em;
+}
+
+nav ul{
+display:flex;
+gap:30px;
+list-style:none;
+}
+
+nav a{
+text-decoration:none;
+color:#7e7e7e;
+text-transform:uppercase;
+font-size:0.65rem;
+letter-spacing:0.3em;
+transition:0.3s;
+}
+
+nav a:hover{
+color:white;
+}
+
+.hero{
+min-height:100vh;
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:140px 20px 80px;
+overflow:hidden;
+}
+
+.hero-bg{
+position:absolute;
+inset:0;
+background:url('0fc03b_f802c58e98d34c8f9852aafd68156406~mv2.avif') center/cover;
+filter:brightness(0.22) contrast(1.2);
+transform:scale(1.08);
+}
+
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+background:
+linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.95)),
+radial-gradient(circle at center, rgba(255,0,43,0.18), transparent 45%);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:1000px;
+}
+
+.hero h1{
+font-family:'Cinzel',serif;
+font-size:clamp(4rem,12vw,9rem);
+line-height:0.88;
+letter-spacing:-5px;
+margin-bottom:30px;
+text-shadow:
+0 0 30px rgba(255,0,43,0.45),
+0 0 90px rgba(255,0,43,0.15);
+}
+
+.hero p{
+max-width:760px;
+margin:auto;
+line-height:1.9;
+color:#c5c5c5;
+font-size:1rem;
+margin-bottom:45px;
+}
+
+.buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:18px 36px;
+text-decoration:none;
+color:white;
+background:#ff002b;
+border:1px solid #ff002b;
+text-transform:uppercase;
+font-size:0.72rem;
+letter-spacing:0.25em;
+transition:0.4s;
+}
+
+.btn:hover{
+transform:translateY(-4px);
+box-shadow:0 0 30px rgba(255,0,43,0.45);
+}
+
+.btn-outline{
+background:transparent;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.section{
+padding:120px 8%;
+}
+
+.title{
+text-align:center;
+margin-bottom:70px;
+}
+
+.title h2{
+font-family:'Cinzel',serif;
+font-size:clamp(2.5rem,6vw,5rem);
+margin-bottom:20px;
+}
+
+.title p{
+max-width:760px;
+margin:auto;
+line-height:1.8;
+color:#8f8f8f;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+max-width:1400px;
+margin:auto;
+}
+
+.card{
+background:rgba(255,255,255,0.03);
+border:1px solid rgba(255,255,255,0.06);
+overflow:hidden;
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:rgba(255,0,43,0.5);
+}
+
+.card img{
+width:100%;
+height:420px;
+object-fit:cover;
+filter:contrast(1.05);
+}
+
+.card-content{
+padding:35px;
+}
+
+.card h3{
+font-size:0.75rem;
+text-transform:uppercase;
+letter-spacing:0.35em;
+margin-bottom:18px;
+color:#ff3355;
+}
+
+.card p{
+line-height:1.9;
+color:#9d9d9d;
+}
+
+.lineup{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:20px;
+}
+
+.artist{
+background:linear-gradient(180deg, rgba(255,0,43,0.08), rgba(255,255,255,0.02));
+border:1px solid rgba(255,255,255,0.06);
+padding:45px 35px;
+text-align:center;
+transition:0.4s;
+}
+
+.artist:hover{
+transform:translateY(-6px);
+border-color:rgba(255,0,43,0.45);
+}
+
+.artist h3{
+font-family:'Cinzel',serif;
+font-size:1.7rem;
+margin-bottom:14px;
+}
+
+.artist span{
+color:#8d8d8d;
+font-size:0.72rem;
+letter-spacing:0.2em;
+text-transform:uppercase;
+}
+
+.gallery{
+max-width:1500px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+}
+
+.gallery img{
+width:100%;
+height:360px;
+object-fit:cover;
+transition:0.5s;
+filter:brightness(0.82);
+}
+
+.gallery img:hover{
+transform:scale(1.03);
+filter:brightness(1);
+}
+
+footer{
+padding:120px 20px;
+text-align:center;
+border-top:1px solid rgba(255,255,255,0.05);
+}
+
+footer h2{
+font-family:'Cinzel',serif;
+font-size:4rem;
+margin-bottom:25px;
+}
+
+footer p{
+color:#777;
+line-height:2;
+letter-spacing:0.18em;
+text-transform:uppercase;
+font-size:0.7rem;
+}
+
+@media(max-width:900px){
+nav{
+flex-direction:column;
+gap:15px;
+padding:20px;
+}
+
+nav ul{
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.gallery{
+grid-template-columns:1fr 1fr;
+}
+}
+
+@media(max-width:600px){
+.gallery{
+grid-template-columns:1fr;
+}
+
+.card img{
+height:300px;
+}
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+<div class="logo">WINTER'S EMBRACE</div>
+
+<ul>
+<li><a href="#festival">Festival</a></li>
+<li><a href="#lineup">Line-Up</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#join">Join</a></li>
+</ul>
+</nav>
+
+<section class="hero">
+<div class="hero-bg"></div>
+
+<div class="hero-content">
+<h1>METAL.<br>FURRY.<br>RITUAL.</h1>
+
+<p>
+Ein einzigartiges Erlebnis für Metal- und Furry-Fans.
+Zwischen Industrial Sound, Hard Dance, Rudelkultur,
+Live Visuals und dunkler Winteratmosphäre entsteht
+WINTER'S EMBRACE 2027 in Hamburg.
+</p>
+
+<div class="buttons">
+<a href="#join" class="btn">Join The Pack</a>
+<a href="#lineup" class="btn btn-outline">Explore Artists</a>
+</div>
+</div>
+</section>
+
+<section class="section" id="festival">
+<div class="title">
+<h2>The Winter Ritual</h2>
+<p>
+Zwei Nächte voller Musik, Community, Artworks,
+Fursuits, Nightlife und dunkler Festivalenergie.
+</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<img src="Dancefloor.avif" alt="Festival">
+<div class="card-content">
+<h3>Metal & Industrial</h3>
+<p>
+Dark Electro, Industrial, Hard Dance,
+Metal-Influences und nächtliche Ritual-Sets.
+</p>
+</div>
+</div>
+
+<div class="card">
+<img src="danceraverin_edited.avif" alt="Furry Community">
+<div class="card-content">
+<h3>Furry Community</h3>
+<p>
+Treffe die Community aus ganz Europa.
+Fursuits, Art, Freiheit und gemeinsame Nächte.
+</p>
+</div>
+</div>
+
+<div class="card">
+<img src="DASPRID 2.avif" alt="Red Atmosphere">
+<div class="card-content">
+<h3>Red Ritual</h3>
+<p>
+Laser, Nebel, rote Neonlichter,
+kalte Nächte und cineastische Dunkelheit.
+</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="section" id="lineup">
+<div class="title">
+<h2>Line-Up 2027</h2>
+<p>
+Internationale DJs, Bands und Live Ritual Artists.
+</p>
+</div>
+
+<div class="lineup">
+
+<div class="artist">
+<h3>DJ NOX</h3>
+<span>Industrial • Berlin</span>
+</div>
+
+<div class="artist">
+<h3>BLACK STATIC</h3>
+<span>Metal Dance • Warsaw</span>
+</div>
+
+<div class="artist">
+<h3>LUNAR VEIL</h3>
+<span>Cinematic Ritual • Stockholm</span>
+</div>
+
+<div class="artist">
+<h3>EMBER WOLF</h3>
+<span>Closing Ceremony • Vienna</span>
+</div>
+
+<div class="artist">
+<h3>IRON HOWL</h3>
+<span>Dark Metal • Hamburg</span>
+</div>
+
+<div class="artist">
+<h3>RITUAL IX</h3>
+<span>Hard Electro • Prague</span>
+</div>
+
+</div>
+</section>
+
+<section class="section" id="gallery">
+<div class="title">
+<h2>Crimson Memories</h2>
+<p>
+Eindrücke vergangener Nächte.
+</p>
+</div>
+
+<div class="gallery">
+<img src="0fc03b_3b9c6c1460944e9cb1968b1ad5cbc596~mv2.avif">
+<img src="0fc03b_aa9968f7bb554e5f9eb00249564cb52b~mv2.avif">
+<img src="0fc03b_dca96adbcda740cdab47e031f1f348c2~mv2.avif">
+<img src="db89ecc6-393e-4e5c-94e1-7746b2e5a419.avif">
+<img src="a1cb4718-fec2-4c53-a2d5-5b33b691d85b.avif">
+<img src="3193b548-5784-4f11-8c35-ca2f92306be2.avif">
+<img src="480-720-max.avif">
+<img src="danceaske small_edited.avif">
+</div>
+</section>
+
+<footer id="join">
+<h2>JOIN THE PACK</h2>
+
+<p>
+IN COOPERATION WITH EUROFURANCE E.V.<br>
+SUPPORTED BY HANSEFURS E.V.
+</p>
+</footer>
+
+</body>
+</html>
+
+```
+
 # MODERN GLASS EDITION
 
 ```html
