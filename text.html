@@ -1,730 +1,512 @@
-# WINTER'S EMBRACE 2027 — Premium Festival Website
+# WINTER'S EMBRACE 2027 — RED RITUAL EDITION
 
 ```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WINTER'S EMBRACE 2027</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WINTER'S EMBRACE — RED RITUAL</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
 
-    :root {
-      --bg: #050505;
-      --glass: rgba(255,255,255,0.04);
-      --accent: #ff002f;
-      --accent2: #ff3d5e;
-      --deepred: #54000f;
-      --text: #ffffff;
-      --soft: #888;
-      --border: rgba(255,255,255,0.08);
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+:root{
+--bg:#040404;
+--red:#ff003c;
+--soft:#8a8a8a;
+--glass:rgba(255,255,255,0.04);
+}
 
-    body {
-      background:
-        radial-gradient(circle at top left, rgba(255,0,47,0.15), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(255,40,60,0.12), transparent 35%),
-        var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-    }
+html{
+scroll-behavior:smooth;
+}
 
-    body::before {
-      content: "";
-      position: fixed;
-      width: 700px;
-      height: 700px;
-      background: rgba(255, 0, 50, 0.12);
-      filter: blur(140px);
-      top: -300px;
-      left: -200px;
-      z-index: -1;
-    }
+body{
+font-family:'Inter',sans-serif;
+background:
+radial-gradient(circle at top left, rgba(255,0,60,0.2), transparent 25%),
+radial-gradient(circle at bottom right, rgba(255,0,60,0.12), transparent 30%),
+#040404;
+color:white;
+overflow-x:hidden;
+}
 
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      padding: 30px;
-      backdrop-filter: blur(12px);
-      background: rgba(0,0,0,0.4);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      z-index: 999;
-    }
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.9));
+pointer-events:none;
+z-index:-1;
+}
 
-    nav a {
-      color: #777;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.35em;
-      font-size: 0.65rem;
-      transition: 0.3s;
-    }
+nav{
+position:fixed;
+width:100%;
+padding:25px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+backdrop-filter:blur(14px);
+background:rgba(0,0,0,0.35);
+border-bottom:1px solid rgba(255,255,255,0.05);
+z-index:999;
+}
 
-    nav a:hover {
-      color: white;
-    }
+.logo{
+font-family:'Cinzel',serif;
+font-size:1.1rem;
+letter-spacing:0.3em;
+}
 
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
-    }
+nav ul{
+display:flex;
+gap:30px;
+list-style:none;
+}
 
-    .hero video {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.22;
-    }
+nav a{
+color:#777;
+text-decoration:none;
+text-transform:uppercase;
+font-size:0.65rem;
+letter-spacing:0.3em;
+transition:0.3s;
+}
 
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to bottom, rgba(20,0,0,0.25), rgba(0,0,0,0.92)),
-        radial-gradient(circle at center, rgba(255,0,47,0.18), transparent 55%);
-    }
+nav a:hover{
+color:white;
+}
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 40px;
-    }
+.hero{
+min-height:100vh;
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:120px 20px 60px;
+}
 
-    .hero h1 {
-      text-shadow:
-        0 0 20px rgba(255,0,47,0.35),
-        0 0 50px rgba(255,0,47,0.15);
-      font-family: 'Cinzel', serif;
-      font-size: clamp(4rem, 10vw, 8rem);
-      line-height: 0.95;
-      letter-spacing: -3px;
-      margin-bottom: 25px;
-    }
+.hero-bg{
+position:absolute;
+inset:0;
+background:url('Dancefloor.avif') center/cover;
+filter:brightness(0.28) contrast(1.2);
+transform:scale(1.05);
+}
 
-    .hero p {
-      color: #bbb;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      font-size: 0.75rem;
-      margin-bottom: 45px;
-    }
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+background:
+radial-gradient(circle at center, rgba(255,0,60,0.25), transparent 40%),
+linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.95));
+}
 
-    .hero-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+.hero-content{
+position:relative;
+z-index:2;
+max-width:1000px;
+}
 
-    .btn {
-      padding: 16px 34px;
-      border: 1px solid var(--accent);
-      color: white;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: 0.7rem;
-      transition: 0.4s;
-      background: transparent;
-    }
+.hero h1{
+font-family:'Cinzel',serif;
+font-size:clamp(4rem,12vw,9rem);
+line-height:0.9;
+letter-spacing:-4px;
+text-shadow:
+0 0 30px rgba(255,0,60,0.4),
+0 0 80px rgba(255,0,60,0.2);
+margin-bottom:30px;
+}
 
-    .btn:hover {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow:
-        0 0 20px rgba(255,0,47,0.5),
-        0 0 60px rgba(255,0,47,0.25);
-    }
+.hero p{
+letter-spacing:0.45em;
+text-transform:uppercase;
+font-size:0.7rem;
+color:#bbb;
+margin-bottom:50px;
+}
 
-    .btn-secondary {
-      border-color: white;
-    }
+.hero-buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
 
-    .btn-secondary:hover {
-      background: white;
-      color: black;
-      box-shadow: none;
-    }
+.btn{
+padding:18px 38px;
+border:1px solid var(--red);
+text-decoration:none;
+color:white;
+font-size:0.7rem;
+text-transform:uppercase;
+letter-spacing:0.25em;
+transition:0.4s;
+background:rgba(255,0,60,0.06);
+}
 
-    /* COUNTDOWN */
-    .countdown {
-      max-width: 1000px;
-      margin: -90px auto 120px;
-      position: relative;
-      z-index: 5;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
-      gap: 20px;
-      padding: 20px;
-    }
+.btn:hover{
+background:var(--red);
+box-shadow:
+0 0 25px rgba(255,0,60,0.5),
+0 0 80px rgba(255,0,60,0.25);
+transform:translateY(-3px);
+}
 
-    .count-box {
-      position: relative;
-      overflow: hidden;
-      background: var(--glass);
-      border: 1px solid var(--border);
-      padding: 40px 20px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      box-shadow: inset 0 0 40px rgba(255,0,47,0.06);
-    }
+.section{
+padding:120px 20px;
+}
 
-    .count-box::before {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      background: rgba(255,0,47,0.12);
-      border-radius: 50%;
-      top: -90px;
-      right: -90px;
-      filter: blur(10px);
-    }
+.section-title{
+text-align:center;
+margin-bottom:70px;
+}
 
-    .count-box h2 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      color: var(--accent);
-    }
+.section-title h2{
+font-family:'Cinzel',serif;
+font-size:clamp(2.5rem,6vw,5rem);
+margin-bottom:20px;
+}
 
-    .count-box span {
-      color: #777;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      font-size: 0.7rem;
-    }
+.section-title p{
+max-width:700px;
+margin:auto;
+line-height:1.8;
+color:#8a8a8a;
+}
 
-    /* SECTION */
-    section {
-      padding: 100px 20px;
-    }
+.grid{
+max-width:1300px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+}
 
-    .section-title {
-      text-align: center;
-      margin-bottom: 70px;
-    }
+.card{
+background:rgba(255,255,255,0.03);
+border:1px solid rgba(255,255,255,0.06);
+overflow:hidden;
+transition:0.4s;
+position:relative;
+}
 
-    .section-title h2 {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(2.5rem,5vw,4rem);
-      margin-bottom: 20px;
-    }
+.card:hover{
+transform:translateY(-10px);
+border-color:rgba(255,0,60,0.5);
+}
 
-    .section-title p {
-      color: #777;
-      max-width: 700px;
-      margin: auto;
-      line-height: 1.8;
-    }
+.card img{
+width:100%;
+height:420px;
+object-fit:cover;
+display:block;
+filter:contrast(1.1);
+}
 
-    /* CARDS */
-    .grid {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-      gap: 25px;
-    }
+.card-content{
+padding:35px;
+}
 
-    .card {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      transition: 0.4s;
-    }
+.card h3{
+font-size:0.75rem;
+letter-spacing:0.3em;
+text-transform:uppercase;
+margin-bottom:18px;
+color:var(--red);
+}
 
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: var(--accent);
-    }
+.card p{
+line-height:1.9;
+color:#9b9b9b;
+}
 
-    .card img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-      display: block;
-    }
+.banner{
+max-width:1400px;
+margin:auto;
+height:650px;
+position:relative;
+overflow:hidden;
+border:1px solid rgba(255,255,255,0.06);
+}
 
-    .card-content {
-      padding: 35px;
-    }
+.banner img{
+width:100%;
+height:100%;
+object-fit:cover;
+filter:brightness(0.5);
+}
 
-    .card h3 {
-      margin-bottom: 15px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-size: 0.8rem;
-    }
+.banner-text{
+position:absolute;
+bottom:60px;
+left:60px;
+max-width:600px;
+}
 
-    .card p {
-      color: #999;
-      line-height: 1.8;
-      font-size: 0.95rem;
-    }
+.banner-text h2{
+font-family:'Cinzel',serif;
+font-size:4rem;
+margin-bottom:20px;
+}
 
-    /* LINEUP */
-    .lineup {
-      background: linear-gradient(to bottom, #0a0a0a, #050505);
-    }
+.banner-text p{
+line-height:1.8;
+color:#d0d0d0;
+}
 
-    .lineup-grid {
-      max-width: 1000px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
-      gap: 20px;
-    }
+.gallery{
+max-width:1400px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+}
 
-    .artist {
-      border: 1px solid var(--border);
-      padding: 40px;
-      text-align: center;
-      background: rgba(255,255,255,0.03);
-      transition: 0.4s;
-    }
+.gallery img{
+width:100%;
+height:340px;
+object-fit:cover;
+transition:0.5s;
+filter:brightness(0.8);
+}
 
-    .artist:hover {
-      border-color: var(--accent);
-      background: rgba(255,255,255,0.05);
-    }
+.gallery img:hover{
+transform:scale(1.03);
+filter:brightness(1);
+}
 
-    .artist h3 {
-      font-family: 'Cinzel', serif;
-      margin-bottom: 12px;
-      font-size: 1.4rem;
-    }
+footer{
+padding:100px 20px;
+text-align:center;
+border-top:1px solid rgba(255,255,255,0.06);
+}
 
-    .artist span {
-      color: #777;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: 0.7rem;
-    }
+footer h2{
+font-family:'Cinzel',serif;
+font-size:3rem;
+margin-bottom:25px;
+}
 
-    /* POSTER */
-    .poster {
-      max-width: 1100px;
-      margin: auto;
-      border: 1px solid var(--border);
-      overflow: hidden;
-    }
+footer p{
+font-size:0.7rem;
+letter-spacing:0.25em;
+text-transform:uppercase;
+line-height:2;
+color:#666;
+}
 
-    .poster img {
-      width: 100%;
-      display: block;
-    }
+.socials{
+display:flex;
+justify-content:center;
+gap:20px;
+margin-top:40px;
+flex-wrap:wrap;
+}
 
-    /* GALLERY */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-      gap: 15px;
-      max-width: 1300px;
-      margin: auto;
-    }
+.socials a{
+text-decoration:none;
+color:white;
+padding:15px 25px;
+border:1px solid rgba(255,255,255,0.08);
+font-size:0.7rem;
+letter-spacing:0.2em;
+text-transform:uppercase;
+transition:0.4s;
+}
 
-    .gallery img {
-      width: 100%;
-      height: 320px;
-      object-fit: cover;
-      transition: 0.4s;
-    }
+.socials a:hover{
+background:var(--red);
+border-color:var(--red);
+}
 
-    .gallery img:hover {
-      transform: scale(1.03);
-      opacity: 0.85;
-    }
+@media(max-width:900px){
 
-    /* FOOTER */
-    footer {
-      padding: 80px 20px;
-      text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
+nav{
+padding:20px;
+flex-direction:column;
+gap:15px;
+}
 
-    footer h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
-      margin-bottom: 25px;
-    }
+nav ul{
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+}
 
-    footer p {
-      color: #666;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-size: 0.7rem;
-      line-height: 2;
-    }
+.gallery{
+grid-template-columns:1fr 1fr;
+}
 
-    .socials {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 40px;
-      flex-wrap: wrap;
-    }
+.banner{
+height:500px;
+}
 
-    .socials a {
-      color: white;
-      text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 14px 24px;
-      transition: 0.3s;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-size: 0.7rem;
-    }
+.banner-text{
+left:30px;
+bottom:30px;
+}
 
-    .socials a:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
+.banner-text h2{
+font-size:2.5rem;
+}
 
-    @media(max-width:700px) {
+}
 
-      nav {
-        flex-wrap: wrap;
-        gap: 16px;
-        padding: 20px;
-      }
+@media(max-width:600px){
+.gallery{
+grid-template-columns:1fr;
+}
 
-      nav a {
-        font-size: 0.5rem;
-      }
+.card img{
+height:300px;
+}
+}
 
-      .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .btn {
-        width: 100%;
-        max-width: 300px;
-      }
-
-      .gallery img {
-        height: 220px;
-      }
-    }
-  </style>
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#home">Main</a>
-    <a href="#about">Über uns</a>
-    <a href="#lineup">Programm</a>
-    <a href="#gallery">Bilder</a>
-    <a href="#tickets">Merch</a>
-  </nav>
+<nav>
+<div class="logo">WINTER'S EMBRACE</div>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
+<ul>
+<li><a href="#about">Festival</a></li>
+<li><a href="#ritual">Ritual</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#join">Join</a></li>
+</ul>
+</nav>
 
-    <video autoplay muted loop playsinline>
-      <source src="https://cdn.coverr.co/videos/coverr-party-crowd-1565347311114?download=1080p" type="video/mp4">
-    </video>
+<section class="hero">
+<div class="hero-bg"></div>
 
-    <div class="hero-overlay"></div>
+<div class="hero-content">
+<h1>WINTER'S<br>EMBRACE</h1>
+<p>15 — 16 JANUARY 2027 • HAMBURG • RED RITUAL</p>
 
-    <div class="hero-content">
-      <h1>RED<br>EMBRACE</h1>
-      <p>15 — 16 JANUARY 2027 // HAMBURG // DARK WINTER RITUAL</p>
+<div class="hero-buttons">
+<a href="#join" class="btn">Enter The Night</a>
+<a href="#gallery" class="btn">View Memories</a>
+</div>
+</div>
+</section>
 
-      <div class="hero-buttons">
-        <a href="#tickets" class="btn">Get Tickets</a>
-        <a href="#lineup" class="btn btn-secondary">Explore Line-Up</a>
-      </div>
-    </div>
-  </section>
+<section class="section" id="about">
+<div class="section-title">
+<h2>The Red Gathering</h2>
+<p>
+Ein einzigartiges Erlebnis für Metal- und Furry-Fans.
+Zwischen Industrial Sound, dunklen Ritualen, visueller Kunst
+und roter Neonatmosphäre entsteht WINTER'S EMBRACE.
+</p>
+</div>
 
-  <!-- COUNTDOWN -->
-  <div class="countdown">
-    <div class="count-box">
-      <h2>218</h2>
-      <span>Days</span>
-    </div>
+<div class="grid">
 
-    <div class="count-box">
-      <h2>14</h2>
-      <span>Artists</span>
-    </div>
+<div class="card">
+<img src="0fc03b_f802c58e98d34c8f9852aafd68156406~mv2.avif" alt="Festival">
+<div class="card-content">
+<h3>Programm</h3>
+<p>
+Live Acts, Hard Dance, Dark Electro, Industrial Nights
+und immersive audiovisuelle Shows.
+</p>
+</div>
+</div>
 
-    <div class="count-box">
-      <h2>2</h2>
-      <span>Nights</span>
-    </div>
+<div class="card">
+<img src="danceraverin_edited.avif" alt="Community">
+<div class="card-content">
+<h3>Community</h3>
+<p>
+Respect first.
+Ein Wochenende voller Freiheit, Energie, Kunst und Community.
+</p>
+</div>
+</div>
 
-    <div class="count-box">
-      <h2>1</h2>
-      <span>Pack</span>
-    </div>
-  </div>
+<div class="card">
+<img src="DASPRID 2.avif" alt="Art">
+<div class="card-content">
+<h3>Red Aesthetic</h3>
+<p>
+Rote Lichter, kalte Nächte,
+Nebel, Laser und cineastische Dunkelheit.
+</p>
+</div>
+</div>
 
-  <!-- ABOUT -->
-  <section id="about">
+</div>
+</section>
 
-    <div class="section-title">
-      <h2>Enter The Red Night</h2>
-      <p>
-        WINTER'S EMBRACE verbindet elektronische Musik, Community, Artworks und immersive Nachtästhetik in Hamburg. Inspiriert vom originalen Winters-Embrace-Auftritt wurde das Design moderner, cineastischer und deutlich performanter umgesetzt.
-      </p>
-    </div>
+<section class="section" id="ritual">
 
-    <div class="grid">
+<div class="banner">
+<img src="Dancefloor.avif" alt="Main Ritual">
 
-      <div class="card">
-        <img src="0fc03b_f802c58e98d34c8f9852aafd68156406~mv2.avif" alt="Festival Crowd">
+<div class="banner-text">
+<h2>One Pack.<br>One Night.</h2>
+<p>
+WINTER'S EMBRACE verbindet Musik, Nachtleben,
+Performance und Rudelkultur zu einem einzigartigen
+Winter-Ritual in Hamburg.
+</p>
+</div>
+</div>
 
-        <div class="card-content">
-          <h3>Programm</h3>
-          <p>
-            Von cinematic Openings bis hin zu Hard Dance, Industrial,
-            Dark Electro und Late Night Rituals im Stellwerk.
-          </p>
-        </div>
-      </div>
+</section>
 
-      <div class="card">
-        <img src="Dancefloor.avif" alt="Live Stage">
+<section class="section" id="gallery">
+<div class="section-title">
+<h2>Crimson Memories</h2>
+<p>
+Eindrücke vergangener Nächte.
+</p>
+</div>
 
-        <div class="card-content">
-          <h3>Hausordnung</h3>
-          <p>
-            Respektvoll. Sicher. Wild. Unsere Prinzipien für das Festival, die Community und ein gemeinsames Wochenende voller Atmosphäre und Energie.
-          </p>
-        </div>
-      </div>
+<div class="gallery">
+<img src="0fc03b_3b9c6c1460944e9cb1968b1ad5cbc596~mv2.avif">
+<img src="0fc03b_aa9968f7bb554e5f9eb00249564cb52b~mv2.avif">
+<img src="0fc03b_dca96adbcda740cdab47e031f1f348c2~mv2.avif">
+<img src="db89ecc6-393e-4e5c-94e1-7746b2e5a419.avif">
+<img src="a1cb4718-fec2-4c53-a2d5-5b33b691d85b.avif">
+<img src="3193b548-5784-4f11-8c35-ca2f92306be2.avif">
+<img src="480-720-max.avif">
+<img src="danceaske small_edited.avif">
+</div>
+</section>
 
-      <div class="card">
-        <img src="danceraverin_edited.avif" alt="Festival Lights">
+<footer id="join">
+<h2>Join The Pack</h2>
 
-        <div class="card-content">
-          <h3>Über uns</h3>
-          <p>
-            In Kooperation mit EUROFURANCE E.V. und unterstützt von HANSEFURS E.V. entsteht WINTER'S EMBRACE als modernes Community- und Festivalprojekt.
-          </p>
-        </div>
-      </div>
+<p>
+IN COOPERATION WITH EUROFURANCE E.V.<br>
+SUPPORTED BY HANSEFURS E.V.
+</p>
 
-    </div>
-  </section>
+<div class="socials">
+<a href="#">Instagram</a>
+<a href="#">Telegram</a>
+<a href="#">Discord</a>
+<a href="#">Tickets</a>
+</div>
+</footer>
 
-  <!-- LINEUP -->
-  <section class="lineup" id="lineup">
-
-    <div class="section-title">
-      <h2>Bloodline 2027</h2>
-      <p>
-        Internationale Artists, audiovisuelle Shows und düstere Clubnächte.
-      </p>
-    </div>
-
-    <div class="lineup-grid">
-
-      <div class="artist">
-        <h3>NOX</h3>
-        <span>Industrial / Berlin</span>
-      </div>
-
-      <div class="artist">
-        <h3>VANTA</h3>
-        <span>Dark Electro / Prague</span>
-      </div>
-
-      <div class="artist">
-        <h3>RITUAL IX</h3>
-        <span>Hard Techno / Hamburg</span>
-      </div>
-
-      <div class="artist">
-        <h3>LUNAR VEIL</h3>
-        <span>Cinematic Set / Stockholm</span>
-      </div>
-
-      <div class="artist">
-        <h3>BLACK STATIC</h3>
-        <span>Industrial Bass / Warsaw</span>
-      </div>
-
-      <div class="artist">
-        <h3>EMBER WOLF</h3>
-        <span>Closing Ritual / Vienna</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- POSTER -->
-  <section>
-
-    <div class="section-title">
-      <h2>Official Artwork</h2>
-      <p>
-        Das offizielle Festivalposter für Winter's Embrace 2027.
-      </p>
-    </div>
-
-    <div class="poster">
-      <img src="DASPRID 2.avif" alt="Festival Poster">
-    </div>
-
-  </section>
-
-  <!-- GALLERY -->
-  <section id="gallery">
-
-    <div class="section-title">
-      <h2>Crimson Memories</h2>
-      <p>
-        Eindrücke vergangener Nächte.
-      </p>
-    </div>
-
-    <div class="gallery">
-
-      <img src="0fc03b_3b9c6c1460944e9cb1968b1ad5cbc596~mv2.avif" alt="Festival Crowd">
-
-      <img src="0fc03b_aa9968f7bb554e5f9eb00249564cb52b~mv2.avif" alt="Live Event">
-
-      <img src="0fc03b_dca96adbcda740cdab47e031f1f348c2~mv2.avif" alt="Stage Lights">
-
-      <img src="db89ecc6-393e-4e5c-94e1-7746b2e5a419.avif" alt="Night Festival">
-
-    </div>
-
-  </section>
-
-  <!-- TICKETS -->
-  <section id="tickets">
-
-    <div class="section-title">
-      <h2>Access The Ritual</h2>
-      <p>
-        Early Wolf Tickets sind limitiert.
-      </p>
-    </div>
-
-    <div class="grid">
-
-      <div class="card">
-        <div class="card-content">
-          <h3>Early Wolf</h3>
-          <p>
-            Zugang für beide Tage.
-            Limitierte erste Release-Welle.
-            Merchandise Rabatt inklusive.
-          </p>
-
-          <br><br>
-
-          <a href="#" class="btn">79€</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-content">
-          <h3>Full Moon Pass</h3>
-          <p>
-            Komplettes Festival-Wochenende inklusive
-            Night Ceremony und Priority Entry.
-          </p>
-
-          <br><br>
-
-          <a href="#" class="btn">119€</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-content">
-          <h3>Alpha Package</h3>
-          <p>
-            VIP Access, exklusiver Merch,
-            Artist Lounge und Meet & Greet.
-          </p>
-
-          <br><br>
-
-          <a href="#" class="btn">199€</a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-
-    <h2>Become Part Of The Red Pack</h2>
-
-    <p>
-      IN COOPERATION WITH EUROFURANCE E.V.<br>
-      SUPPORTED BY HANSEFURS E.V.
-    </p>
-
-    <div class="socials">
-      <a href="#">Discord</a>
-      <a href="#">Telegram</a>
-      <a href="#">Instagram</a>
-      <a href="#">Tickets</a>
-    </div>
-
-  </footer>
-
-</body>
-</html>
+</
 ```
-
-## Enthalten:
-
-* Premium Dark Festival Design
-* Video Hero Section
-* Responsive Layout
-* Countdown Bereich
-* Festival Line-Up
-* Gallery
-* Ticket Section
-* Neon/Frost Atmosphäre
-* Moderne Animationen
-* Mobile Optimierung
-* Unsplash Bilder integriert
-* Ready für Wix / Netlify / Vercel / GitHub Pages
-
-## Empfehlung
-
-Für die beste Qualität:
-
-* Eigene Bilder statt Unsplash verwenden
-* MP4 Hero Video lokal hosten
-* Tickets über Eventbrite oder Pretix verbinden
-* Discord Invite integrieren
-* Später React/Tailwind Version bauen
