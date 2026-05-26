@@ -2,63 +2,76 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>PROGRAMM | WINTER'S EMBRACE 2027</title>
+    <title>WINTER'S EMBRACE 2027</title>
     <style>
-        :root { --bg: #050505; --text: #ffffff; --accent: #ff0000; }
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; }
-
-        /* Struktur */
-        .container { max-width: 800px; margin: 0 auto; padding: 80px 20px; }
-        h1 { font-size: 2.5rem; border-left: 4px solid var(--accent); padding-left: 20px; margin-bottom: 50px; }
-
-        /* Das Programm-Grid */
-        .program-day { margin-bottom: 60px; }
-        .day-header { font-size: 1.2rem; color: #888; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@200;400;700&display=swap');
         
-        .event-row { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid #1a1a1a; transition: 0.3s; }
-        .event-row:hover { background: #0a0a0a; border-color: #333; }
-        .time { color: var(--accent); font-weight: bold; }
-        .info h3 { margin: 0; font-size: 1.1rem; }
-        .info p { margin: 5px 0 0; color: #666; font-size: 0.9rem; }
+        :root { --dark: #0a0a0a; --glass: rgba(255, 255, 255, 0.03); --accent: #ff0000; }
+        body { margin: 0; background: var(--dark); color: #fff; font-family: 'Inter', sans-serif; }
+        
+        /* Nav */
+        nav { display: flex; justify-content: center; padding: 40px; gap: 30px; }
+        nav a { color: #888; text-decoration: none; font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; transition: 0.3s; }
+        nav a:hover { color: #fff; }
 
-        nav { display: flex; justify-content: center; gap: 20px; padding: 30px; border-bottom: 1px solid #1a1a1a; }
-        nav a { color: #888; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; }
+        /* Hero */
+        .hero { text-align: center; padding: 80px 20px; }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: 5rem; letter-spacing: -2px; margin: 0; }
+        .hero p { color: #444; letter-spacing: 0.5em; text-transform: uppercase; font-size: 0.8rem; }
+
+        /* Modern Grid */
+        .grid-container { max-width: 1100px; margin: 50px auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 20px; }
+        .feature-card { background: var(--glass); border: 1px solid #222; padding: 40px; transition: 0.5s; }
+        .feature-card:hover { border-color: var(--accent); }
+        .feature-card h2 { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 20px; }
+        .feature-card p { color: #666; font-size: 0.9rem; line-height: 1.6; }
+
+        /* Plakat Bereich */
+        .poster-section { max-width: 800px; margin: 100px auto; border: 1px solid #333; padding: 10px; }
+        .poster-placeholder { width: 100%; height: 500px; background: #111; display: flex; align-items: center; justify-content: center; }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="index.html">MAIN 2027</a>
-        <a href="#programm">PROGRAMM</a>
+        <a href="#">Main 2027</a>
+        <a href="#">Bilder</a>
+        <a href="#">Programm</a>
+        <a href="#">Hausordnung</a>
+        <a href="#">Über uns</a>
     </nav>
 
-    <div class="container">
-        <h1>PROGRAMM</h1>
+    <div class="hero">
+        <h1>WINTER'S EMBRACE</h1>
+        <p>15.01 - 16.01.2027 // HAMBURG</p>
+    </div>
 
-        <div class="program-day">
-            <div class="day-header">Freitag, 15.01.2027</div>
-            <div class="event-row">
-                <div class="time">17:30</div>
-                <div class="info"><h3>Einlass Supporter</h3><p>Exklusiver Einlass für Supporter-Ticket-Besitzer.</p></div>
-            </div>
-            <div class="event-row">
-                <div class="time">18:00</div>
-                <div class="info"><h3>Einlass Allgemein</h3><p>Türen öffnen für alle Gäste.</p></div>
-            </div>
-            <div class="event-row">
-                <div class="time">19:00</div>
-                <div class="info"><h3>Opening Ceremony</h3><p>Der Start in die Nacht.</p></div>
-            </div>
+    <div class="grid-container">
+        <div class="feature-card">
+            <h2>Programm</h2>
+            <p>Line-up & Ablauf. Von der Eröffnungszeremonie bis zum letzten Beat im Stellwerk.</p>
         </div>
-
-        <div class="program-day">
-            <div class="day-header">Samstag, 16.01.2027</div>
-            <div class="event-row">
-                <div class="time">19:00</div>
-                <div class="info"><h3>Main Stage Act I</h3><p>Live-Musik & Metal-Show.</p></div>
-            </div>
+        <div class="feature-card">
+            <h2>Hausordnung</h2>
+            <p>Respektvoll. Sicher. Wild. Hier sind unsere Prinzipien für das Festival.</p>
+        </div>
+        <div class="feature-card">
+            <h2>Merch</h2>
+            <p>Exklusives Festival-Equipment für das Rudel.</p>
         </div>
     </div>
+
+    <div class="poster-section">
+        <div class="poster-placeholder">
+            [HIER PLAKAT EINSETZEN]
+        </div>
+    </div>
+
+    <footer>
+        <p style="text-align: center; color: #333; font-size: 0.6rem; letter-spacing: 0.3em; padding-bottom: 50px;">
+            IN COOPERATION WITH EUROFURANCE E.V. | SUPPORTED BY HANSEFURS E.V.
+        </p>
+    </footer>
 
 </body>
 </html>
