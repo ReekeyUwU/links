@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>WINTER'S EMBRACE — JOIN THE PACK</title>
+<title>WINTER'S EMBRACE 2027</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -24,142 +24,102 @@ scroll-behavior:smooth;
 }
 
 body{
-background:#050505;
-color:white;
 font-family:'Inter',sans-serif;
+background:#070707;
+color:white;
 overflow-x:hidden;
 }
 
-/* GRAIN */
+/* BACKGROUND */
 
-body::before{
-content:"";
+.bg-glow{
 position:fixed;
-inset:0;
-background-image:
-radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-background-size:4px 4px;
-opacity:0.08;
-pointer-events:none;
-z-index:9999;
-}
-
-/* RED GLOW */
-
-.red-glow{
-position:fixed;
-width:1000px;
-height:1000px;
-background:radial-gradient(circle, rgba(255,0,60,0.18), transparent 60%);
-top:-400px;
+top:-300px;
 right:-300px;
+width:900px;
+height:900px;
+background:radial-gradient(circle, rgba(255,0,60,0.16), transparent 60%);
 filter:blur(120px);
 pointer-events:none;
 z-index:-1;
 }
 
-/* MENU */
+/* NAV */
 
-.menu{
+nav{
 position:fixed;
 top:0;
 left:0;
 width:100%;
-padding:30px 40px;
+padding:28px 6%;
 display:flex;
 justify-content:space-between;
 align-items:center;
 z-index:1000;
-mix-blend-mode:difference;
+background:rgba(0,0,0,0.45);
+backdrop-filter:blur(16px);
+border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
 .logo{
-font-family:'Anton',sans-serif;
-font-size:1.1rem;
-letter-spacing:0.4em;
+font-size:0.9rem;
+font-weight:800;
+letter-spacing:0.35em;
+text-transform:uppercase;
 }
 
-.menu-links{
+nav ul{
 display:flex;
 gap:35px;
+list-style:none;
 }
 
-.menu-links a{
-color:white;
+nav a{
 text-decoration:none;
+color:#888;
+font-size:0.72rem;
+letter-spacing:0.2em;
 text-transform:uppercase;
-font-size:0.68rem;
-letter-spacing:0.3em;
 transition:0.3s;
 }
 
-.menu-links a:hover{
-color:#ff003c;
+nav a:hover{
+color:white;
 }
 
 /* HERO */
 
 .hero{
 min-height:100vh;
-position:relative;
-display:flex;
+display:grid;
+grid-template-columns:1.1fr 1fr;
 align-items:center;
-padding:120px 7%;
-overflow:hidden;
+padding:120px 6%;
+gap:60px;
 }
 
-.hero-bg{
-position:absolute;
-inset:0;
-background:url('Dancefloor.avif') center/cover;
-filter:
-brightness(0.2)
-contrast(1.15)
-grayscale(0.2);
-transform:scale(1.05);
-}
-
-.hero-overlay{
-position:absolute;
-inset:0;
-background:
-linear-gradient(to right, rgba(0,0,0,0.88), rgba(0,0,0,0.3)),
-linear-gradient(to bottom, transparent, #050505);
-}
-
-.hero-content{
-position:relative;
-z-index:2;
-max-width:900px;
-}
-
-.hero-tag{
-color:#ff003c;
+.hero-text small{
+color:#ff2445;
+letter-spacing:0.35em;
 text-transform:uppercase;
-letter-spacing:0.45em;
 font-size:0.7rem;
-margin-bottom:25px;
 }
 
-.hero h1{
-font-family:'Anton',sans-serif;
-font-size:clamp(5rem,14vw,13rem);
-line-height:0.85;
-letter-spacing:-3px;
+.hero-text h1{
+font-size:clamp(4rem,9vw,8rem);
+line-height:0.9;
+font-weight:900;
+margin:25px 0;
+letter-spacing:-4px;
 text-transform:uppercase;
-margin-bottom:35px;
 }
 
-.hero h1 span{
-color:#ff003c;
-}
-
-.hero p{
+.hero-text p{
 max-width:650px;
 line-height:2;
-color:#9f9f9f;
+color:#9a9a9a;
 font-size:1rem;
-margin-bottom:45px;
+margin-bottom:40px;
 }
 
 .hero-buttons{
@@ -170,25 +130,26 @@ flex-wrap:wrap;
 
 .btn{
 padding:18px 34px;
+border-radius:16px;
 text-decoration:none;
-text-transform:uppercase;
 font-size:0.72rem;
-letter-spacing:0.25em;
-transition:0.35s;
+text-transform:uppercase;
+letter-spacing:0.22em;
+transition:0.3s;
 }
 
 .btn-red{
-background:#ff003c;
+background:#ff2445;
 color:white;
 }
 
 .btn-red:hover{
-transform:translateY(-5px);
-box-shadow:0 20px 45px rgba(255,0,60,0.35);
+transform:translateY(-4px);
+box-shadow:0 18px 40px rgba(255,36,69,0.3);
 }
 
 .btn-dark{
-border:1px solid rgba(255,255,255,0.1);
+border:1px solid rgba(255,255,255,0.08);
 color:white;
 background:rgba(255,255,255,0.03);
 }
@@ -198,279 +159,226 @@ background:white;
 color:black;
 }
 
-/* HUGE TEXT */
-
-.marquee{
-padding:50px 0;
-overflow:hidden;
-border-top:1px solid rgba(255,255,255,0.05);
-border-bottom:1px solid rgba(255,255,255,0.05);
-white-space:nowrap;
-}
-
-.marquee h2{
-display:inline-block;
-font-family:'Anton',sans-serif;
-font-size:7rem;
-letter-spacing:0.08em;
-text-transform:uppercase;
-color:#111;
-animation:scroll 18s linear infinite;
-}
-
-.marquee span{
-color:#ff003c;
-}
-
-@keyframes scroll{
-0%{transform:translateX(0);}
-100%{transform:translateX(-50%);}
-}
-
-/* SECTIONS */
-
-.section{
-padding:130px 7%;
+.hero-image{
 position:relative;
 }
 
+.hero-image img{
+width:100%;
+height:780px;
+object-fit:cover;
+border-radius:32px;
+filter:brightness(0.72);
+}
+
+.hero-card{
+position:absolute;
+bottom:30px;
+left:-30px;
+background:rgba(0,0,0,0.65);
+backdrop-filter:blur(16px);
+padding:30px;
+border-radius:24px;
+border:1px solid rgba(255,255,255,0.06);
+}
+
+.hero-card h3{
+font-size:2rem;
+margin-bottom:10px;
+}
+
+.hero-card p{
+color:#aaa;
+line-height:1.7;
+}
+
+/* SECTION */
+
+.section{
+padding:120px 6%;
+}
+
 .section-header{
-margin-bottom:70px;
+margin-bottom:60px;
 }
 
 .section-header small{
-color:#ff003c;
-text-transform:uppercase;
+color:#ff2445;
 letter-spacing:0.35em;
+text-transform:uppercase;
 font-size:0.7rem;
 }
 
 .section-header h2{
-font-family:'Anton',sans-serif;
-font-size:clamp(4rem,9vw,8rem);
-line-height:0.9;
-margin:15px 0 20px;
+font-size:clamp(2.8rem,6vw,5rem);
+font-weight:900;
+margin:20px 0;
+letter-spacing:-2px;
+text-transform:uppercase;
 }
 
 .section-header p{
 max-width:700px;
 line-height:2;
-color:#8d8d8d;
+color:#8f8f8f;
 }
 
-/* RITUAL GRID */
+/* FEATURES */
 
-.ritual-grid{
+.features{
 display:grid;
-grid-template-columns:1.5fr 1fr;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 gap:25px;
 }
 
-.ritual-main{
-position:relative;
-height:700px;
+.feature{
+background:rgba(255,255,255,0.03);
+border:1px solid rgba(255,255,255,0.05);
+border-radius:28px;
 overflow:hidden;
+transition:0.4s;
 }
 
-.ritual-main img{
+.feature:hover{
+transform:translateY(-8px);
+border-color:rgba(255,36,69,0.3);
+}
+
+.feature img{
 width:100%;
-height:100%;
+height:340px;
 object-fit:cover;
-filter:brightness(0.45);
-transition:0.5s;
 }
 
-.ritual-main:hover img{
-transform:scale(1.05);
+.feature-content{
+padding:35px;
 }
 
-.ritual-text{
-position:absolute;
-bottom:50px;
-left:50px;
-max-width:500px;
+.feature h3{
+font-size:1.5rem;
+margin-bottom:16px;
 }
 
-.ritual-text h3{
-font-family:'Anton',sans-serif;
-font-size:4rem;
-line-height:0.9;
-margin-bottom:20px;
-}
-
-.ritual-text p{
+.feature p{
 line-height:1.9;
-color:#d0d0d0;
+color:#969696;
 }
 
-.side-cards{
-display:grid;
-gap:25px;
-}
+/* PROGRAM */
 
-.side-card{
-background:#0e0e0e;
-padding:45px;
-border-left:4px solid #ff003c;
-display:flex;
-flex-direction:column;
-justify-content:center;
-min-height:337px;
-transition:0.3s;
-}
-
-.side-card:hover{
-transform:translateX(10px);
-}
-
-.side-card h3{
-font-family:'Anton',sans-serif;
-font-size:2.5rem;
-margin-bottom:20px;
-}
-
-.side-card p{
-color:#9a9a9a;
-line-height:1.9;
-}
-
-/* LINEUP */
-
-.lineup{
+.program{
 display:grid;
 grid-template-columns:repeat(2,1fr);
+gap:25px;
+}
+
+.program-box{
+padding:45px;
+background:#0f0f0f;
+border-radius:28px;
+border:1px solid rgba(255,255,255,0.05);
+}
+
+.program-box h3{
+font-size:2rem;
+margin-bottom:25px;
+}
+
+.program-item{
+padding:18px 0;
+border-bottom:1px solid rgba(255,255,255,0.05);
+display:flex;
+justify-content:space-between;
+gap:20px;
+}
+
+.program-item:last-child{
+border:none;
+}
+
+.program-item span{
+color:#777;
+}
+
+/* ARTISTS */
+
+.artists{
+display:grid;
+grid-template-columns:repeat(4,1fr);
 gap:20px;
 }
 
 .artist{
-background:#0c0c0c;
-padding:50px;
-position:relative;
-overflow:hidden;
-transition:0.35s;
-}
-
-.artist::before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:4px;
-background:#ff003c;
+background:linear-gradient(180deg, rgba(255,36,69,0.08), rgba(255,255,255,0.03));
+padding:40px;
+border-radius:26px;
+border:1px solid rgba(255,255,255,0.05);
+transition:0.3s;
 }
 
 .artist:hover{
-transform:scale(1.02);
-background:#111;
-}
-
-.artist small{
-color:#ff3355;
-text-transform:uppercase;
-letter-spacing:0.3em;
-font-size:0.68rem;
+transform:translateY(-6px);
+border-color:rgba(255,36,69,0.3);
 }
 
 .artist h3{
-font-family:'Anton',sans-serif;
-font-size:4rem;
-margin:20px 0;
-line-height:0.9;
+font-size:1.8rem;
+margin-bottom:12px;
 }
 
-.artist p{
-color:#909090;
-line-height:1.8;
-}
-
-/* RULES */
-
-.rules{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:15px;
-}
-
-.rule{
-padding:60px 30px;
-background:#090909;
-border:1px solid rgba(255,255,255,0.05);
-text-align:center;
-}
-
-.rule h3{
-font-family:'Anton',sans-serif;
-font-size:2.2rem;
-margin-bottom:15px;
+.artist span{
+color:#8f8f8f;
+font-size:0.75rem;
+letter-spacing:0.18em;
+text-transform:uppercase;
 }
 
 /* GALLERY */
 
 .gallery{
 display:grid;
-grid-template-columns:2fr 1fr 1fr;
-grid-auto-rows:320px;
+grid-template-columns:repeat(4,1fr);
 gap:15px;
 }
 
 .gallery img{
 width:100%;
-height:100%;
+height:340px;
 object-fit:cover;
+border-radius:22px;
 transition:0.4s;
-filter:brightness(0.82);
 }
 
 .gallery img:hover{
 transform:scale(1.03);
-filter:brightness(1);
-}
-
-.gallery img:first-child{
-grid-row:span 2;
 }
 
 /* FOOTER */
 
 footer{
-padding:160px 7%;
-position:relative;
-overflow:hidden;
+padding:120px 6%;
+text-align:center;
+border-top:1px solid rgba(255,255,255,0.05);
 }
 
-.footer-bg{
-position:absolute;
-inset:0;
-background:
-linear-gradient(to top, black, rgba(0,0,0,0.8)),
-url('0fc03b_f802c58e98d34c8f9852aafd68156406~mv2.avif') center/cover;
-opacity:0.22;
+footer h2{
+font-size:clamp(3rem,7vw,6rem);
+font-weight:900;
+margin-bottom:20px;
+text-transform:uppercase;
+letter-spacing:-2px;
 }
 
-.footer-content{
-position:relative;
-z-index:2;
-}
-
-.footer-content h2{
-font-family:'Anton',sans-serif;
-font-size:clamp(5rem,12vw,11rem);
-line-height:0.85;
-margin-bottom:30px;
-}
-
-.footer-content p{
-max-width:700px;
+footer p{
+color:#7d7d7d;
 line-height:2;
-color:#999;
 margin-bottom:40px;
 }
 
 .footer-bottom{
 margin-top:60px;
 padding-top:25px;
-border-top:1px solid rgba(255,255,255,0.08);
+border-top:1px solid rgba(255,255,255,0.05);
 display:flex;
 justify-content:space-between;
 flex-wrap:wrap;
@@ -478,10 +386,10 @@ gap:20px;
 }
 
 .footer-bottom span{
-color:#666;
-font-size:0.7rem;
-letter-spacing:0.25em;
+font-size:0.72rem;
+letter-spacing:0.2em;
 text-transform:uppercase;
+color:#555;
 }
 
 /* MOBILE */
@@ -489,53 +397,56 @@ text-transform:uppercase;
 @media(max-width:1100px){
 
 .hero,
-.ritual-grid,
-.rules,
-.lineup{
+.program{
 grid-template-columns:1fr;
+}
+
+.artists{
+grid-template-columns:1fr 1fr;
 }
 
 .gallery{
 grid-template-columns:1fr 1fr;
 }
 
-.hero h1{
-font-size:5rem;
+.hero-image img{
+height:500px;
 }
 
 }
 
 @media(max-width:700px){
 
-.menu{
-padding:25px;
+nav{
+padding:22px;
 flex-direction:column;
-gap:20px;
+gap:18px;
 }
 
-.menu-links{
+nav ul{
 flex-wrap:wrap;
 justify-content:center;
 }
 
-.hero{
-padding:180px 25px 100px;
+.hero,
+.section,
+footer{
+padding-left:22px;
+padding-right:22px;
 }
 
-.section{
-padding:100px 25px;
-}
-
-.gallery{
+.gallery,
+.artists{
 grid-template-columns:1fr;
 }
 
-.artist h3{
-font-size:2.8rem;
+.hero-text h1{
+font-size:4.5rem;
 }
 
-.marquee h2{
-font-size:4rem;
+.hero-card{
+left:20px;
+right:20px;
 }
 
 }
@@ -544,121 +455,130 @@ font-size:4rem;
 </head>
 <body>
 
-<div class="red-glow"></div>
+<div class="bg-glow"></div>
 
-<!-- MENU -->
+<!-- NAV -->
 
-<div class="menu">
+<nav>
 
 <div class="logo">
-W.E 2027
+WINTER'S EMBRACE
 </div>
 
-<div class="menu-links">
-<a href="#ritual">Ritual</a>
-<a href="#lineup">Line-Up</a>
-<a href="#rules">Rules</a>
-<a href="#gallery">Gallery</a>
-</div>
+<ul>
+<li><a href="#festival">Festival</a></li>
+<li><a href="#program">Programm</a></li>
+<li><a href="#artists">Artists</a></li>
+<li><a href="#gallery">Galerie</a></li>
+<li><a href="#tickets">Tickets</a></li>
+</ul>
 
-</div>
+</nav>
 
 <!-- HERO -->
 
 <section class="hero">
 
-<div class="hero-bg"></div>
-<div class="hero-overlay"></div>
+<div class="hero-text">
 
-<div class="hero-content">
-
-<div class="hero-tag">
-Metal • Furry • Industrial • Hamburg
-</div>
+<small>Hamburg • 15–16 Januar 2027</small>
 
 <h1>
-JOIN<br>
-THE <span>PACK</span>
+WINTER'S<br>
+EMBRACE
 </h1>
 
 <p>
-WINTER'S EMBRACE verbindet Metal, Industrial,
-Hard Dance und die europäische Furry-Community
-zu einem dystopischen Winterritual voller Musik,
-Nebel, Neonlichter und roher Festivalenergie.
+Ein modernes Festival für Metal, Industrial,
+Hard Dance und die europäische Furry-Community.
+Zwei Nächte voller Musik, Kunst, Community
+und dunkler Winteratmosphäre.
 </p>
 
 <div class="hero-buttons">
-<a href="#lineup" class="btn btn-red">Explore Artists</a>
-<a href="#gallery" class="btn btn-dark">Enter The Ritual</a>
+<a href="#tickets" class="btn btn-red">Tickets</a>
+<a href="#artists" class="btn btn-dark">Line-Up</a>
+</div>
+
+</div>
+
+<div class="hero-image">
+
+<img src="Dancefloor.avif" alt="Festival">
+
+<div class="hero-card">
+<h3>2027 Edition</h3>
+<p>
+Industrial • Metal • Hard Dance<br>
+Community • Art • Fursuits
+</p>
 </div>
 
 </div>
 
 </section>
 
-<!-- BIG TEXT -->
+<!-- FESTIVAL -->
 
-<div class="marquee">
+<section class="section" id="festival">
+
+<div class="section-header">
+<small>Festival</small>
+
 <h2>
-METAL // FURRY // RITUAL // HAMBURG 2027 //
-<span>JOIN THE PACK //</span>
-METAL // FURRY // RITUAL //
+A Modern Winter Festival
 </h2>
-</div>
-
-<!-- RITUAL -->
-
-<section class="section" id="ritual">
-
-<div class="section-header">
-<small>The Ritual</small>
-<h2>ONE NIGHT.<br>ONE PACK.</h2>
 
 <p>
-Ein Wochenende voller Industrial Sound,
-Fursuits, Hard Dance, Live Visuals,
-roter Neonatmosphäre und dunkler Clubkultur.
+WINTER'S EMBRACE verbindet Musik,
+Nachtleben, Community und visuelle Kunst
+zu einem einzigartigen Wochenende in Hamburg.
 </p>
+
 </div>
 
-<div class="ritual-grid">
+<div class="features">
 
-<div class="ritual-main">
+<div class="feature">
 
-<img src="Dancefloor.avif">
+<img src="0fc03b_f802c58e98d34c8f9852aafd68156406~mv2.avif">
 
-<div class="ritual-text">
-<h3>THE MAIN RITUAL</h3>
+<div class="feature-content">
+<h3>Music & Nightlife</h3>
 
 <p>
-Massive Basslines, rote Laser,
-Nebel und eine Nacht
-zwischen Underground-Rave und Metal-Festival.
+Industrial, Hard Dance,
+Metal-Influences und moderne Clubkultur.
 </p>
 </div>
 
 </div>
 
-<div class="side-cards">
+<div class="feature">
 
-<div class="side-card">
-<h3>FURSUITS</h3>
+<img src="danceraverin_edited.avif">
+
+<div class="feature-content">
+<h3>Community</h3>
 
 <p>
-Community Meetups,
-Night Walks und Rudel-Energie
-aus ganz Europa.
+Treffe Besucher aus ganz Europa,
+Fursuiter, Artists und Musikfans.
 </p>
 </div>
 
-<div class="side-card">
-<h3>RED LIGHTS</h3>
+</div>
+
+<div class="feature">
+
+<img src="DASPRID 2.avif">
+
+<div class="feature-content">
+<h3>Visual Experience</h3>
 
 <p>
-Cinematic Lichtshows,
-Industrial Visuals
-und dystopische Atmosphäre.
+Lichtinstallationen, rote Neonästhetik,
+Visuals und immersive Atmosphäre.
 </p>
 </div>
 
@@ -668,91 +588,112 @@ und dystopische Atmosphäre.
 
 </section>
 
-<!-- LINEUP -->
+<!-- PROGRAM -->
 
-<section class="section" id="lineup">
+<section class="section" id="program">
 
 <div class="section-header">
-<small>Line-Up 2027</small>
-<h2>ARTISTS</h2>
+
+<small>Programm</small>
+
+<h2>
+Weekend Schedule
+</h2>
+
 </div>
 
-<div class="lineup">
+<div class="program">
+
+<div class="program-box">
+
+<h3>Freitag</h3>
+
+<div class="program-item">
+<strong>18:00</strong>
+<span>Doors Open</span>
+</div>
+
+<div class="program-item">
+<strong>20:00</strong>
+<span>Opening Show</span>
+</div>
+
+<div class="program-item">
+<strong>22:00</strong>
+<span>Industrial Session</span>
+</div>
+
+<div class="program-item">
+<strong>00:00</strong>
+<span>Main Stage</span>
+</div>
+
+</div>
+
+<div class="program-box">
+
+<h3>Samstag</h3>
+
+<div class="program-item">
+<strong>16:00</strong>
+<span>Community Area</span>
+</div>
+
+<div class="program-item">
+<strong>19:00</strong>
+<span>Live Performances</span>
+</div>
+
+<div class="program-item">
+<strong>23:00</strong>
+<span>Night Program</span>
+</div>
+
+<div class="program-item">
+<strong>03:00</strong>
+<span>Closing Set</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ARTISTS -->
+
+<section class="section" id="artists">
+
+<div class="section-header">
+
+<small>Artists</small>
+
+<h2>
+Featured Artists
+</h2>
+
+</div>
+
+<div class="artists">
 
 <div class="artist">
-<small>Industrial / Berlin</small>
 <h3>DJ NOX</h3>
-
-<p>
-Dark Electro, massive Drops
-und ritualistische Mainstage-Sets.
-</p>
+<span>Industrial • Berlin</span>
 </div>
 
 <div class="artist">
-<small>Metal Ritual / Hamburg</small>
 <h3>IRON HOWL</h3>
-
-<p>
-Heavy Metal Energie
-trifft auf dystopische Festivalästhetik.
-</p>
+<span>Metal • Hamburg</span>
 </div>
 
 <div class="artist">
-<small>Cinematic Ritual / Stockholm</small>
-<h3>LUNAR VEIL</h3>
-
-<p>
-Atmosphärische Visual Performances,
-Dark Ambient und Closing Ceremonies.
-</p>
-</div>
-
-<div class="artist">
-<small>Hard Dance / Warsaw</small>
 <h3>BLACK STATIC</h3>
-
-<p>
-Raw Hard Dance,
-Industrial Bass
-und kompromisslose Nachtenergie.
-</p>
+<span>Hard Dance • Warsaw</span>
 </div>
 
-</div>
-
-</section>
-
-<!-- RULES -->
-
-<section class="section" id="rules">
-
-<div class="section-header">
-<small>Rules Of The Pack</small>
-<h2>NO HATE.<br>NO FEAR.</h2>
-</div>
-
-<div class="rules">
-
-<div class="rule">
-<h3>RESPECT</h3>
-<p>Respect the Pack.</p>
-</div>
-
-<div class="rule">
-<h3>UNITY</h3>
-<p>One Community.</p>
-</div>
-
-<div class="rule">
-<h3>ENERGY</h3>
-<p>Survive the Night.</p>
-</div>
-
-<div class="rule">
-<h3>FREEDOM</h3>
-<p>Express Yourself.</p>
+<div class="artist">
+<h3>LUNAR VEIL</h3>
+<span>Visual Set • Stockholm</span>
 </div>
 
 </div>
@@ -764,8 +705,13 @@ und kompromisslose Nachtenergie.
 <section class="section" id="gallery">
 
 <div class="section-header">
-<small>Memories</small>
-<h2>RED<br>MEMORIES</h2>
+
+<small>Galerie</small>
+
+<h2>
+Festival Moments
+</h2>
+
 </div>
 
 <div class="gallery">
@@ -775,6 +721,9 @@ und kompromisslose Nachtenergie.
 <img src="0fc03b_dca96adbcda740cdab47e031f1f348c2~mv2.avif">
 <img src="db89ecc6-393e-4e5c-94e1-7746b2e5a419.avif">
 <img src="a1cb4718-fec2-4c53-a2d5-5b33b691d85b.avif">
+<img src="3193b548-5784-4f11-8c35-ca2f92306be2.avif">
+<img src="480-720-max.avif">
+<img src="danceaske small_edited.avif">
 
 </div>
 
@@ -782,32 +731,25 @@ und kompromisslose Nachtenergie.
 
 <!-- FOOTER -->
 
-<footer>
-
-<div class="footer-bg"></div>
-
-<div class="footer-content">
+<footer id="tickets">
 
 <h2>
-ENTER<br>
-THE RITUAL
+WINTER'S EMBRACE 2027
 </h2>
 
 <p>
-WINTER'S EMBRACE 2027 • HAMBURG<br>
-IN COOPERATION WITH EUROFURANCE E.V.<br>
-SUPPORTED BY HANSEFURS E.V.
+15–16 Januar 2027 • Hamburg<br>
+In Cooperation With Eurofurence E.V.<br>
+Supported By Hansefurs E.V.
 </p>
 
 <a href="#" class="btn btn-red">
-JOIN THE PACK
+Get Tickets
 </a>
 
 <div class="footer-bottom">
-<span>Metal • Industrial • Furry</span>
-<span>Winter Ritual 2027</span>
-</div>
-
+<span>Industrial • Metal • Hard Dance</span>
+<span>Furry Community Event</span>
 </div>
 
 </footer>
