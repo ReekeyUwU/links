@@ -129,7 +129,7 @@
     function go() { window.open(url, '_blank'); hide(); }
     
     // View Counter Skript
-    fetch('https://still-haze-115a.morning-surf-02e1.workers.dev/')
+    fetch('https://empty-rice-011f.morning-surf-02e1.workers.dev//')
       .then(response => response.text())
       .then(data => { document.getElementById('view-count').innerText = data; })
       .catch(err => { console.error('Counter error', err); document.getElementById('view-count').innerText = "—"; });
