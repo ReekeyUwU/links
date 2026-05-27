@@ -34,7 +34,8 @@
         height: 100dvh; 
         background-image: url("https://reekey.de/84bdc93d-a924-42a8-829d-8ceafa6314fd.webp"); 
         background-size: cover; 
-        background-position: center; 
+        background-position: center center; 
+        background-repeat: no-repeat;
         background-attachment: fixed; 
         z-index: 1; 
         will-change: transform; 
@@ -49,8 +50,10 @@
         padding: 35px 25px 50px 25px; text-align: center; position: relative; 
         box-shadow: 0 0 30px rgba(0,0,0,0.5);
         animation: slideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        will-change: transform, opacity;
+        backface-visibility: hidden;
     }
-    @keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     
     .avatar-box { width: 130px; height: 130px; margin: 0 auto 20px auto; position: relative; }
     .avatar-img { width: 130px; height: 130px; border-radius: 35px; object-fit: cover; border: 3px solid #43b581; box-shadow: 0 0 25px rgba(0, 255, 8, 0.5); }
