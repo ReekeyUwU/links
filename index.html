@@ -285,47 +285,28 @@
 
 
   <script>
-
     let url = "";
-
-
+    // WICHTIG: Die URL MUSS mit der Stats-Seite übereinstimmen!
+    const TRACKER_URL = 'https://link-tracker2.morning-surf-02e1.workers.dev/track';
 
     function track(name, u) {
-
-      fetch('https://link-tracker.morning-surf-02e1.workers.dev/track', {
-
+      fetch(TRACKER_URL, {
         method: 'POST',
-
         headers: { 'Content-Type': 'application/json' },
-
         body: JSON.stringify({ link: name })
-
       }).catch(e => console.error("Tracking error:", e));
-
       
-
       if (u) window.open(u, '_blank');
-
     }
 
-
-
     function gate(u, name) { 
-
       url = u; 
-
-      fetch('https://link-tracker.morning-surf-02e1.workers.dev/track', {
-
+      fetch(TRACKER_URL, {
         method: 'POST',
-
         headers: { 'Content-Type': 'application/json' },
-
         body: JSON.stringify({ link: name })
-
       }).catch(e => console.error("Tracking error:", e));
-
       document.getElementById('age-gate').style.display='flex'; 
-
     }
 
     
