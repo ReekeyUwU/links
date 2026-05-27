@@ -49,7 +49,7 @@
         }
 
         function loadStats() {
-            fetch('https://link-tracker2.morning-surf-02e1.workers.dev/stats')
+            fetch('https://link-tracker.morning-surf-02e1.workers.dev/stats')
                 .then(res => res.json())
                 .then(data => {
                     const views = data['reekey_de_views'] || 0;
