@@ -284,11 +284,19 @@
 
 
 
-  <script>
+  <<script>
     let url = "";
-    // WICHTIG: Die URL MUSS mit der Stats-Seite übereinstimmen!
+    // WICHTIG: Nutze hier die URL, die auch deine Stats-Seite abfragt!
     const TRACKER_URL = 'https://link-tracker.morning-surf-02e1.workers.dev/track';
 
+    // 1. Automatischer View-Zähler beim Laden der Seite
+    fetch(TRACKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ link: 'reekey_de_views' })
+    }).catch(e => console.error("View-Count konnte nicht gesendet werden:", e));
+
+    // 2. Deine Klick-Tracking Funktion
     function track(name, u) {
       fetch(TRACKER_URL, {
         method: 'POST',
@@ -299,6 +307,7 @@
       if (u) window.open(u, '_blank');
     }
 
+    // 3. Deine Age-Gate Funktion
     function gate(u, name) { 
       url = u; 
       fetch(TRACKER_URL, {
@@ -308,13 +317,10 @@
       }).catch(e => console.error("Tracking error:", e));
       document.getElementById('age-gate').style.display='flex'; 
     }
-
     
-
     function hide() { document.getElementById('age-gate').style.display='none'; }
-
     function go() { window.open(url, '_blank'); hide(); }
-
+    
     
 
     fetch('https://empty-rice-011f.morning-surf-02e1.workers.dev/')
