@@ -127,11 +127,20 @@
     let url = "";
     function gate(u, name) { 
       url = u; 
+      // Klick an eigenen Tracker senden
+      fetch('https://link-tracker.morning-surf-02e1.workers.dev/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ link: name })
+      }).catch(e => console.error("Tracking error:", e));
+
+      // Event an Cloudflare Web Analytics senden
       if (window.cfga) {
         window.cfga('event', 'click', { 'link_name': name });
       }
       document.getElementById('age-gate').style.display='flex'; 
     }
+    
     function hide() { document.getElementById('age-gate').style.display='none'; }
     function go() { window.open(url, '_blank'); hide(); }
     
