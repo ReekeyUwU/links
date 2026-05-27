@@ -25,7 +25,21 @@
   <style>
     * { box-sizing: border-box; }
     body, html { margin: 0; padding: 0; width: 100%; min-height: 100vh; background-color: #050505; color: #00ff08; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
-    .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("https://reekey.de/84bdc93d-a924-42a8-829d-8ceafa6314fd.webp"); background-size: cover; background-position: center; z-index: 1; }
+    
+    .bg-layer { 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100vw; 
+        height: 100dvh; 
+        background-image: url("https://reekey.de/84bdc93d-a924-42a8-829d-8ceafa6314fd.webp"); 
+        background-size: cover; 
+        background-position: center; 
+        background-attachment: fixed; 
+        z-index: 1; 
+        will-change: transform; 
+    }
+    
     .main-wrapper { position: relative; z-index: 2; min-height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
     
     .profile-card { 
@@ -126,7 +140,6 @@
   <script>
     let url = "";
 
-    // Tracker-Funktion für alle Links
     function track(name, u) {
       fetch('https://link-tracker.morning-surf-02e1.workers.dev/track', {
         method: 'POST',
@@ -137,7 +150,6 @@
       if (u) window.open(u, '_blank');
     }
 
-    // Gate-Funktion für 18+ Links
     function gate(u, name) { 
       url = u; 
       fetch('https://link-tracker.morning-surf-02e1.workers.dev/track', {
@@ -151,7 +163,6 @@
     function hide() { document.getElementById('age-gate').style.display='none'; }
     function go() { window.open(url, '_blank'); hide(); }
     
-    // View Counter laden
     fetch('https://empty-rice-011f.morning-surf-02e1.workers.dev/')
       .then(response => response.text())
       .then(data => { document.getElementById('view-count').innerText = data; })
@@ -186,5 +197,7 @@
     updateStatus();
     setInterval(updateStatus, 10000);
   </script>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "DEIN_TOKEN_HIER"}'></script>
 </body>
 </html>
