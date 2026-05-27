@@ -2,26 +2,40 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Link-Statistiken</title>
+    <title>reekey | Live-Stats</title>
     <style>
-        body { background: #050505; color: #00ff08; font-family: sans-serif; display: flex; justify-content: center; padding: 40px; }
-        .box { background: rgba(240, 15, 214, 0.15); padding: 30px; border-radius: 20px; border: 2px solid #00ff08; width: 100%; max-width: 500px; }
-        .row { background: rgba(0,0,0,0.4); padding: 15px; margin-bottom: 10px; border-radius: 10px; display: flex; justify-content: space-between; }
+        body { background: #050505; color: #00ff08; font-family: -apple-system, sans-serif; display: flex; justify-content: center; padding: 40px; margin: 0; }
+        .box { background: rgba(13, 13, 13, 0.8); padding: 30px; border-radius: 20px; border: 1px solid rgba(0, 255, 8, 0.3); width: 100%; max-width: 500px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        h1 { text-align: center; font-size: 24px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; }
+        .row { background: rgba(0, 255, 8, 0.05); padding: 15px 20px; margin-bottom: 8px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border-left: 3px solid #00ff08; }
+        .row span { font-weight: 500; }
+        .row b { font-size: 18px; color: #fff; }
+        .loading { text-align: center; color: #666; font-style: italic; }
     </style>
 </head>
 <body>
     <div class="box">
-        <h1>Link-Statistiken</h1>
-        <div id="stats-container">Lade Daten...</div>
+        <h1>Live-Statistiken</h1>
+        <div id="stats-container" class="loading">Daten werden geladen...</div>
     </div>
     <script>
         fetch('https://link-tracker.morning-surf-02e1.workers.dev/stats')
             .then(res => res.json())
             .then(data => {
                 const container = document.getElementById('stats-container');
-                container.innerHTML = Object.entries(data).map(([link, clicks]) => `
-                    <div class="row"><span>${link}</span><b>${clicks} Klicks</b></div>
+                
+                // Sortiere nach Klicks (höchste zuerst)
+                const sortedData = Object.entries(data).sort((a, b) => b[1] - a[1]);
+                
+                container.innerHTML = sortedData.map(([link, clicks]) => `
+                    <div class="row">
+                        <span>${link.replace('_', ' ')}</span>
+                        <b>${clicks}</b>
+                    </div>
                 `).join('');
+            })
+            .catch(() => {
+                document.getElementById('stats-container').innerText = "Fehler beim Laden.";
             });
     </script>
 </body>
