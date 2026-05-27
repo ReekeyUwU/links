@@ -4,21 +4,41 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>reekey | Link-Portal</title>
+  
+  <meta property="og:title" content="Reekey's Link-Portal | Alle Profile & Links">
+  <meta property="og:site_name" content="reekey.de">
+  <meta property="og:description" content="Welcome to my official link portal! Here you'll find all my profiles, social media accounts, and updates in one place. 🐾">
+  <meta property="og:image" content="https://reekey.de/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
+  <meta property="og:url" content="https://reekey.de/">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/webp" href="https://reekey.de/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <style>
     * { box-sizing: border-box; }
-    body, html { margin: 0; padding: 0; width: 100%; min-height: 100vh; background-color: #050505; color: #00ff08; font-family: -apple-system, sans-serif; overflow-x: hidden; }
-    .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("https://reekey.de/84bdc93d-a924-42a8-829d-8ceafa6314fd.webp"); background-size: cover; z-index: 1; }
-    .main-wrapper { position: relative; z-index: 2; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
-    .profile-card { width: 100%; max-width: 640px; background: rgba(240, 15, 214, 0.15); backdrop-filter: blur(7px); border-radius: 20px; border: 2px solid rgba(240, 15, 214, 0.1); padding: 35px 25px 50px 25px; text-align: center; }
-    .avatar-img { width: 130px; height: 130px; border-radius: 35px; object-fit: cover; border: 3px solid #43b581; }
+    body, html { margin: 0; padding: 0; width: 100%; min-height: 100vh; background-color: #050505; color: #00ff08; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
+    .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("https://reekey.de/84bdc93d-a924-42a8-829d-8ceafa6314fd.webp"); background-size: cover; background-position: center; z-index: 1; }
+    .main-wrapper { position: relative; z-index: 2; min-height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
+    
+    .profile-card { width: 100%; max-width: 640px; background: rgba(240, 15, 214, 0.15); backdrop-filter: blur(7px); border-radius: 20px; border: 2px solid rgba(240, 15, 214, 0.1); padding: 35px 25px 50px 25px; text-align: center; position: relative; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+    .avatar-img { width: 130px; height: 130px; border-radius: 35px; object-fit: cover; border: 3px solid #43b581; margin-bottom: 20px; }
+    h1 { font-size: 39.5px; font-weight: 600; margin: 0 0 5px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; }
+    
     .social-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
-    .social-icon { width: 42px; height: 42px; background: rgba(0,255,8,0.15); border: 2px solid rgba(0,255,8,0.12); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; color: #00ff08; font-size: 20px; }
-    .social-icon img { width: 22px; height: 22px; }
-    .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; margin-bottom: 15px; }
-    .badge-18 { font-size: 11px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 6px; }
+    .social-icon { width: 42px; height: 42px; background: rgba(0,255,8,0.15); border: 2px solid rgba(0,255,8,0.12); border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; cursor: pointer; transition: 0.3s; color: #00ff08; overflow: hidden; }
+    .social-icon img { width: 22px; height: 22px; object-fit: contain; }
+    .social-icon:hover { background: rgba(0,255,8,0.3); transform: scale(1.1); }
+    
+    .links-card { background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); border: 2px solid rgba(0,255,8,0.15); padding: 18px 30px; border-radius: 12px; color: #00ff08; text-decoration: none !important; font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; cursor: pointer; align-items: center; margin-bottom: 15px; transition: all 0.3s ease; }
+    .links-card:hover { border-color: #00ff08; transform: scale(1.02); }
+    .badge-18 { font-size: 11px; background: rgba(240, 15, 214, 0.3); color: #fff; padding: 2px 6px; border-radius: 6px; margin-left: 8px; }
+    
     .age-gate-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 5, 0.95); z-index: 9999; display: none; justify-content: center; align-items: center; }
     .age-gate-box { background: #111; border: 2px solid #00ff08; border-radius: 20px; padding: 40px; text-align: center; }
+    
+    .footer { margin-top: 30px; color: rgba(0, 255, 8, 0.7); font-size: 14px; padding: 10px; border-top: 1px solid rgba(0, 255, 8, 0.2); text-align: center; }
+    .view-counter-box { background: rgba(0, 255, 8, 0.1); padding: 5px 12px; border-radius: 8px; color: #00ff08; font-weight: bold; margin-right: 10px; }
   </style>
 </head>
 <body>
@@ -26,8 +46,8 @@
   <div id="age-gate" class="age-gate-overlay">
     <div class="age-gate-box">
       <h2 style="color:white; margin-bottom: 20px;">Confirm Age</h2>
-      <button onclick="go()" style="padding:12px 35px; background:#00ff08; border:none; cursor:pointer;">Yes (18+)</button>
-      <button onclick="hide()" style="padding:12px 35px; background:transparent; color:white; border:1px solid white; cursor:pointer; margin-left:10px;">Close</button>
+      <button onclick="go()" style="padding:12px 35px; border-radius:30px; background:#00ff08; border:none; font-weight:bold; cursor:pointer;">Yes (18+)</button>
+      <button onclick="hide()" style="padding:12px 35px; border-radius:30px; background:transparent; color:white; border:1px solid white; cursor:pointer; margin-left:10px;">Close</button>
     </div>
   </div>
 
@@ -35,57 +55,72 @@
   <div class="main-wrapper">
     <div class="profile-card">
       <img class="avatar-img" src="https://reekey.de/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp">
-      <h1>reekey</h1>
+      <h1>reekey<i class="fa-solid fa-circle-check" style="font-size:20px;"></i></h1>
+      <p>Hey, glad you found your way here. I'm Reekey, a 27-year-old furry from Germany. 🐾</p>
       
       <div class="social-row">
         <a class="social-icon" onclick="track('Discord', 'https://discord.com/invite/nRTbXGepUT')"><i class="fab fa-discord"></i></a>
         <a class="social-icon" onclick="track('Instagram', 'https://instagram.com/reekeyuwu')"><i class="fab fa-instagram"></i></a>
         <a class="social-icon" onclick="track('TikTok', 'https://tiktok.com/@reekey')"><i class="fab fa-tiktok"></i></a>
-        <a class="social-icon" onclick="track('Bluesky', 'https://bsky.app/profile/reekey.de')"><img src="https://cdn.simpleicons.org/bluesky"></a>
+        <a class="social-icon" onclick="track('Bluesky', 'https://bsky.app/profile/reekey.de')"><img src="https://cdn.simpleicons.org/bluesky" alt="Bluesky"></a>
         <a class="social-icon" onclick="track('Telegram', 'https://t.me/reekeyuwu')"><i class="fab fa-telegram"></i></a>
-        <a class="social-icon" onclick="gate('https://t.me/reekeyad', 'Telegram_Ads')"><i class="fab fa-telegram" style="color:orange;"></i></a>
-        <a class="social-icon" onclick="track('Barq', 'https://barq.app/@reekey')"><img src="https://r2.guns.lol/12468df9-0fa2-4803-9eff-17382fc79a12.webp"></a>
-        <a class="social-icon" onclick="track('Kyra', 'https://t.me/KyraFoxworks')"><img src="https://r2.guns.lol/8caa2f3b-b000-4470-bdd4-e6a1e7d9e48e.webp"></a>
+        <a class="social-icon" onclick="gate('https://t.me/reekeyad', 'Telegram_Channel_Ads')"><i class="fab fa-telegram" style="color:orange;"></i></a>
+        <a class="social-icon" onclick="track('Barq', 'https://barq.app/@reekey')"><img src="https://r2.guns.lol/12468df9-0fa2-4803-9eff-17382fc79a12.webp" alt="Barq"></a>
+        <a class="social-icon" onclick="track('Kyra', 'https://t.me/KyraFoxworks')"><img src="https://r2.guns.lol/8caa2f3b-b000-4470-bdd4-e6a1e7d9e48e.webp" alt="Kyra"></a>
       </div>
       
       <div class="btn-list">
         <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu', 'OnlyFans')">
-            <span><i class="fab fa-onlyfans" style="margin-right:10px;"></i>OnlyFans</span><span class="badge-18">18+</span>
+            <span style="display:flex; align-items:center;"><img src="https://cdn.simpleicons.org/onlyfans" style="width:20px; margin-right:12px;">OnlyFans</span><span class="badge-18">18+</span>
         </div>
         <div class="links-card" onclick="track('X_Twitter', 'https://x.com/reekey_')">
-            <span><i class="fab fa-x-twitter" style="margin-right:10px;"></i>X (Twitter)</span>
+            <span style="display:flex; align-items:center;"><i class="fab fa-x-twitter" style="margin-right:12px;"></i>X (Twitter)</span>
         </div>
         <div class="links-card" onclick="gate('https://t.me/s/reekeyad', 'Telegram_Channel')">
-            <span><i class="fab fa-telegram" style="margin-right:10px;"></i>Telegram Channel</span><span class="badge-18">18+</span>
+            <span style="display:flex; align-items:center;"><i class="fab fa-telegram" style="margin-right:12px;"></i>Telegram Channel</span><span class="badge-18">18+</span>
         </div>
         <div class="links-card" onclick="gate('https://murrtube.net/reekey', 'Murrtube')">
-            <span><img src="https://reekey.de/993726981.png" width="20" style="margin-right:10px; filter:invert(1);">Murrtube</span><span class="badge-18">18+</span>
+            <span style="display:flex; align-items:center;"><img src="https://reekey.de/993726981.png" style="width:20px; margin-right:12px; filter:invert(1);">Murrtube</span><span class="badge-18">18+</span>
         </div>
+      </div>
+      
+      <div class="footer">
+        <span class="view-counter-box">View Counter: <span id="view-count">...</span></span> 
+        | made with ❤️ from <a href="https://Reekey.de">Reekey.de</a>
       </div>
     </div>
   </div>
 
   <script>
     let url = "";
+
+    // Tracker-Funktion für alle Links
     function track(name, u) {
-        fetch('https://link-tracker.morning-surf-02e1.workers.dev/track', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({link: name})
-        }).catch(e => console.error(e));
-        if(u) window.open(u, '_blank');
-    }
-    function gate(u, name) { 
-      url = u;
       fetch('https://link-tracker.morning-surf-02e1.workers.dev/track', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({link: name})
-      }).catch(e => console.error(e));
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ link: name })
+      }).catch(e => console.error("Tracking error:", e));
+      
+      if (window.cfga) window.cfga('event', 'click', { 'link_name': name });
+      if (u) window.open(u, '_blank');
+    }
+
+    // Gate-Funktion für 18+ Links
+    function gate(u, name) { 
+      url = u; 
+      track(name, null); // Trackt den Klick vor dem Öffnen
       document.getElementById('age-gate').style.display='flex'; 
     }
+    
     function hide() { document.getElementById('age-gate').style.display='none'; }
     function go() { window.open(url, '_blank'); hide(); }
+    
+    // View Counter laden
+    fetch('https://empty-rice-011f.morning-surf-02e1.workers.dev/')
+      .then(response => response.text())
+      .then(data => { document.getElementById('view-count').innerText = data; })
+      .catch(err => { console.error('Counter error', err); document.getElementById('view-count').innerText = "—"; });
   </script>
 </body>
 </html>
