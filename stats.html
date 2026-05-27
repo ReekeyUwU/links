@@ -38,15 +38,24 @@
         // Setze hier dein gewünschtes Passwort ein:
         const PASSWORT = "Reekey@1"; 
 
-        function checkPassword() {
-            if (document.getElementById('pw-input').value === PASSWORT) {
-                document.getElementById('pw-overlay').style.display = 'none';
-                document.getElementById('stats-content').style.display = 'block';
-                loadStats();
-            } else {
-                alert("Falsches Passwort!");
-            }
+       if (sessionStorage.getItem('isLoggedIn') === 'true') {
+        showStats();
+    }
+
+    function checkPassword() {
+        if (document.getElementById('pw-input').value === PASSWORT) {
+            sessionStorage.setItem('isLoggedIn', 'true'); // Login merken
+            showStats();
+        } else {
+            alert("Falsches Passwort!");
         }
+    }
+
+    function showStats() {
+        document.getElementById('pw-overlay').style.display = 'none';
+        document.getElementById('stats-content').style.display = 'block';
+        loadStats();
+    }
 
         function loadStats() {
             fetch('https://link-tracker.morning-surf-02e1.workers.dev/stats')
