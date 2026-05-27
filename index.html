@@ -128,7 +128,7 @@
     function gate(u, name) { 
       url = u; 
       // Klick an eigenen Tracker senden
-      fetch('https://link-tracker.morning-surf-02e1.workers.dev/', {
+      fetch('https://link-tracker.morning-surf-02e1.workers.dev/track', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ link: name })
