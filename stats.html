@@ -8,12 +8,12 @@
         body { background: #050505; color: #00ff08; font-family: -apple-system, sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
         .box { background: rgba(13, 13, 13, 0.8); padding: 30px; border-radius: 20px; border: 1px solid rgba(0, 255, 8, 0.3); width: 100%; max-width: 600px; }
         
-        /* Passwort Overlay Styling */
         #pw-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #050505; display: flex; justify-content: center; align-items: center; z-index: 1000; }
         input { padding: 10px; border-radius: 5px; border: 1px solid #00ff08; background: #000; color: #00ff08; }
         button { padding: 10px 20px; border-radius: 5px; border: none; background: #00ff08; color: #000; font-weight: bold; cursor: pointer; }
+        .logout-btn { margin-top: 30px; background: #333; color: #fff; width: 100%; }
         
-        h1 { text-align: center; font-size: 20px; text-transform: uppercase; margin-bottom: 5px; }
+        h1 { text-align: center; font-size: 20px; text-transform: uppercase; margin-bottom: 20px; }
         .views-header { text-align: center; margin-bottom: 25px; color: #fff; font-size: 18px; font-weight: bold; padding: 10px; background: rgba(0, 255, 8, 0.1); border-radius: 10px; }
         .row { background: rgba(0, 255, 8, 0.05); padding: 12px 20px; margin-bottom: 8px; border-radius: 12px; display: flex; justify-content: space-between; border-left: 3px solid #00ff08; }
     </style>
@@ -29,36 +29,48 @@
 
     <div class="box" id="stats-content" style="display:none;">
         <h1>Live-Statistiken</h1>
-        <div class="views-header" id="page-views">Seitenaufrufe: Lade...</div>
+        <div class="views-header" id="page-views">Gesamt-Aufrufe: Lade...</div>
         <canvas id="statsChart" style="margin-bottom: 30px;"></canvas>
         <div id="stats-container">Lade Link-Daten...</div>
+        
+        <button class="logout-btn" onclick="logout()">Ausloggen</button>
     </div>
 
     <script>
-        // Setze hier dein gewünschtes Passwort ein:
         const PASSWORT = "Reekey@1"; 
 
-       if (sessionStorage.getItem('isLoggedIn') === 'true') {
-        showStats();
-    }
-
-    function checkPassword() {
-        if (document.getElementById('pw-input').value === PASSWORT) {
-            sessionStorage.setItem('isLoggedIn', 'true'); // Login merken
+        // 1. Session prüfen
+        if (sessionStorage.getItem('isLoggedIn') === 'true') {
             showStats();
-        } else {
-            alert("Falsches Passwort!");
         }
-    }
 
-    function showStats() {
-        document.getElementById('pw-overlay').style.display = 'none';
-        document.getElementById('stats-content').style.display = 'block';
-        loadStats();
-    }
+        // 2. Enter-Taste für Passwortfeld
+        document.getElementById('pw-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') checkPassword();
+        });
+
+        function checkPassword() {
+            if (document.getElementById('pw-input').value === PASSWORT) {
+                sessionStorage.setItem('isLoggedIn', 'true');
+                showStats();
+            } else {
+                alert("Falsches Passwort!");
+            }
+        }
+
+        function showStats() {
+            document.getElementById('pw-overlay').style.display = 'none';
+            document.getElementById('stats-content').style.display = 'block';
+            loadStats();
+        }
+
+        function logout() {
+            sessionStorage.removeItem('isLoggedIn');
+            location.reload();
+        }
 
         function loadStats() {
-            fetch('https://link-tracker.morning-surf-02e1.workers.dev/stats')
+            fetch('https://link-tracker2.morning-surf-02e1.workers.dev/stats')
                 .then(res => res.json())
                 .then(data => {
                     const views = data['reekey_de_views'] || 0;
