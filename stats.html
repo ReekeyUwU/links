@@ -1,56 +1,61 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>reekey | Live-Stats</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body { background: #050505; color: #00ff08; font-family: -apple-system, sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
-        .box { background: rgba(13, 13, 13, 0.8); padding: 30px; border-radius: 20px; border: 1px solid rgba(0, 255, 8, 0.3); width: 100%; max-width: 600px; }
-        h1 { text-align: center; font-size: 20px; text-transform: uppercase; margin-bottom: 5px; }
-        .views { text-align: center; margin-bottom: 25px; color: #fff; font-size: 14px; }
-        .row { background: rgba(0, 255, 8, 0.05); padding: 12px 20px; margin-bottom: 8px; border-radius: 12px; display: flex; justify-content: space-between; border-left: 3px solid #00ff08; }
-    </style>
-</head>
-<body>
-    <div class="box">
-        <h1>Live-Statistiken</h1>
-        <div class="views" id="page-views">Gesamt-Seitenaufrufe: Lade...</div>
-        
-        <canvas id="statsChart" style="margin-bottom: 30px;"></canvas>
-        
-        <div id="stats-container">Lade Daten...</div>
-    </div>
+<script>
+    let url = "";
 
-    <script>
-        fetch('https://link-tracker.morning-surf-02e1.workers.dev/stats')
-            .then(res => res.json())
-            .then(data => {
-                const container = document.getElementById('stats-container');
-                const views = data['page_views'] || 0;
-                document.getElementById('page-views').innerText = "Gesamt-Seitenaufrufe: " + views;
-                
-                // Filtere page_views für die Liste aus
-                const listData = Object.entries(data).filter(e => e[0] !== 'page_views').sort((a, b) => b[1] - a[1]);
-                
-                container.innerHTML = listData.map(([link, clicks]) => `
-                    <div class="row"><span>${link.replace('_', ' ')}</span><b>${clicks}</b></div>
-                `).join('');
+    // Tracker-Funktion für alle Links
+    function track(name, u) {
+      fetch('https://link-tracker.morning-surf-02e1.workers.dev/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ link: name })
+      }).catch(e => console.error("Tracking error:", e));
+      
+      if (u) window.open(u, '_blank');
+    }
 
-                // Diagramm erstellen
-                new Chart(document.getElementById('statsChart'), {
-                    type: 'bar',
-                    data: {
-                        labels: listData.map(e => e[0].replace('_', ' ')),
-                        datasets: [{
-                            label: 'Klicks',
-                            data: listData.map(e => e[1]),
-                            backgroundColor: '#00ff08'
-                        }]
-                    },
-                    options: { indexAxis: 'y', plugins: { legend: { display: false } } }
-                });
-            });
-    </script>
-</body>
-</html>
+    // Gate-Funktion für 18+ Links
+    function gate(u, name) { 
+      url = u; 
+      fetch('https://link-tracker.morning-surf-02e1.workers.dev/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ link: name })
+      }).catch(e => console.error("Tracking error:", e));
+      document.getElementById('age-gate').style.display='flex'; 
+    }
+    
+    function hide() { document.getElementById('age-gate').style.display='none'; }
+    function go() { window.open(url, '_blank'); hide(); }
+    
+    // AUTO-TRACKING: Zählt jeden Seitenaufruf von reekey.de
+    fetch('https://link-tracker.morning-surf-02e1.workers.dev/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ link: 'reekey_de_views' })
+    });
+
+    // View Counter laden (holt den aktuellen Stand)
+    fetch('https://link-tracker.morning-surf-02e1.workers.dev/stats')
+      .then(res => res.json())
+      .then(data => {
+          document.getElementById('view-count').innerText = data['reekey_de_views'] || 0;
+      })
+      .catch(err => { document.getElementById('view-count').innerText = "—"; });
+
+    // Lanyard Status (Discord Widget)
+    async function updateStatus() {
+        try {
+            const res = await fetch('https://api.lanyard.rest/v1/users/1104903295438434365');
+            const json = await res.json();
+            if (json.success) {
+                const d = json.data;
+                const dot = document.getElementById('widget-dot');
+                const text = document.getElementById('widget-activity');
+                const colors = { 'online': '#43b581', 'idle': '#faa61a', 'dnd': '#f04747', 'offline': '#747f8d' };
+                if(dot) dot.style.backgroundColor = colors[d.discord_status] || '#747f8d';
+                text.innerText = d.spotify ? `🎵 ${d.spotify.song}` : (d.activities[0]?.name || 'Online');
+            }
+        } catch(e) {}
+    }
+    updateStatus();
+    setInterval(updateStatus, 10000);
+  </script>
