@@ -3,39 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>reekey | Live-Stats</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { background: #050505; color: #00ff08; font-family: -apple-system, sans-serif; display: flex; justify-content: center; padding: 40px; margin: 0; }
-        .box { background: rgba(13, 13, 13, 0.8); padding: 30px; border-radius: 20px; border: 1px solid rgba(0, 255, 8, 0.3); width: 100%; max-width: 500px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
-        h1 { text-align: center; font-size: 24px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; }
-        .row { background: rgba(0, 255, 8, 0.05); padding: 15px 20px; margin-bottom: 8px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border-left: 3px solid #00ff08; }
-        .row span { font-weight: 500; }
-        .row b { font-size: 18px; color: #fff; }
-        .loading { text-align: center; color: #666; font-style: italic; }
+        body { background: #050505; color: #00ff08; font-family: -apple-system, sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
+        .box { background: rgba(13, 13, 13, 0.8); padding: 30px; border-radius: 20px; border: 1px solid rgba(0, 255, 8, 0.3); width: 100%; max-width: 600px; }
+        h1 { text-align: center; font-size: 20px; text-transform: uppercase; margin-bottom: 5px; }
+        .views { text-align: center; margin-bottom: 25px; color: #fff; font-size: 14px; }
+        .row { background: rgba(0, 255, 8, 0.05); padding: 12px 20px; margin-bottom: 8px; border-radius: 12px; display: flex; justify-content: space-between; border-left: 3px solid #00ff08; }
     </style>
 </head>
 <body>
     <div class="box">
         <h1>Live-Statistiken</h1>
-        <div id="stats-container" class="loading">Daten werden geladen...</div>
+        <div class="views" id="page-views">Gesamt-Seitenaufrufe: Lade...</div>
+        
+        <canvas id="statsChart" style="margin-bottom: 30px;"></canvas>
+        
+        <div id="stats-container">Lade Daten...</div>
     </div>
+
     <script>
         fetch('https://link-tracker.morning-surf-02e1.workers.dev/stats')
             .then(res => res.json())
             .then(data => {
                 const container = document.getElementById('stats-container');
+                const views = data['page_views'] || 0;
+                document.getElementById('page-views').innerText = "Gesamt-Seitenaufrufe: " + views;
                 
-                // Sortiere nach Klicks (höchste zuerst)
-                const sortedData = Object.entries(data).sort((a, b) => b[1] - a[1]);
+                // Filtere page_views für die Liste aus
+                const listData = Object.entries(data).filter(e => e[0] !== 'page_views').sort((a, b) => b[1] - a[1]);
                 
-                container.innerHTML = sortedData.map(([link, clicks]) => `
-                    <div class="row">
-                        <span>${link.replace('_', ' ')}</span>
-                        <b>${clicks}</b>
-                    </div>
+                container.innerHTML = listData.map(([link, clicks]) => `
+                    <div class="row"><span>${link.replace('_', ' ')}</span><b>${clicks}</b></div>
                 `).join('');
-            })
-            .catch(() => {
-                document.getElementById('stats-container').innerText = "Fehler beim Laden.";
+
+                // Diagramm erstellen
+                new Chart(document.getElementById('statsChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: listData.map(e => e[0].replace('_', ' ')),
+                        datasets: [{
+                            label: 'Klicks',
+                            data: listData.map(e => e[1]),
+                            backgroundColor: '#00ff08'
+                        }]
+                    },
+                    options: { indexAxis: 'y', plugins: { legend: { display: false } } }
+                });
             });
     </script>
 </body>
