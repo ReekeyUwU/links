@@ -158,19 +158,17 @@
         } catch(e) { console.error(e); }
     }
 
-   async function updateMusicStatus() {
+  async function updateMusicStatus() {
     try {
         const res = await fetch(SPOTIFY_WORKER_URL);
         const data = await res.json();
         const m = document.getElementById('music-widget');
         
-        // Prüfen, ob der Worker "idle" meldet oder ob kein "item" (Song) da ist
-        if (data.status === "idle" || !data.item) {
+        // NEU: Wir prüfen nicht nur, ob ein Song da ist, sondern ob er AKTIV spielt
+        if (data.status === "idle" || !data.item || data.is_playing === false) {
             m.innerText = "🔇 Läuft gerade nichts";
         } else {
-            // HIER ist der Pfad für dein neues JSON: data.item.name
             const song = data.item.name;
-            // Da es mehrere Artists gibt, nehmen wir den ersten aus dem Array
             const artist = data.item.artists[0].name;
             m.innerText = `🎵 ${song} – ${artist}`;
         }
