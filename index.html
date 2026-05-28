@@ -26,7 +26,25 @@
     .avatar-img { width: 130px; height: 130px; border-radius: 35px; object-fit: cover; border: 3px solid #43b581; box-shadow: 0 0 25px rgba(0, 255, 8, 0.5); }
     h1 { font-size: 39.5px; font-weight: 600; margin: 0 0 5px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; text-shadow: 0 0 10px #00ff08; }
     .sub-bio { color: #00ff08; font-size: 16px; margin: 5px 0 20px 0; font-weight: 500; text-shadow: 0 0 5px rgba(0, 255, 8, 0.4); line-height: 1.4; }
-    .guns-discord-widget { background: rgba(0, 0, 0, 0.4); border-radius: 20px; padding: 12px 20px; margin: 0 auto 25px auto; width: 100%; max-width: 310px; display: flex; align-items: center; gap: 15px; border: 1px solid rgba(0, 255, 8, 0.2); cursor: pointer; }
+    .guns-discord-widget { 
+        background: rgba(0, 0, 0, 0.4); 
+        border-radius: 20px; 
+        padding: 12px 20px; 
+        margin: 0 auto 25px auto; 
+        width: 100%; 
+        max-width: 310px; 
+        display: flex; 
+        align-items: center; 
+        gap: 15px; 
+        border: 1px solid rgba(0, 255, 8, 0.2); 
+        cursor: pointer; 
+        transition: all 0.3s ease; /* Das macht die Änderung weich */
+    }
+    .guns-discord-widget:hover { 
+        border-color: #00ff08; 
+        background: rgba(0, 255, 8, 0.1); 
+        box-shadow: 0 0 15px rgba(0, 255, 8, 0.2);
+    }
     .widget-status-dot { width: 14px; height: 14px; border-radius: 50%; background-color: #747f8d; border: 3px solid #111; position: absolute; bottom: -2px; right: -2px; }
     .social-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
     .social-icon { width: 42px; height: 42px; background: rgba(0,255,8,0.15); border: 2px solid rgba(0,255,8,0.12); border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; cursor: pointer; transition: 0.3s; color: #00ff08; overflow: hidden; }
