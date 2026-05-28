@@ -164,13 +164,18 @@
         const data = await res.json();
         const m = document.getElementById('music-widget');
         
-        // Jetzt prüft das Skript, ob der Worker "idle" sendet
-        if (data.status === "idle" || !data.name) {
+        // Prüfen, ob der Worker "idle" meldet oder ob kein "item" (Song) da ist
+        if (data.status === "idle" || !data.item) {
             m.innerText = "🔇 Läuft gerade nichts";
         } else {
-            m.innerText = `🎵 ${data.name} – ${data.artists[0].name}`;
+            // HIER ist der Pfad für dein neues JSON: data.item.name
+            const song = data.item.name;
+            // Da es mehrere Artists gibt, nehmen wir den ersten aus dem Array
+            const artist = data.item.artists[0].name;
+            m.innerText = `🎵 ${song} – ${artist}`;
         }
     } catch(e) { 
+        console.error("Spotify-Fehler:", e);
         document.getElementById('music-widget').innerText = "🔇 Läuft gerade nichts";
     }
 }
