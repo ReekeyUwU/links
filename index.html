@@ -184,6 +184,11 @@
     updateMusicStatus();
     setInterval(updateStatus, 10000);
     setInterval(updateMusicStatus, 30000);
+    // Ruft die Funktion alle 30 Sekunden auf
+setInterval(updateMusicStatus, 30000); 
+
+// Ruft sie beim Laden der Seite einmal sofort auf
+updateMusicStatus();
   </script>
 </body>
 </html>
