@@ -158,27 +158,20 @@
         } catch(e) { console.error(e); }
     }
 
-    async function updateMusicStatus() {
+   async function updateMusicStatus() {
     try {
         const res = await fetch(SPOTIFY_WORKER_URL);
         const data = await res.json();
         const m = document.getElementById('music-widget');
-
-        // Debugging: Was kommt wirklich an?
-        console.log("Spotify API Antwort:", data);
-
-        // Prüfung: Manche Spotify-Antworten haben den Song direkt, andere unter .item
-        const songName = data.item?.name || data.name;
-        const artistName = data.item?.artists?.[0]?.name || data.artists?.[0]?.name;
-
-        if (!songName) {
+        
+        // Jetzt prüft das Skript, ob der Worker "idle" sendet
+        if (data.status === "idle" || !data.name) {
             m.innerText = "🔇 Läuft gerade nichts";
         } else {
-            m.innerText = `🎵 ${songName} – ${artistName}`;
+            m.innerText = `🎵 ${data.name} – ${data.artists[0].name}`;
         }
     } catch(e) { 
-        console.error("Spotify-Fehler:", e); 
-        document.getElementById('music-widget').innerText = "❌ Fehler beim Laden";
+        document.getElementById('music-widget').innerText = "🔇 Läuft gerade nichts";
     }
 }
     
