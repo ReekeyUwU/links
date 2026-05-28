@@ -170,7 +170,7 @@
         } else {
             const song = data.item.name;
             const artist = data.item.artists[0].name;
-            m.innerText = `🎵Listening live on Spotify ${song} – ${artist}`;
+            m.innerText = `🎵 Listening live on Spotify: ${song} – ${artist}`;
         }
     } catch(e) { 
         console.error("Spotify-Fehler:", e);
