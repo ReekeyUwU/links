@@ -115,7 +115,7 @@
     let url = "";
     const TRACKER_URL = 'https://link-tracker.morning-surf-02e1.workers.dev/track';
     // HIER DEINE CLOUDFLARE WORKER URL EINTRAGEN:
-    const SPOTIFY_WORKER_URL = 'https://dein-worker.deine-domain.workers.dev/'; 
+    const SPOTIFY_WORKER_URL = 'https://tight-firefly-dfcf.morning-surf-02e1.workers.dev/'; 
 
     function countView() {
         if (!sessionStorage.getItem('viewed_reekey')) {
@@ -160,7 +160,7 @@
 
     async function updateMusicStatus() {
         try {
-            const res = await fetch(https://tight-firefly-dfcf.morning-surf-02e1.workers.dev/);
+            const res = await fetch(SPOTIFY_WORKER_URL);
             const data = await res.json();
             const m = document.getElementById('music-widget');
             if (data.status === "idle" || !data.item) {
