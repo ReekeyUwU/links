@@ -69,9 +69,9 @@
             <div style="font-weight:700;">reekey_</div>
             <div id="widget-activity" style="color:rgba(0,255,8,0.7); font-size:12px; font-weight:600;">Loading...</div>
             <!-- Spotify Widget -->
-            <div id="music-widget" style="color: #ffd700; font-size: 11px; margin-top: 4px; font-style: italic;">
-                🎵 Musik wird geladen...
-            </div>
+            <div id="music-widget" style="color: #00ff08; font-size: 11px; margin-top: 4px; font-style: italic;">
+    🎵 Musik wird geladen...
+</div>
         </div>
       </div>
       
@@ -158,19 +158,20 @@
         } catch(e) { console.error(e); }
     }
 
-  async function updateMusicStatus() {
+ async function updateMusicStatus() {
     try {
         const res = await fetch(SPOTIFY_WORKER_URL);
         const data = await res.json();
         const m = document.getElementById('music-widget');
         
-        // NEU: Wir prüfen nicht nur, ob ein Song da ist, sondern ob er AKTIV spielt
+        // Beide Zustände nutzen jetzt das Grün
         if (data.status === "idle" || !data.item || data.is_playing === false) {
             m.innerText = "🔇 Läuft gerade nichts";
         } else {
             const song = data.item.name;
             const artist = data.item.artists[0].name;
-            m.innerText = `🎵 Listening live on Spotify: ${song} – ${artist}`;
+            // Text angepasst für einen cleanen Look
+            m.innerText = `🎵 Listening on Spotify: ${song} – ${artist}`;
         }
     } catch(e) { 
         console.error("Spotify-Fehler:", e);
