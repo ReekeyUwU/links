@@ -85,8 +85,8 @@
     .links-card:hover { border-color: #00ff08; transform: translateY(-1px); }
     .badge-18 { font-size: 10px; background: rgba(240, 15, 214, 0.4); color: #fff; padding: 2px 5px; border-radius: 5px; margin-left: 8px; font-weight: bold; }
     
-    /* Globaler Style für Overlays (Age-Gate & Info-Popup) */
-    .popup-overlay { 
+    /* 18+ AGE GATE POP-UP OVERLAY */
+    .age-gate-overlay { 
       position: fixed; 
       top: 0; 
       left: 0; 
@@ -101,56 +101,68 @@
       align-items: center; 
       padding: 20px; 
     }
-    .popup-box { 
+    
+    .age-gate-box { 
       background: rgba(240, 15, 214, 0.15); 
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border: 2px solid rgba(240, 15, 214, 0.2); 
       border-radius: 20px; 
-      padding: 30px 25px; 
+      padding: 35px 25px; 
       text-align: center; 
       width: 100%; 
       max-width: 400px; 
-      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+      box-shadow: 0 0 35px rgba(0,0,0,0.7);
+      transform: scale(0.7);
+      opacity: 0;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
     }
-    .popup-box h2 {
-      font-size: 22px;
+
+    .age-gate-overlay.open .age-gate-box {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .age-gate-box h2 {
+      font-size: 24px;
       font-weight: 600;
       color: #00ff08;
       text-shadow: 0 0 10px #00ff08;
-      margin: 0 0 15px 0;
+      margin: 0 0 25px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
-    .popup-box p {
-      color: #fff;
-      font-size: 14.5px;
-      line-height: 1.4;
-      margin: 0 0 20px 0;
-    }
-    .popup-btn-prime {
+    .age-gate-btn-yes {
       padding: 12px 28px; 
       border-radius: 30px; 
       background: #00ff08; 
       border: none; 
       font-weight: bold; 
       cursor: pointer; 
+      flex: 1; 
+      max-width: 130px;
       color: #000;
       box-shadow: 0 0 15px rgba(0, 255, 8, 0.4);
       transition: all 0.2s ease;
     }
-    .popup-btn-prime:hover {
+    .age-gate-btn-yes:hover {
       transform: scale(1.05);
       box-shadow: 0 0 25px rgba(0, 255, 8, 0.6);
     }
-    .popup-btn-sub {
+    .age-gate-btn-close {
       padding: 12px 28px; 
       border-radius: 30px; 
       background: rgba(13, 13, 13, 0.6); 
       color: white; 
       border: 1px solid rgba(255,255,255,0.3); 
       cursor: pointer; 
+      flex: 1; 
+      max-width: 130px;
       transition: all 0.2s ease;
     }
-    .popup-btn-sub:hover {
+    .age-gate-btn-close:hover {
       border-color: white;
       background: rgba(255,255,255,0.1);
     }
@@ -167,7 +179,7 @@
       .social-row { margin-bottom: 10px; gap: 6px; }
       .social-icon { width: 34px; height: 34px; }
       .links-card { padding: 10px 14px; font-size: 14px; }
-      .popup-box { padding: 22px 20px; }
+      .age-gate-box { padding: 25px 20px; }
     }
 
     @media (min-width: 480px) and (min-height: 750px) {
@@ -179,22 +191,13 @@
 </head>
 <body>
 
-  <!-- 1. NEUES INFO-POPUP (Wird beim Laden der Seite angezeigt) -->
-  <div id="info-popup" class="popup-overlay" style="display: flex;">
-    <div class="popup-box">
-      <h2>🐾 News & Updates!</h2>
-      <p>Willkommen auf meinem neuen Portal! Hier findest du ab jetzt alle aktuellen Links, Profile und meinen Live-Discord-Status auf einen Blick.</p>
-      <button onclick="closeInfoPopup()" class="popup-btn-prime" style="max-width: 100%; width: 140px;">Alles klar!</button>
-    </div>
-  </div>
-
-  <!-- 2. ALTERSPRÜFUNG -->
-  <div id="age-gate" class="popup-overlay">
-    <div class="popup-box">
-      <h2>Confirm Age</h2>
+  <!-- Das animierte Pop-up Age-Gate -->
+  <div id="age-gate" class="age-gate-overlay">
+    <div class="age-gate-box">
+      <h2><i class="fa-solid fa-triangle-exclamation" style="font-size: 20px;"></i> Confirm Age</h2>
       <div style="display: flex; gap: 12px; justify-content: center;">
-        <button onclick="go()" class="popup-btn-prime" style="flex: 1; max-width: 130px;">Yes (18+)</button>
-        <button onclick="hide()" class="popup-btn-sub" style="flex: 1; max-width: 130px;">Close</button>
+        <button onclick="go()" class="age-gate-btn-yes">Yes (18+)</button>
+        <button onclick="hide()" class="age-gate-btn-close">Close</button>
       </div>
     </div>
   </div>
@@ -203,12 +206,14 @@
   <div class="main-wrapper">
     <div class="profile-card">
       
+      <!-- Profil-Kopf -->
       <div>
         <div class="avatar-box"><img id="avatar" class="avatar-img" src="https://reekey.de/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp" alt="Avatar"></div>
         <h1>reekey<i class="fa-solid fa-circle-check" style="font-size:18px;"></i></h1>
         <div class="sub-bio">Hey, glad you found your way here. I'm Reekey, a 27-year-old furry from Germany. 🐾</div>
       </div>
       
+      <!-- Widgets -->
       <div class="guns-discord-widget" onclick="track('Discord_Profile', 'https://discord.com/users/1104903295438434365')">
         <div style="position:relative; flex-shrink: 0;">
             <img style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #00ff08;" src="https://reekey.de/315ca1f2-f200-4a1c-863b-e412a4d7903c.webp" alt="Discord Avatar">
@@ -223,6 +228,7 @@
         </div>
       </div>
       
+      <!-- Socials -->
       <div class="social-row">
         <a class="social-icon" onclick="track('Discord', 'https://discord.com/invite/nRTbXGepUT')"><i class="fab fa-discord"></i></a>
         <a class="social-icon" onclick="track('Instagram', 'https://instagram.com/reekeyuwu')"><i class="fab fa-instagram"></i></a>
@@ -235,6 +241,7 @@
         <a class="social-icon" onclick="track('Kyra', 'https://t.me/KyraXFoxWorks')"><img src="https://r2.guns.lol/8caa2f3b-b000-4470-bdd4-e6a1e7d9e48e.webp" alt="Kyra"></a>
       </div>
 
+      <!-- Links -->
       <div class="btn-list">
         <div class="links-card" onclick="gate('https://onlyfans.com/reekeyuwu', 'OnlyFans')">
             <span style="display:flex; align-items:center; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><img src="https://cdn.simpleicons.org/onlyfans" style="width:18px; margin-right:12px;" alt="">OnlyFans</span><span class="badge-18">18+</span>
@@ -257,6 +264,7 @@
         </div>
       </div>
       
+      <!-- Footer -->
       <div class="footer">
         <span class="view-counter-box">Views: <span id="view-count">...</span></span> 
         <span>| <a href="https://Reekey.de">Reekey.de</a></span>
@@ -270,11 +278,6 @@
     let url = "";
     const TRACKER_URL = 'https://link-tracker.morning-surf-02e1.workers.dev/track';
     const SPOTIFY_WORKER_URL = 'https://tight-firefly-dfcf.morning-surf-02e1.workers.dev/'; 
-
-    // Funktion zum Schließen des Info-Popups
-    function closeInfoPopup() {
-        document.getElementById('info-popup').style.display = 'none';
-    }
 
     function countView() {
         if (!sessionStorage.getItem('viewed_reekey')) {
@@ -293,10 +296,17 @@
     function gate(u, name) { 
       url = u; 
       fetch(TRACKER_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ link: name }) }).catch(e => console.error(e));
-      document.getElementById('age-gate').style.display='flex'; 
+      const el = document.getElementById('age-gate');
+      el.style.display = 'flex';
+      setTimeout(() => el.classList.add('open'), 10); 
     }
     
-    function hide() { document.getElementById('age-gate').style.display='none'; }
+    function hide() { 
+      const el = document.getElementById('age-gate');
+      el.classList.remove('open');
+      setTimeout(() => el.style.display = 'none', 300); 
+    }
+    
     function go() { window.open(url, '_blank'); hide(); }
 
     fetch('https://empty-rice-011f.morning-surf-02e1.workers.dev/')
