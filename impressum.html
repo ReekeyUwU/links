@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>reekey | Impressum</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    * { box-sizing: border-box; }
+    
+    body, html { 
+      margin: 0; 
+      padding: 0; 
+      width: 100%; 
+      height: 100%; 
+      height: 100dvh; 
+      background-color: #050505; 
+      color: #00ff08; 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+      overflow: hidden !important; 
+    }
+    
+    .bg-layer { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url("https://reekey.de/84bdc93d-a924-42a8-829d-8ceafa6314fd.webp"); background-size: cover; background-position: center; background-attachment: fixed; z-index: 1; pointer-events: none; }
+    
+    .main-wrapper { 
+      position: relative; 
+      z-index: 2; 
+      height: 100%; 
+      width: 100%; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+      padding: 10px; 
+    }
+    
+    .profile-card { 
+      width: 100%; 
+      max-width: 540px; 
+      max-height: 98vh; 
+      background: rgba(240, 15, 214, 0.15); 
+      backdrop-filter: blur(7px); 
+      -webkit-backdrop-filter: blur(7px); 
+      border-radius: 20px; 
+      border: 2px solid rgba(240, 15, 214, 0.1); 
+      padding: 25px 20px; 
+      text-align: center; 
+      position: relative; 
+      box-shadow: 0 0 30px rgba(0,0,0,0.5); 
+      animation: slideUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    
+    h1 { font-size: 28px; font-weight: 600; margin: 0 0 15px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; text-shadow: 0 0 10px #00ff08; justify-content: center; }
+    
+    /* Content-Boxen für das Impressum */
+    .impressum-content {
+      text-align: left;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(0, 255, 8, 0.2);
+      border-radius: 14px;
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      overflow-y: auto; /* Erlaubt feines Scrollen NUR innerhalb der Textbox, falls nötig */
+      max-height: 60vh;
+    }
+    
+    .impressum-section {
+      margin-bottom: 15px;
+    }
+    .impressum-section:last-child {
+      margin-bottom: 0;
+    }
+    
+    .impressum-section h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0 0 5px 0;
+      color: rgba(0, 255, 8, 0.7);
+    }
+    
+    .impressum-section p {
+      margin: 0;
+      font-size: 15px;
+      color: #fff;
+      line-height: 1.4;
+    }
+    
+    .impressum-section a {
+      color: #00ff08;
+      text-decoration: none;
+    }
+    .impressum-section a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Zurück Button */
+    .back-btn { 
+      background: linear-gradient(90deg, rgba(136, 28, 156, 0.7) 0%, rgba(13, 13, 13, 0.8) 100%); 
+      border: 2px solid rgba(0,255,8,0.15); 
+      padding: 12px 16px; 
+      border-radius: 10px; 
+      color: #00ff08; 
+      text-decoration: none !important; 
+      font-weight: 600; 
+      font-size: 15px; 
+      display: inline-flex; 
+      justify-content: center; 
+      align-items: center; 
+      gap: 10px;
+      cursor: pointer; 
+      transition: all 0.2s ease; 
+      width: 100%;
+    }
+    .back-btn:hover { border-color: #00ff08; transform: translateY(-1px); }
+    
+    .footer { margin-top: 15px; color: rgba(0, 255, 8, 0.6); font-size: 12px; padding-top: 10px; border-top: 1px solid rgba(0, 255, 8, 0.15); text-align: center; flex-shrink: 0; }
+
+    @media (max-height: 680px) {
+      h1 { font-size: 24px; margin-bottom: 10px; }
+      .impressum-content { padding: 10px 15px; margin-bottom: 10px; }
+      .impressum-section h2 { font-size: 12px; }
+      .impressum-section p { font-size: 13.5px; }
+      .back-btn { padding: 10px 14px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-layer"></div>
+  <div class="main-wrapper">
+    <div class="profile-card">
+      
+      <div>
+        <h1><i class="fa-solid fa-scale-balanced" style="font-size: 22px;"></i> Impressum</h1>
+      </div>
+      
+      <!-- Impressum Daten-Box -->
+      <div class="impressum-content">
+        
+        <div class="impressum-section">
+          <h2>Angaben gemäß § 5 TMG</h2>
+          <p>
+            Michel Anders<br>
+            [Deine Straße & Hausnummer]<br>
+            [Deine PLZ] Lensahn
+          </p>
+        </div>
+        
+        <div class="impressum-section">
+          <h2>Kontakt</h2>
+          <p>
+            E-Mail: <a href="mailto:deine-email@reekey.de">deine-email@reekey.de</a><br>
+            Webseite: <a href="https://reekey.de" target="_blank">reekey.de</a>
+          </p>
+        </div>
+        
+        <div class="impressum-section">
+          <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+          <p>
+            Michel Anders<br>
+            [Deine Straße & Hausnummer]<br>
+            [Deine PLZ] Lensahn
+          </p>
+        </div>
+        
+      </div>
+      
+      <!-- Zurück Button -->
+      <div>
+        <a href="https://reekey.de" class="back-btn">
+          <i class="fa-solid fa-arrow-left"></i> Zurück zum Portal
+        </a>
+      </div>
+      
+      <!-- Footer -->
+      <div class="footer">
+        © 2026 | made with ❤️ from <a href="https://Reekey.de" style="color: #00ff08; text-decoration: none;">Reekey.de</a>
+      </div>
+      
+    </div>
+  </div>
+
+</body>
+</html>
