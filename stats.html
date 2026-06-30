@@ -36,7 +36,6 @@
             padding: 10px; 
         }
         
-        /* Das Passwort Overlay im passenden Design */
         #pw-overlay { 
             position: fixed; 
             top: 0; 
@@ -62,17 +61,8 @@
             box-shadow: 0 0 25px rgba(0, 255, 8, 0.2);
         }
         
-        .login-box h2 {
-            color: white;
-            margin: 0 0 20px 0;
-            font-size: 20px;
-        }
-        
-        .login-box div {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+        .login-box h2 { color: white; margin: 0 0 20px 0; font-size: 20px; }
+        .login-box div { display: flex; flex-direction: column; gap: 12px; }
         
         input { 
             padding: 12px 16px; 
@@ -83,11 +73,6 @@
             font-size: 15px;
             outline: none;
             text-align: center;
-            transition: border-color 0.3s;
-        }
-        input:focus {
-            border-color: #00ff08;
-            box-shadow: 0 0 10px rgba(0, 255, 8, 0.2);
         }
         
         .login-btn { 
@@ -99,21 +84,18 @@
             cursor: pointer; 
             font-size: 15px;
             color: #000;
-            transition: transform 0.2s;
         }
-        .login-btn:hover { transform: scale(1.02); }
         
-        /* Die Profilkarte / Statsbox */
         .profile-card { 
             width: 100%; 
             max-width: 540px; 
-            max-height: 98vh; 
+            height: 96vh; /* Fest fixierte Höhe basierend auf dem Screen */
             background: rgba(240, 15, 214, 0.15); 
             backdrop-filter: blur(7px); 
             -webkit-backdrop-filter: blur(7px); 
             border-radius: 20px; 
             border: 2px solid rgba(240, 15, 214, 0.1); 
-            padding: 20px 15px; 
+            padding: 15px; 
             text-align: center; 
             position: relative; 
             box-shadow: 0 0 30px rgba(0,0,0,0.5); 
@@ -121,77 +103,86 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            overflow: hidden !important;
         }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
-        h1 { font-size: 24px; font-weight: 600; margin: 0 0 12px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; text-shadow: 0 0 10px #00ff08; justify-content: center; }
+        h1 { font-size: 22px; font-weight: 600; margin: 0 0 8px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; text-shadow: 0 0 10px #00ff08; justify-content: center; flex-shrink: 0; }
         
         .views-header { 
             text-align: center; 
-            margin-bottom: 12px; 
+            margin-bottom: 10px; 
             color: #fff; 
-            font-size: 16px; 
+            font-size: 15px; 
             font-weight: bold; 
-            padding: 10px; 
+            padding: 8px; 
             background: rgba(0, 255, 8, 0.1); 
             border-radius: 10px; 
             border: 1px solid rgba(0, 255, 8, 0.2);
-            text-shadow: 0 0 5px rgba(0, 255, 8, 0.4);
             flex-shrink: 0;
         }
         
-        /* Innerer Bereich scrollbar falls sehr viele Links existieren */
-        .scroll-area {
-            overflow-y: auto;
-            flex-grow: 1;
-            padding-right: 4px;
-            margin-bottom: 12px;
+        /* Flexibler Container für das Diagramm */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 180px; /* Reduzierte feste Höhe, damit es nicht drückt */
+            flex-shrink: 0;
+            margin-bottom: 10px;
         }
         
-        /* Listen-Zeilen */
+        /* Listen-Bereich staucht sich jetzt automatisch, anstatt zu scrollen */
+        .stats-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex-grow: 1;
+            justify-content: flex-start;
+            overflow: hidden !important; /* Absolutes Scroll-Verbot */
+        }
+        
         .row { 
             background: linear-gradient(90deg, rgba(136, 28, 156, 0.3) 0%, rgba(13, 13, 13, 0.6) 100%);
-            padding: 12px 16px; 
-            margin-bottom: 8px; 
-            border-radius: 10px; 
+            padding: 8px 14px; 
+            border-radius: 8px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
             border: 1px solid rgba(0, 255, 8, 0.15);
-            font-size: 14.5px;
+            font-size: 13.5px;
+            flex-shrink: 1; /* Erlaubt den Zeilen, kompakter zu werden */
         }
         .row span { font-weight: 600; color: #00ff08; text-transform: capitalize; }
-        .row b { color: #fff; background: rgba(240, 15, 214, 0.3); padding: 2px 8px; border-radius: 6px; font-size: 12px; }
+        .row b { color: #fff; background: rgba(240, 15, 214, 0.3); padding: 2px 6px; border-radius: 5px; font-size: 11px; }
         
-        /* Logout-Button */
         .logout-btn { 
             background: #222; 
             color: #fff; 
             border: 1px solid rgba(255,255,255,0.2);
-            padding: 12px;
+            padding: 10px;
             border-radius: 10px;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
             width: 100%;
-            transition: all 0.2s;
             flex-shrink: 0;
+            margin-top: 5px;
         }
-        .logout-btn:hover { background: #333; border-color: #fff; }
         
-        .footer { margin-top: 12px; color: rgba(0, 255, 8, 0.6); font-size: 12px; padding-top: 10px; border-top: 1px solid rgba(0, 255, 8, 0.15); text-align: center; flex-shrink: 0; }
+        .footer { margin-top: 8px; color: rgba(0, 255, 8, 0.5); font-size: 11px; padding-top: 8px; border-top: 1px solid rgba(0, 255, 8, 0.15); text-align: center; flex-shrink: 0; }
         .footer a { color: #00ff08; text-decoration: none; }
 
+        /* Extra Stauchung für sehr niedrige Bildschirme */
         @media (max-height: 680px) {
-            h1 { font-size: 20px; margin-bottom: 8px; }
-            .views-header { padding: 8px; font-size: 14px; margin-bottom: 8px; }
-            .row { padding: 10px 14px; font-size: 13.5px; margin-bottom: 6px; }
+            .chart-container { height: 130px; }
+            h1 { font-size: 18px; margin-bottom: 4px; }
+            .views-header { padding: 6px; font-size: 13px; margin-bottom: 6px; }
+            .row { padding: 6px 12px; font-size: 12.5px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Login Maske im passenden Overlay-Design -->
     <div id="pw-overlay">
         <div class="login-box">
             <h2>Live-Stats Access</h2>
@@ -211,10 +202,14 @@
                 <div class="views-header" id="page-views">Gesamt-Aufrufe: Lade...</div>
             </div>
             
-            <!-- Scrollbarer Bereich für Chart und Liste (Anti-Scroll für Screen) -->
-            <div class="scroll-area">
-                <canvas id="statsChart" style="margin-bottom: 20px; max-height: 180px;"></canvas>
-                <div id="stats-container">Lade Link-Daten...</div>
+            <!-- Feste Chart Box -->
+            <div class="chart-container">
+                <canvas id="statsChart"></canvas>
+            </div>
+            
+            <!-- Liste blockiert jegliches Scrollen -->
+            <div class="stats-list" id="stats-container">
+                Lade Link-Daten...
             </div>
             
             <div>
@@ -277,7 +272,6 @@
                         </div>
                     `).join('');
 
-                    // Chart.js Anpassung an dein Dark-Neon-Design
                     new Chart(document.getElementById('statsChart'), {
                         type: 'bar',
                         data: {
@@ -286,7 +280,7 @@
                                 label: 'Klicks', 
                                 data: listData.map(e => e[1]), 
                                 backgroundColor: '#00ff08',
-                                borderRadius: 5,
+                                borderRadius: 4,
                                 hoverBackgroundColor: '#fff'
                             }]
                         },
@@ -294,17 +288,15 @@
                             indexAxis: 'y', 
                             responsive: true,
                             maintainAspectRatio: false,
-                            plugins: { 
-                                legend: { display: false }
-                            },
+                            plugins: { legend: { display: false } },
                             scales: {
                                 x: {
-                                    grid: { color: 'rgba(0, 255, 8, 0.1)' },
-                                    ticks: { color: 'rgba(0, 255, 8, 0.7)', font: { size: 10 } }
+                                    grid: { color: 'rgba(0, 255, 8, 0.08)' },
+                                    ticks: { color: 'rgba(0, 255, 8, 0.6)', font: { size: 9 } }
                                 },
                                 y: {
                                     grid: { display: false },
-                                    ticks: { color: '#00ff08', font: { size: 11, weight: 'bold' } }
+                                    ticks: { color: '#00ff08', font: { size: 10, weight: 'bold' } }
                                 }
                             }
                         }
