@@ -10,16 +10,17 @@
     <style>
         * { box-sizing: border-box; }
         
+        /* Das normale Scrollen für die gesamte Webseite erlauben */
         body, html { 
             margin: 0; 
             padding: 0; 
             width: 100%; 
-            height: 100%; 
-            height: 100dvh; 
+            min-height: 100%; 
             background-color: #050505; 
             color: #00ff08; 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            overflow: hidden !important; 
+            overflow-x: hidden;
+            overflow-y: auto; /* Scrollen auf dem Hauptbildschirm wieder aktiv */
         }
         
         .bg-layer { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url("https://reekey.de/84bdc93d-a924-42a8-829d-8ceafa6314fd.webp"); background-size: cover; background-position: center; background-attachment: fixed; z-index: 1; pointer-events: none; }
@@ -27,13 +28,13 @@
         .main-wrapper { 
             position: relative; 
             z-index: 2; 
-            height: 100%; 
+            min-height: 100vh; 
             width: 100%; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
             align-items: center; 
-            padding: 10px; 
+            padding: 20px 10px; 
         }
         
         #pw-overlay { 
@@ -50,135 +51,66 @@
             padding: 20px;
         }
         
-        .login-box {
-            background: #111; 
-            border: 2px solid #00ff08; 
-            border-radius: 20px; 
-            padding: 30px 20px; 
-            text-align: center; 
-            width: 100%; 
-            max-width: 360px;
-            box-shadow: 0 0 25px rgba(0, 255, 8, 0.2);
-        }
-        
+        .login-box { background: #111; border: 2px solid #00ff08; border-radius: 20px; padding: 30px 20px; text-align: center; width: 100%; max-width: 360px; box-shadow: 0 0 25px rgba(0, 255, 8, 0.2); }
         .login-box h2 { color: white; margin: 0 0 20px 0; font-size: 20px; }
         .login-box div { display: flex; flex-direction: column; gap: 12px; }
         
-        input { 
-            padding: 12px 16px; 
-            border-radius: 10px; 
-            border: 1px solid rgba(0, 255, 8, 0.4); 
-            background: rgba(0, 0, 0, 0.6); 
-            color: #00ff08; 
-            font-size: 15px;
-            outline: none;
-            text-align: center;
-        }
+        input { padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(0, 255, 8, 0.4); background: rgba(0, 0, 0, 0.6); color: #00ff08; font-size: 15px; outline: none; text-align: center; }
+        .login-btn { padding: 12px; border-radius: 30px; background: #00ff08; border: none; font-weight: bold; cursor: pointer; font-size: 15px; color: #000; }
         
-        .login-btn { 
-            padding: 12px; 
-            border-radius: 30px; 
-            background: #00ff08; 
-            border: none; 
-            font-weight: bold; 
-            cursor: pointer; 
-            font-size: 15px;
-            color: #000;
-        }
-        
+        /* Die Box wächst jetzt flexibel mit dem Inhalt mit (height: auto) */
         .profile-card { 
             width: 100%; 
             max-width: 540px; 
-            height: 96vh; /* Fest fixierte Höhe basierend auf dem Screen */
+            height: auto; 
             background: rgba(240, 15, 214, 0.15); 
             backdrop-filter: blur(7px); 
             -webkit-backdrop-filter: blur(7px); 
             border-radius: 20px; 
             border: 2px solid rgba(240, 15, 214, 0.1); 
-            padding: 15px; 
+            padding: 30px 20px; 
             text-align: center; 
             position: relative; 
             box-shadow: 0 0 30px rgba(0,0,0,0.5); 
             animation: slideUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            overflow: hidden !important;
         }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
-        h1 { font-size: 22px; font-weight: 600; margin: 0 0 8px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; text-shadow: 0 0 10px #00ff08; justify-content: center; flex-shrink: 0; }
+        h1 { font-size: 26px; font-weight: 600; margin: 0 0 12px 0; color: #00ff08; display: inline-flex; align-items: center; gap: 8px; text-shadow: 0 0 10px #00ff08; justify-content: center; }
         
-        .views-header { 
-            text-align: center; 
-            margin-bottom: 10px; 
-            color: #fff; 
-            font-size: 15px; 
-            font-weight: bold; 
-            padding: 8px; 
-            background: rgba(0, 255, 8, 0.1); 
-            border-radius: 10px; 
-            border: 1px solid rgba(0, 255, 8, 0.2);
-            flex-shrink: 0;
-        }
+        .views-header { text-align: center; margin-bottom: 20px; color: #fff; font-size: 16px; font-weight: bold; padding: 12px; background: rgba(0, 255, 8, 0.1); border-radius: 10px; border: 1px solid rgba(0, 255, 8, 0.2); }
         
-        /* Flexibler Container für das Diagramm */
-        .chart-container {
-            position: relative;
-            width: 100%;
-            height: 180px; /* Reduzierte feste Höhe, damit es nicht drückt */
-            flex-shrink: 0;
-            margin-bottom: 10px;
-        }
+        /* Feste Höhe fürs Chart, damit es sauber aussieht */
+        .chart-container { position: relative; width: 100%; height: 200px; margin-bottom: 25px; }
         
-        /* Listen-Bereich staucht sich jetzt automatisch, anstatt zu scrollen */
+        /* Hier drin wird NICHT mehr gescrollt, alles dehnt sich nach unten aus */
         .stats-list {
             display: flex;
             flex-direction: column;
-            gap: 5px;
-            flex-grow: 1;
-            justify-content: flex-start;
-            overflow: hidden !important; /* Absolutes Scroll-Verbot */
+            gap: 8px;
+            margin-bottom: 25px;
         }
         
         .row { 
             background: linear-gradient(90deg, rgba(136, 28, 156, 0.3) 0%, rgba(13, 13, 13, 0.6) 100%);
-            padding: 8px 14px; 
-            border-radius: 8px; 
+            padding: 12px 16px; 
+            border-radius: 10px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
             border: 1px solid rgba(0, 255, 8, 0.15);
-            font-size: 13.5px;
-            flex-shrink: 1; /* Erlaubt den Zeilen, kompakter zu werden */
+            font-size: 15px;
         }
         .row span { font-weight: 600; color: #00ff08; text-transform: capitalize; }
-        .row b { color: #fff; background: rgba(240, 15, 214, 0.3); padding: 2px 6px; border-radius: 5px; font-size: 11px; }
+        .row b { color: #fff; background: rgba(240, 15, 214, 0.3); padding: 3px 8px; border-radius: 6px; font-size: 12px; }
         
-        .logout-btn { 
-            background: #222; 
-            color: #fff; 
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 10px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 13px;
-            cursor: pointer;
-            width: 100%;
-            flex-shrink: 0;
-            margin-top: 5px;
-        }
+        .logout-btn { background: #222; color: #fff; border: 1px solid rgba(255,255,255,0.2); padding: 12px; border-radius: 10px; font-weight: 600; font-size: 14px; cursor: pointer; width: 100%; }
+        .logout-btn:hover { background: #333; }
         
-        .footer { margin-top: 8px; color: rgba(0, 255, 8, 0.5); font-size: 11px; padding-top: 8px; border-top: 1px solid rgba(0, 255, 8, 0.15); text-align: center; flex-shrink: 0; }
+        .footer { margin-top: 15px; color: rgba(0, 255, 8, 0.5); font-size: 12px; padding-top: 12px; border-top: 1px solid rgba(0, 255, 8, 0.15); text-align: center; }
         .footer a { color: #00ff08; text-decoration: none; }
-
-        /* Extra Stauchung für sehr niedrige Bildschirme */
-        @media (max-height: 680px) {
-            .chart-container { height: 130px; }
-            h1 { font-size: 18px; margin-bottom: 4px; }
-            .views-header { padding: 6px; font-size: 13px; margin-bottom: 6px; }
-            .row { padding: 6px 12px; font-size: 12.5px; }
-        }
     </style>
 </head>
 <body>
@@ -202,12 +134,11 @@
                 <div class="views-header" id="page-views">Gesamt-Aufrufe: Lade...</div>
             </div>
             
-            <!-- Feste Chart Box -->
             <div class="chart-container">
                 <canvas id="statsChart"></canvas>
             </div>
             
-            <!-- Liste blockiert jegliches Scrollen -->
+            <!-- Die Liste entfaltet sich jetzt komplett nach unten -->
             <div class="stats-list" id="stats-container">
                 Lade Link-Daten...
             </div>
@@ -292,11 +223,11 @@
                             scales: {
                                 x: {
                                     grid: { color: 'rgba(0, 255, 8, 0.08)' },
-                                    ticks: { color: 'rgba(0, 255, 8, 0.6)', font: { size: 9 } }
+                                    ticks: { color: 'rgba(0, 255, 8, 0.6)', font: { size: 10 } }
                                 },
                                 y: {
                                     grid: { display: false },
-                                    ticks: { color: '#00ff08', font: { size: 10, weight: 'bold' } }
+                                    ticks: { color: '#00ff08', font: { size: 11, weight: 'bold' } }
                                 }
                             }
                         }
